@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marwaan's Drawing Board | Free Paint 🖌️</title>
+  <meta name="description" content="Draw and paint your own pictures! Pick colors, choose a brush, and make something awesome on Marwaan's drawing board.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="canonical" href="https://marwaan.net/paint.html">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧱</text></svg>">
+  <!-- Open Graph / social sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Marwaan's Lego World">
+  <meta property="og:title" content="Marwaan's Drawing Board | Free Paint 🖌️">
+  <meta property="og:description" content="Draw and paint your own pictures! Pick colors, choose a brush, and make something awesome on Marwaan's drawing board.">
+  <meta property="og:url" content="https://marwaan.net/paint.html">
+  <meta property="og:image" content="https://marwaan.net/images/headshot.JPG">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Marwaan's Drawing Board | Free Paint 🖌️">
+  <meta name="twitter:description" content="Draw and paint your own pictures! Pick colors, choose a brush, and make something awesome on Marwaan's drawing board.">
+  <meta name="twitter:image" content="https://marwaan.net/images/headshot.JPG">
+</head>
+<body>
+
+  <!-- Accessibility Landmark: Header & Navigation -->
+  <div id="site-header"></div>
+
+  <!-- Accessibility Landmark: Main Area -->
+  <main>
+    <section class="lego-card coral">
+      <div class="lego-studs-row">
+        <span class="lego-stud"></span>
+        <span class="lego-stud"></span>
+        <span class="lego-stud"></span>
+        <span class="lego-stud"></span>
+      </div>
+      <div class="lego-card-body">
+        <h1 style="text-align: center; margin-bottom: 0.75rem;">My Drawing Board 🎨🖌️</h1>
+        <p style="font-size: 1.25rem; font-weight: 600; text-align: center; margin-bottom: 2rem;">
+          Pick a color and a brush, then draw right on the board with your finger or mouse!
+        </p>
+
+        <div class="paint-layout">
+
+          <!-- Toolbar -->
+          <div class="paint-toolbar">
+
+            <!-- Colors -->
+            <div class="paint-tool-group">
+              <span class="paint-group-label">Colors</span>
+              <div id="paint-swatches" class="paint-swatches" role="group" aria-label="Color choices"></div>
+              <label class="paint-custom-color">
+                <span>More 🌈</span>
+                <input type="color" id="paint-color" value="#e74c3c" aria-label="Pick a custom color">
+              </label>
+            </div>
+
+            <!-- Brush pens -->
+            <div class="paint-tool-group">
+              <span class="paint-group-label">Brush Pens</span>
+              <div class="paint-tool-buttons" role="group" aria-label="Brush choices">
+                <button type="button" id="tool-brush" class="paint-tool active" aria-pressed="true" aria-label="Marker brush">🖊️ Marker</button>
+                <button type="button" id="tool-crayon" class="paint-tool" aria-pressed="false" aria-label="Crayon brush">🖍️ Crayon</button>
+                <button type="button" id="tool-rainbow" class="paint-tool" aria-pressed="false" aria-label="Rainbow brush">🌈 Rainbow</button>
+                <button type="button" id="tool-eraser" class="paint-tool" aria-pressed="false" aria-label="Eraser">🧽 Eraser</button>
+              </div>
+            </div>
+
+            <!-- Brush size -->
+            <div class="paint-tool-group">
+              <span class="paint-group-label">Brush Size: <strong id="brush-size-value">Medium</strong></span>
+              <div class="paint-size-row">
+                <span aria-hidden="true" style="font-size: 0.9rem;">•</span>
+                <input type="range" id="brush-size" class="lego-range" min="2" max="48" step="1" value="14"
+                       aria-label="Brush size from thin to thick">
+                <span aria-hidden="true" style="font-size: 1.8rem;">●</span>
+              </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="paint-tool-group">
+              <span class="paint-group-label">Actions</span>
+              <div class="paint-tool-buttons" role="group" aria-label="Drawing actions">
+                <button type="button" id="btn-undo" class="lego-btn blue paint-action-btn" aria-label="Undo last stroke">↩️ Undo</button>
+                <button type="button" id="btn-clear" class="lego-btn coral paint-action-btn" aria-label="Clear the whole board">🗑️ Clear</button>
+                <button type="button" id="btn-save" class="lego-btn green paint-action-btn" aria-label="Save drawing as a picture">💾 Save</button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Drawing surface -->
+          <div class="paint-canvas-wrap">
+            <canvas id="paint-canvas" aria-label="Drawing board. Use your finger or mouse to draw."></canvas>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Accessibility Landmark: Footer -->
+  <div id="site-footer"></div>
+
+  <script src="js/main.js"></script>
+  <script src="js/paint.js"></script>
+</body>
+</html>

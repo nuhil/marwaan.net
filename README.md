@@ -24,6 +24,7 @@ The site is designed with a **LEGO block / neo-brutalism** theme:
 .
 ├── index.html          # Homepage ("All About Me" with Audio Greeting)
 ├── gallery.html        # Grid of drawings and Lego builds (with Lightbox Modal)
+├── paint.html          # Free-hand drawing board (canvas: brushes, colors, undo, save)
 ├── journals.html       # Dictated story book styled like digital notebook pages
 ├── projects.html       # Achievement dashboard showing unlockable badges
 ├── games.html          # HTML5 Canvas "Lego Balloon Pop" game interface

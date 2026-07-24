@@ -1141,6 +1141,205 @@ footer.app-footer {
 }
 
 /* ==========================================================================
+   Drawing Board Features (paint.html)
+   ========================================================================== */
+.paint-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.paint-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.25rem 1.75rem;
+  width: 100%;
+  background-color: var(--white);
+  border: var(--border-width) solid var(--dark-gray);
+  border-radius: var(--border-radius);
+  box-shadow: 4px 4px 0px var(--dark-gray);
+  padding: 1.25rem;
+}
+
+.paint-tool-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.paint-group-label {
+  font-family: var(--font-header);
+  font-weight: 800;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--dark-gray);
+}
+
+.paint-group-label strong {
+  color: var(--bright-coral);
+}
+
+/* Color swatches */
+.paint-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  max-width: 220px;
+}
+
+.paint-swatch {
+  width: 38px;
+  height: 38px;
+  border: 3px solid var(--dark-gray);
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 0;
+  box-shadow: 2px 2px 0px var(--dark-gray);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.paint-swatch:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px var(--dark-gray);
+}
+
+.paint-swatch.active {
+  outline: 4px solid var(--sky-blue);
+  outline-offset: 2px;
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px var(--dark-gray);
+}
+
+.paint-custom-color {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.paint-custom-color input[type="color"] {
+  width: 46px;
+  height: 38px;
+  border: 3px solid var(--dark-gray);
+  border-radius: 10px;
+  background: none;
+  cursor: pointer;
+  box-shadow: 2px 2px 0px var(--dark-gray);
+  padding: 2px;
+}
+
+/* Brush + action buttons */
+.paint-tool-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.paint-tool {
+  font-family: var(--font-header);
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.6rem 0.9rem;
+  background-color: var(--off-white);
+  color: var(--dark-gray);
+  border: 3px solid var(--dark-gray);
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 3px 3px 0px var(--dark-gray);
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.1s ease;
+  min-height: 48px;
+  touch-action: manipulation;
+}
+
+.paint-tool:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0px var(--dark-gray);
+}
+
+.paint-tool.active {
+  background-color: var(--sunny-yellow);
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px var(--dark-gray);
+}
+
+.paint-action-btn {
+  font-size: 1rem;
+  padding: 0.6rem 1rem;
+  min-height: 48px;
+  border-radius: 12px;
+}
+
+.paint-size-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 220px;
+}
+
+/* Shared chunky range input (used by the brush-size slider) */
+.lego-range {
+  flex-grow: 1;
+  appearance: none;
+  -webkit-appearance: none;
+  height: 16px;
+  border: 3px solid var(--dark-gray);
+  border-radius: 10px;
+  background-color: var(--sky-blue);
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.lego-range:focus-visible {
+  outline: 4px solid var(--sunny-yellow);
+  outline-offset: 3px;
+}
+
+.lego-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: var(--sunny-yellow);
+  border: 4px solid var(--dark-gray);
+  box-shadow: 2px 2px 0px var(--dark-gray);
+}
+
+.lego-range::-moz-range-thumb {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: var(--sunny-yellow);
+  border: 4px solid var(--dark-gray);
+  box-shadow: 2px 2px 0px var(--dark-gray);
+}
+
+/* Drawing surface */
+.paint-canvas-wrap {
+  width: 100%;
+  max-width: 860px;
+  aspect-ratio: 4 / 3;
+  background-color: var(--white);
+  border: var(--border-width) solid var(--dark-gray);
+  border-radius: var(--border-radius);
+  box-shadow: 8px 8px 0px var(--dark-gray);
+  overflow: hidden;
+}
+
+#paint-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none; /* prevent scroll/zoom gestures while drawing */
+  cursor: crosshair;
+}
+
+/* ==========================================================================
    Reduced Motion (Accessibility)
    Respect users who prefer minimal animation. Keeps the tactile press
    feedback subtle-instant instead of animated, and stops looping effects.
