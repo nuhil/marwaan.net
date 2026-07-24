@@ -506,6 +506,37 @@ main {
   box-shadow: 7px 7px 0px var(--dark-gray);
 }
 
+/* Delete button on saved (user-made) drawings */
+.gallery-delete-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 3px solid var(--dark-gray);
+  background-color: var(--bright-coral);
+  color: var(--white);
+  font-size: 0.95rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 0px var(--dark-gray);
+  z-index: 2;
+  padding: 0;
+}
+
+.gallery-delete-btn:hover {
+  background-color: var(--bright-coral-dark);
+}
+
+.gallery-delete-btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px var(--dark-gray);
+}
+
 .gallery-item:hover .gallery-item-info {
   transform: translateY(0);
 }
@@ -1272,6 +1303,39 @@ footer.app-footer {
   padding: 0.6rem 1rem;
   min-height: 48px;
   border-radius: 12px;
+}
+
+/* Sticker stamp buttons */
+.paint-stickers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  max-width: 240px;
+}
+
+.paint-sticker {
+  width: 48px;
+  height: 48px;
+  font-size: 1.6rem;
+  line-height: 1;
+  background-color: var(--off-white);
+  border: 3px solid var(--dark-gray);
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 2px 2px 0px var(--dark-gray);
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.1s ease;
+  touch-action: manipulation;
+}
+
+.paint-sticker:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0px var(--dark-gray);
+}
+
+.paint-sticker.active {
+  background-color: var(--sunny-yellow);
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px var(--dark-gray);
 }
 
 .paint-size-row {

@@ -25,6 +25,9 @@ document.addEventListener('DOMContentLoaded', () => {
     '#ffffff'  // white
   ];
 
+  // Fun sticker stamps kids can tap onto the canvas.
+  const STICKERS = ['🦖', '🚀', '⭐', '❤️', '🌈', '🐱', '🌸', '🧱', '🚗', '☀️'];
+
   const BG_COLOR = '#ffffff';
   const SIZE_LABELS = [
     { max: 8,  label: 'Thin' },
@@ -35,9 +38,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---- Drawing state -------------------------------------------------------
   const state = {
-    tool: 'brush',        // 'brush' | 'crayon' | 'rainbow' | 'eraser'
+    tool: 'brush',        // 'brush' | 'crayon' | 'rainbow' | 'fill' | 'eraser' | 'stamp'
     color: '#e74c3c',
     size: 14,
+    sticker: '🦖',        // active sticker when tool === 'stamp'
     drawing: false,
     lastX: 0,
     lastY: 0,
@@ -158,12 +162,84 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // ---- Fill (flood fill / paint bucket) ------------------------------------
+  function hexToRgba32(hex) {
+    const h = hex.replace('#', '');
+    const r = parseInt(h.substring(0, 2), 16);
+    const g = parseInt(h.substring(2, 4), 16);
+    const b = parseInt(h.substring(4, 6), 16);
+    // Canvas ImageData is little-endian RGBA -> pack as 0xAABBGGRR.
+    return ((255 << 24) | (b << 16) | (g << 8) | r) >>> 0;
+  }
+
+  function floodFill(cssX, cssY) {
+    const dpr = window.devicePixelRatio || 1;
+    const w = canvas.width;
+    const h = canvas.height;
+    const x = Math.floor(cssX * dpr);
+    const y = Math.floor(cssY * dpr);
+    if (x < 0 || y < 0 || x >= w || y >= h) return;
+
+    const img = ctx.getImageData(0, 0, w, h);
+    const px = new Uint32Array(img.data.buffer);
+    const start = y * w + x;
+    const target = px[start];
+    const fill = hexToRgba32(state.color);
+    if (target === fill) return;
+
+    const tR = target & 0xff, tG = (target >> 8) & 0xff,
+          tB = (target >> 16) & 0xff, tA = (target >> 24) & 0xff;
+    const tol = 40; // tolerance so anti-aliased edges fill cleanly
+    const matches = (c) => {
+      const r = c & 0xff, g = (c >> 8) & 0xff, b = (c >> 16) & 0xff, a = (c >> 24) & 0xff;
+      return Math.abs(r - tR) <= tol && Math.abs(g - tG) <= tol &&
+             Math.abs(b - tB) <= tol && Math.abs(a - tA) <= tol;
+    };
+
+    const stack = [start];
+    while (stack.length) {
+      const idx = stack.pop();
+      if (idx < 0 || idx >= px.length || !matches(px[idx])) continue;
+      px[idx] = fill;
+      const col = idx % w;
+      if (col > 0) stack.push(idx - 1);
+      if (col < w - 1) stack.push(idx + 1);
+      if (idx - w >= 0) stack.push(idx - w);
+      if (idx + w < px.length) stack.push(idx + w);
+    }
+    ctx.putImageData(img, 0, 0);
+  }
+
+  // ---- Sticker stamp -------------------------------------------------------
+  function stamp(cssX, cssY) {
+    const fontSize = Math.max(32, state.size * 3.5);
+    ctx.save();
+    ctx.font = `${fontSize}px "Apple Color Emoji", "Segoe UI Emoji", sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(state.sticker, cssX, cssY);
+    ctx.restore();
+  }
+
   // ---- Pointer events ------------------------------------------------------
   function onPointerDown(e) {
     e.preventDefault();
+    const { x, y } = getPos(e);
+
+    // One-shot tools: act on tap, no dragging stroke.
+    if (state.tool === 'fill') {
+      pushUndo();
+      floodFill(x, y);
+      return;
+    }
+    if (state.tool === 'stamp') {
+      pushUndo();
+      stamp(x, y);
+      return;
+    }
+
     pushUndo();
     state.drawing = true;
-    const { x, y } = getPos(e);
     state.lastX = x;
     state.lastY = y;
     drawDot(x, y);
@@ -228,8 +304,16 @@ document.addEventListener('DOMContentLoaded', () => {
     brush: 'tool-brush',
     crayon: 'tool-crayon',
     rainbow: 'tool-rainbow',
+    fill: 'tool-fill',
     eraser: 'tool-eraser'
   };
+
+  function clearStickerActive() {
+    document.querySelectorAll('.paint-sticker').forEach(s => {
+      s.classList.remove('active');
+      s.setAttribute('aria-pressed', 'false');
+    });
+  }
 
   function setTool(tool) {
     state.tool = tool;
@@ -240,6 +324,77 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.classList.toggle('active', on);
       btn.setAttribute('aria-pressed', on ? 'true' : 'false');
     });
+    clearStickerActive();
+  }
+
+  function buildStickers() {
+    const host = document.getElementById('paint-stickers');
+    if (!host) return;
+    STICKERS.forEach(emoji => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'paint-sticker';
+      btn.textContent = emoji;
+      btn.setAttribute('aria-label', `Stamp ${emoji} sticker`);
+      btn.setAttribute('aria-pressed', 'false');
+      btn.addEventListener('click', () => setSticker(emoji, btn));
+      host.appendChild(btn);
+    });
+  }
+
+  function setSticker(emoji, btn) {
+    state.tool = 'stamp';
+    state.sticker = emoji;
+    // Deactivate brush/tool buttons, activate just this sticker.
+    Object.values(TOOL_BTNS).forEach(id => {
+      const b = document.getElementById(id);
+      if (b) { b.classList.remove('active'); b.setAttribute('aria-pressed', 'false'); }
+    });
+    clearStickerActive();
+    btn.classList.add('active');
+    btn.setAttribute('aria-pressed', 'true');
+  }
+
+  // ---- Save the artwork into the browser gallery (localStorage) -------------
+  const GALLERY_KEY = 'marwaan_gallery_drawings';
+
+  function compressForGallery() {
+    // Downscale + JPEG-encode so many drawings fit inside localStorage.
+    const maxW = 600;
+    const scale = Math.min(1, maxW / canvas.width);
+    const w = Math.max(1, Math.round(canvas.width * scale));
+    const h = Math.max(1, Math.round(canvas.height * scale));
+    const off = document.createElement('canvas');
+    off.width = w;
+    off.height = h;
+    const octx = off.getContext('2d');
+    octx.fillStyle = BG_COLOR;
+    octx.fillRect(0, 0, w, h);
+    octx.drawImage(canvas, 0, 0, w, h);
+    return off.toDataURL('image/jpeg', 0.85);
+  }
+
+  function addToGallery(btn) {
+    let list = [];
+    try { list = JSON.parse(localStorage.getItem(GALLERY_KEY)) || []; } catch (e) { list = []; }
+    list.push({
+      id: Date.now(),
+      src: compressForGallery(),
+      caption: "Marwaan's Drawing 🎨",
+      date: new Date().toISOString()
+    });
+    try {
+      localStorage.setItem(GALLERY_KEY, JSON.stringify(list));
+    } catch (err) {
+      alert('The gallery is full! Please delete some old drawings in the Gallery first. 🧱');
+      return;
+    }
+    if (btn) {
+      const original = btn.textContent;
+      btn.textContent = '✅ Added!';
+      btn.disabled = true;
+      setTimeout(() => { btn.textContent = original; btn.disabled = false; }, 1600);
+    }
   }
 
   function sizeLabel(v) {
@@ -293,11 +448,15 @@ document.addEventListener('DOMContentLoaded', () => {
       link.href = canvas.toDataURL('image/png');
       link.click();
     });
+
+    const galleryBtn = document.getElementById('btn-gallery');
+    if (galleryBtn) galleryBtn.addEventListener('click', () => addToGallery(galleryBtn));
   }
 
   // ---- Init ----------------------------------------------------------------
   sizeCanvas(false);
   buildSwatches();
+  buildStickers();
   wireControls();
 
   // Preserve artwork across responsive resizes / orientation changes.

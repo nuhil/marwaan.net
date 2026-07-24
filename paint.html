@@ -55,15 +55,22 @@
               </label>
             </div>
 
-            <!-- Brush pens -->
+            <!-- Brush pens & tools -->
             <div class="paint-tool-group">
-              <span class="paint-group-label">Brush Pens</span>
-              <div class="paint-tool-buttons" role="group" aria-label="Brush choices">
+              <span class="paint-group-label">Brushes &amp; Tools</span>
+              <div class="paint-tool-buttons" role="group" aria-label="Brush and tool choices">
                 <button type="button" id="tool-brush" class="paint-tool active" aria-pressed="true" aria-label="Marker brush">🖊️ Marker</button>
                 <button type="button" id="tool-crayon" class="paint-tool" aria-pressed="false" aria-label="Crayon brush">🖍️ Crayon</button>
                 <button type="button" id="tool-rainbow" class="paint-tool" aria-pressed="false" aria-label="Rainbow brush">🌈 Rainbow</button>
+                <button type="button" id="tool-fill" class="paint-tool" aria-pressed="false" aria-label="Fill area with color">🪣 Fill</button>
                 <button type="button" id="tool-eraser" class="paint-tool" aria-pressed="false" aria-label="Eraser">🧽 Eraser</button>
               </div>
+            </div>
+
+            <!-- Sticker stamps -->
+            <div class="paint-tool-group">
+              <span class="paint-group-label">Stickers</span>
+              <div id="paint-stickers" class="paint-stickers" role="group" aria-label="Sticker stamps"></div>
             </div>
 
             <!-- Brush size -->
@@ -83,7 +90,8 @@
               <div class="paint-tool-buttons" role="group" aria-label="Drawing actions">
                 <button type="button" id="btn-undo" class="lego-btn blue paint-action-btn" aria-label="Undo last stroke">↩️ Undo</button>
                 <button type="button" id="btn-clear" class="lego-btn coral paint-action-btn" aria-label="Clear the whole board">🗑️ Clear</button>
-                <button type="button" id="btn-save" class="lego-btn green paint-action-btn" aria-label="Save drawing as a picture">💾 Save</button>
+                <button type="button" id="btn-save" class="lego-btn green paint-action-btn" aria-label="Save drawing as a picture file">💾 Save</button>
+                <button type="button" id="btn-gallery" class="lego-btn yellow paint-action-btn" aria-label="Add this drawing to my gallery">🖼️ Add to Gallery</button>
               </div>
             </div>
 

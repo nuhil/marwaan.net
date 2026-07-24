@@ -65,8 +65,64 @@ renderSiteChrome();
 
 document.addEventListener('DOMContentLoaded', () => {
   setupVocalGreeting();
+  injectSavedDrawings(); // must run before setupLightbox so saved art is included
   setupLightbox();
 });
+
+/* ==========================================================================
+   Saved Drawings (from the Paint page) rendered into the Gallery
+   Drawings are stored per-device in localStorage by paint.js. Here we append
+   them to the gallery grid so they appear alongside the built-in artwork and
+   work with the existing lightbox.
+   ========================================================================== */
+const GALLERY_KEY = 'marwaan_gallery_drawings';
+
+function escapeHTML(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+function injectSavedDrawings() {
+  const grid = document.querySelector('.gallery-grid');
+  if (!grid) return; // only on the gallery page
+
+  let list = [];
+  try { list = JSON.parse(localStorage.getItem(GALLERY_KEY)) || []; } catch (e) { list = []; }
+  if (!list.length) return;
+
+  // Newest first
+  list.slice().reverse().forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'gallery-item saved-drawing';
+    div.tabIndex = 0;
+    div.setAttribute('role', 'button');
+    div.setAttribute('aria-label', `Open ${item.caption} in slide viewer`);
+    div.innerHTML =
+      `<img src="${item.src}" alt="${escapeHTML(item.caption)}" loading="lazy">` +
+      `<div class="gallery-item-info">${escapeHTML(item.caption)}</div>` +
+      `<button class="gallery-delete-btn" type="button" data-id="${item.id}" ` +
+      `aria-label="Delete this drawing">✕</button>`;
+    grid.appendChild(div);
+  });
+
+  // Wire up delete buttons (stop the click from also opening the lightbox)
+  grid.querySelectorAll('.gallery-delete-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (!confirm('Delete this drawing?')) return;
+      const id = Number(btn.getAttribute('data-id'));
+      let l = [];
+      try { l = JSON.parse(localStorage.getItem(GALLERY_KEY)) || []; } catch (err) { l = []; }
+      l = l.filter(x => x.id !== id);
+      localStorage.setItem(GALLERY_KEY, JSON.stringify(l));
+      location.reload();
+    });
+  });
+}
 
 /* ==========================================================================
    2. Vocal Greeting (HTML5 Audio + Web Speech API Fallback)
