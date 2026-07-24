@@ -1178,32 +1178,38 @@ footer.app-footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1rem;
+}
+
+/* Tighter card padding on the paint page so the canvas sits higher */
+.paint-card-body {
+  padding: 1.25rem;
 }
 
 .paint-toolbar {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1.25rem 1.75rem;
+  align-items: flex-start;
+  gap: 0.6rem 1.1rem;
   width: 100%;
   background-color: var(--white);
   border: var(--border-width) solid var(--dark-gray);
   border-radius: var(--border-radius);
   box-shadow: 4px 4px 0px var(--dark-gray);
-  padding: 1.25rem;
+  padding: 0.85rem 1rem;
 }
 
 .paint-tool-group {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.4rem;
 }
 
 .paint-group-label {
   font-family: var(--font-header);
   font-weight: 800;
-  font-size: 1rem;
+  font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: var(--dark-gray);
@@ -1213,77 +1219,66 @@ footer.app-footer {
   color: var(--bright-coral);
 }
 
-/* Color swatches */
-.paint-swatches {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  max-width: 220px;
+/* Color swatches: compact fixed grid; the custom-color input flows inline as
+   the final cell (via display:contents on the swatch host). */
+.paint-colors-wrap {
+  display: grid;
+  grid-template-columns: repeat(6, 30px);
+  gap: 0.35rem;
 }
 
-.paint-swatch {
-  width: 38px;
-  height: 38px;
+#paint-swatches { display: contents; }
+
+.paint-swatch,
+.paint-color-input {
+  width: 30px;
+  height: 30px;
   border: 3px solid var(--dark-gray);
-  border-radius: 10px;
+  border-radius: 8px;
   cursor: pointer;
   padding: 0;
   box-shadow: 2px 2px 0px var(--dark-gray);
   transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
-.paint-swatch:hover {
+.paint-color-input {
+  background: none;
+  padding: 1px;
+}
+
+.paint-swatch:hover,
+.paint-color-input:hover {
   transform: translate(-1px, -1px);
   box-shadow: 3px 3px 0px var(--dark-gray);
 }
 
 .paint-swatch.active {
-  outline: 4px solid var(--sky-blue);
+  outline: 3px solid var(--sky-blue);
   outline-offset: 2px;
   transform: translate(1px, 1px);
   box-shadow: 1px 1px 0px var(--dark-gray);
-}
-
-.paint-custom-color {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-weight: 700;
-  font-size: 0.95rem;
-  cursor: pointer;
-}
-
-.paint-custom-color input[type="color"] {
-  width: 46px;
-  height: 38px;
-  border: 3px solid var(--dark-gray);
-  border-radius: 10px;
-  background: none;
-  cursor: pointer;
-  box-shadow: 2px 2px 0px var(--dark-gray);
-  padding: 2px;
 }
 
 /* Brush + action buttons */
 .paint-tool-buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
+  gap: 0.4rem;
 }
 
 .paint-tool {
   font-family: var(--font-header);
   font-weight: 700;
-  font-size: 1rem;
-  padding: 0.6rem 0.9rem;
+  font-size: 0.9rem;
+  padding: 0.4rem 0.7rem;
   background-color: var(--off-white);
   color: var(--dark-gray);
   border: 3px solid var(--dark-gray);
-  border-radius: 12px;
+  border-radius: 10px;
   cursor: pointer;
-  box-shadow: 3px 3px 0px var(--dark-gray);
+  box-shadow: 2px 2px 0px var(--dark-gray);
   transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.1s ease;
-  min-height: 48px;
+  min-height: 42px;
   touch-action: manipulation;
 }
 
@@ -1299,28 +1294,27 @@ footer.app-footer {
 }
 
 .paint-action-btn {
-  font-size: 1rem;
-  padding: 0.6rem 1rem;
-  min-height: 48px;
-  border-radius: 12px;
+  font-size: 0.9rem;
+  padding: 0.4rem 0.8rem;
+  min-height: 42px;
+  border-radius: 10px;
 }
 
-/* Sticker stamp buttons */
+/* Sticker stamp buttons: compact fixed grid (5 per row -> 2 rows) */
 .paint-stickers {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  max-width: 240px;
+  display: grid;
+  grid-template-columns: repeat(5, 38px);
+  gap: 0.35rem;
 }
 
 .paint-sticker {
-  width: 48px;
-  height: 48px;
-  font-size: 1.6rem;
+  width: 38px;
+  height: 38px;
+  font-size: 1.3rem;
   line-height: 1;
   background-color: var(--off-white);
   border: 3px solid var(--dark-gray);
-  border-radius: 12px;
+  border-radius: 10px;
   cursor: pointer;
   box-shadow: 2px 2px 0px var(--dark-gray);
   transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.1s ease;
@@ -1341,8 +1335,8 @@ footer.app-footer {
 .paint-size-row {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  min-width: 220px;
+  gap: 0.5rem;
+  min-width: 160px;
 }
 
 /* Shared chunky range input (used by the brush-size slider) */

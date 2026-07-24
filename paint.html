@@ -34,9 +34,9 @@
         <span class="lego-stud"></span>
         <span class="lego-stud"></span>
       </div>
-      <div class="lego-card-body">
-        <h1 style="text-align: center; margin-bottom: 0.75rem;">My Drawing Board 🎨🖌️</h1>
-        <p style="font-size: 1.25rem; font-weight: 600; text-align: center; margin-bottom: 2rem;">
+      <div class="lego-card-body paint-card-body">
+        <h1 style="text-align: center; margin-bottom: 0.35rem; font-size: 2rem;">My Drawing Board 🎨🖌️</h1>
+        <p style="font-size: 1.05rem; font-weight: 600; text-align: center; margin-bottom: 1rem;">
           Pick a color and a brush, then draw right on the board with your finger or mouse!
         </p>
 
@@ -48,11 +48,11 @@
             <!-- Colors -->
             <div class="paint-tool-group">
               <span class="paint-group-label">Colors</span>
-              <div id="paint-swatches" class="paint-swatches" role="group" aria-label="Color choices"></div>
-              <label class="paint-custom-color">
-                <span>More 🌈</span>
-                <input type="color" id="paint-color" value="#e74c3c" aria-label="Pick a custom color">
-              </label>
+              <div class="paint-colors-wrap">
+                <div id="paint-swatches" role="group" aria-label="Color choices"></div>
+                <input type="color" id="paint-color" class="paint-color-input" value="#e74c3c"
+                       aria-label="Pick a custom color" title="More colors 🌈">
+              </div>
             </div>
 
             <!-- Brush pens & tools -->
