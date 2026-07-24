@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marwaan's Games | Balloon Pop Canvas Game 🎈</title>
+  <meta name="description" content="Play the Balloon Pop game! Pop the colorful balloons before they float away!">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  
+  <header class="app-header">
+    <div class="nav-container">
+      <a href="index.html" class="logo-link" aria-label="Marwaan's Lego World Home">
+        <div class="logo-block">
+          <span class="logo-text">Marwaan's World<span class="logo-emoji">🧱</span></span>
+        </div>
+      </a>
+      <nav aria-label="Main Navigation">
+        <ul class="lego-nav">
+          <li class="lego-nav-item blue"><a href="index.html"><span>🏠</span> Me</a></li>
+          <li class="lego-nav-item yellow"><a href="gallery.html"><span>🎨</span> Gallery</a></li>
+          <li class="lego-nav-item green"><a href="journals.html"><span>📖</span> Stories</a></li>
+          <li class="lego-nav-item coral"><a href="projects.html"><span>🏆</span> Badges</a></li>
+          <li class="lego-nav-item white"><a href="science.html"><span>🔬</span> Science</a></li>
+          <li class="lego-nav-item blue"><a href="games.html"><span>🎮</span> Games</a></li>
+          <li class="lego-nav-item yellow"><a href="contact.html"><span>✉️</span> Message</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="lego-card blue">
+      <div class="lego-studs-row">
+        <span class="lego-stud"></span>
+        <span class="lego-stud"></span>
+        <span class="lego-stud"></span>
+        <span class="lego-stud"></span>
+      </div>
+      <div class="lego-card-body">
+        <h1 id="game-page-title" style="text-align: center; margin-bottom: 1.5rem;">Marwaan's Lego Arcade! 🎮</h1>
+        
+        <div class="game-layout-container">
+          
+          <!-- Scoreboard Header -->
+          <div class="game-scoreboard">
+            <div class="score-item">
+              <span id="label-score" class="score-label">Score</span>
+              <span id="score-val" class="score-val">0</span>
+            </div>
+            <div class="score-item">
+              <span id="label-timer" class="score-label">Time Left</span>
+              <span id="timer-val" class="score-val">30</span>
+            </div>
+            <div class="score-item">
+              <span id="label-high" class="score-label">High Score</span>
+              <span id="high-val" class="score-val">0</span>
+            </div>
+          </div>
+          
+          <!-- Game Canvas and Screen Overlays -->
+          <div class="canvas-container">
+            <canvas id="game-canvas" aria-label="Interactive Balloon Popping Playground"></canvas>
+            
+            <!-- Lobby Selector Overlay -->
+            <div id="lobby-overlay" class="game-overlay">
+              <h2>Select a Lego Game! 🧱</h2>
+              <p>Pick a fun game to play! Pop rising balloons or build a tall Lego spaceship tower matching state & country capitals!</p>
+              <div class="game-controls">
+                <button id="btn-select-pop" class="lego-btn blue" type="button" aria-label="Select Balloon Pop game">Balloon Pop 🎈</button>
+                <button id="btn-select-geo" class="lego-btn green" type="button" aria-label="Select Geography Capital Builder game">Capital Builder 🗺️</button>
+              </div>
+            </div>
+            
+            <!-- Balloon Pop: Start Screen Overlay -->
+            <div id="start-overlay" class="game-overlay" style="display: none;">
+              <h2>Ready to Pop?</h2>
+              <p>Click or tap the rising balloons to pop them! Get as many points as you can in 30 seconds. Watch out, they speed up! 🎈</p>
+              <div class="game-controls">
+                <button id="btn-start-game" class="lego-btn yellow" type="button" aria-label="Start playing the Balloon Pop game">Start Game 🕹️</button>
+                <button id="btn-lobby-pop-start" class="lego-btn coral" type="button" aria-label="Go back to game selection menu">Main Menu 🏠</button>
+              </div>
+            </div>
+            
+            <!-- Balloon Pop: Game Over Screen Overlay -->
+            <div id="gameover-overlay" class="game-overlay" style="display: none;">
+              <h2>Time's Up! ⏰</h2>
+              <p>Awesome job! You popped <span id="final-score" style="font-weight: 800; color: var(--sunny-yellow); font-size: 1.8rem;">0</span> balloons!</p>
+              <div class="game-controls">
+                <button id="btn-restart-game" class="lego-btn green" type="button" aria-label="Play Balloon Pop again">Play Again 🔄</button>
+                <button id="btn-lobby-pop-over" class="lego-btn coral" type="button" aria-label="Go back to game selection menu">Main Menu 🏠</button>
+              </div>
+            </div>
+            
+            <!-- Geography: Start Screen Overlay -->
+            <div id="geo-start-overlay" class="game-overlay" style="display: none;">
+              <h2>Lego Capital Builder 🗺️</h2>
+              <p>Look at the state or country shown at the top, then tap the correct falling Lego capital block! Match 5 to build a tower that blasts off into space! 🚀</p>
+              <div class="game-controls">
+                <button id="btn-start-geo" class="lego-btn yellow" type="button" aria-label="Start playing Geography game">Start Game 🧭</button>
+                <button id="btn-lobby-geo-start" class="lego-btn coral" type="button" aria-label="Go back to game selection menu">Main Menu 🏠</button>
+              </div>
+            </div>
+            
+            <!-- Geography: Game Over / Victory Overlay -->
+            <div id="geo-gameover-overlay" class="game-overlay" style="display: none;">
+              <h2>Blast Off! 🚀✨</h2>
+              <p>Super Job! You built a tall Lego spaceship tower by matching 5 capitals, and it launched into orbit! 🌍</p>
+              <div class="game-controls">
+                <button id="btn-restart-geo" class="lego-btn green" type="button" aria-label="Play Geography game again">Play Again 🔄</button>
+                <button id="btn-lobby-geo-over" class="lego-btn coral" type="button" aria-label="Go back to game selection menu">Main Menu 🏠</button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Geography Fact Card (Positioned under the canvas so it doesn't overlap the tower) -->
+          <div id="geo-fact-card" class="lego-card yellow" style="display: none; margin-top: 1.5rem; margin-bottom: 0; width: 100%; max-width: 600px;">
+            <div class="lego-studs-row">
+              <span class="lego-stud"></span>
+              <span class="lego-stud"></span>
+              <span class="lego-stud"></span>
+              <span class="lego-stud"></span>
+            </div>
+            <div class="lego-card-body" style="padding: 1rem 1.5rem; text-align: center;">
+              <span style="font-family: var(--font-header); font-weight: 800; color: var(--bright-coral); font-size: 1.2rem; text-transform: uppercase;">Did You Know? 🌍</span>
+              <p id="geo-fact-text" style="font-size: 1.15rem; font-weight: 600; margin-top: 0.5rem; margin-bottom: 0; color: var(--dark-gray); line-height: 1.4;"></p>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-brick">
+      <span class="footer-text">Made with 🧱 by Marwaan's Dad &copy; 2026</span>
+    </div>
+    <p class="footer-attribution">Built with HTML5, CSS3 &amp; vanilla JS. Powered by Lego brick power!</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/geography_game.js"></script>
+  <script src="js/games.js"></script>
+</body>
+</html>

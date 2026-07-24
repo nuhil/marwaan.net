@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marwaan's Lego World! | All About Me 🧱</title>
+  <meta name="description" content="Welcome to Marwaan's personal website. Check out my art gallery, journal stories, cool badges, and play my balloon popping game!">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  
+  <!-- Accessibility Landmark: Header & Navigation -->
+  <header class="app-header">
+    <div class="nav-container">
+      <a href="index.html" class="logo-link" aria-label="Marwaan's Lego World Home">
+        <div class="logo-block">
+          <span class="logo-text">Marwaan's World<span class="logo-emoji">🧱</span></span>
+        </div>
+      </a>
+      <nav aria-label="Main Navigation">
+        <ul class="lego-nav">
+          <li class="lego-nav-item blue"><a href="index.html"><span>🏠</span> Me</a></li>
+          <li class="lego-nav-item yellow"><a href="gallery.html"><span>🎨</span> Gallery</a></li>
+          <li class="lego-nav-item green"><a href="journals.html"><span>📖</span> Stories</a></li>
+          <li class="lego-nav-item coral"><a href="projects.html"><span>🏆</span> Badges</a></li>
+          <li class="lego-nav-item white"><a href="science.html"><span>🔬</span> Science</a></li>
+          <li class="lego-nav-item blue"><a href="games.html"><span>🎮</span> Games</a></li>
+          <li class="lego-nav-item yellow"><a href="contact.html"><span>✉️</span> Message</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Accessibility Landmark: Main Area -->
+  <main>
+    <div class="lego-grid-2">
+      
+      <!-- Intro Card -->
+      <article class="lego-card blue">
+        <div class="lego-studs-row">
+          <span class="lego-stud"></span>
+          <span class="lego-stud"></span>
+          <span class="lego-stud"></span>
+          <span class="lego-stud"></span>
+        </div>
+        <div class="lego-card-body">
+          <div class="intro-header-wrapper">
+            <div class="intro-photo-container">
+              <img src="images/headshot.JPG" alt="Marwaan's profile picture" width="140" height="140">
+            </div>
+            <h1>Hi, I'm Marwaan! 👋</h1>
+            <p class="intro-bio">
+              Welcome to my online Lego workshop! I am 5 and a half years old, and I love building cool spaceships, drawing giant dinosaurs, and playing video games.
+            </p>
+          </div>
+          
+          <!-- Custom vocal greeting controls -->
+          <div class="audio-player-box">
+            <span style="font-weight: 700; color: var(--dark-gray); font-size: 1.25rem;">Hear my voice greeting! 🗣️</span>
+            <!-- HTML5 Audio -->
+            <audio id="greeting-audio" src="audio/welcome.mp3" preload="auto"></audio>
+            
+            <button id="btn-play-greeting" class="lego-btn coral" type="button" aria-label="Play vocal greeting message">
+              <span>🔊</span> Play Greeting
+            </button>
+            
+            <div class="audio-animation" aria-hidden="true">
+              <span class="audio-bar"></span>
+              <span class="audio-bar coral"></span>
+              <span class="audio-bar yellow"></span>
+              <span class="audio-bar green"></span>
+              <span class="audio-bar"></span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Favorites Card -->
+      <section class="lego-card yellow">
+        <div class="lego-studs-row">
+          <span class="lego-stud"></span>
+          <span class="lego-stud"></span>
+          <span class="lego-stud"></span>
+          <span class="lego-stud"></span>
+        </div>
+        <div class="lego-card-body">
+          <h2>My Favorite Things! ⭐</h2>
+          <ul class="favorites-list">
+            <li>
+              <div class="emoji-container" aria-hidden="true">🦖</div>
+              <span>Giant T-Rex Dinosaurs</span>
+            </li>
+            <li>
+              <div class="emoji-container" aria-hidden="true">🍕</div>
+              <span>Pineapple Pizza with extra cheese</span>
+            </li>
+            <li>
+              <div class="emoji-container" aria-hidden="true">🚀</div>
+              <span>Lego Spaceships that blast off</span>
+            </li>
+            <li>
+              <div class="emoji-container" aria-hidden="true">🚲</div>
+              <span>Riding my two-wheel bike fast</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+      
+    </div>
+  </main>
+
+  <!-- Accessibility Landmark: Footer -->
+  <footer class="app-footer">
+    <div class="footer-brick">
+      <span class="footer-text">Made with 🧱 by Marwaan's Dad &copy; 2026</span>
+    </div>
+    <p class="footer-attribution">Built with HTML5, CSS3 &amp; vanilla JS. Powered by Lego brick power!</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

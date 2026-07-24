@@ -1,0 +1,1478 @@
+[
+  {
+    "type": "State",
+    "name": "Alabama",
+    "capital": "Montgomery",
+    "fact": "Alabama is the birthplace of the wind-up toy! 🧸"
+  },
+  {
+    "type": "State",
+    "name": "Alaska",
+    "capital": "Juneau",
+    "fact": "Alaska has over 3 million lakes and the biggest glaciers! ❄️"
+  },
+  {
+    "type": "State",
+    "name": "Arizona",
+    "capital": "Phoenix",
+    "fact": "Arizona has enough turquoise to fill a giant treasure chest! 💎"
+  },
+  {
+    "type": "State",
+    "name": "Arkansas",
+    "capital": "Little Rock",
+    "fact": "Arkansas is the only US state where you can find diamonds in the ground! 💎"
+  },
+  {
+    "type": "State",
+    "name": "California",
+    "capital": "Sacramento",
+    "fact": "California grows more than 90% of US broccoli! 🥦"
+  },
+  {
+    "type": "State",
+    "name": "Colorado",
+    "capital": "Denver",
+    "fact": "The city of Denver is exactly one mile high above the sea! ⛰️"
+  },
+  {
+    "type": "State",
+    "name": "Connecticut",
+    "capital": "Hartford",
+    "fact": "The first lollipop machine was made here over 100 years ago! 🍭"
+  },
+  {
+    "type": "State",
+    "name": "Delaware",
+    "capital": "Dover",
+    "fact": "Delaware was the very first state to join the United States! 🥇"
+  },
+  {
+    "type": "State",
+    "name": "Florida",
+    "capital": "Tallahassee",
+    "fact": "Florida is the only place in the world where both alligators and crocodiles live! 🐊"
+  },
+  {
+    "type": "State",
+    "name": "Georgia",
+    "capital": "Atlanta",
+    "fact": "Georgia is famous for sweet peaches and giant green trees! 🍑"
+  },
+  {
+    "type": "State",
+    "name": "Hawaii",
+    "capital": "Honolulu",
+    "fact": "Hawaii is made of volcanic islands and has its own language! 🌋"
+  },
+  {
+    "type": "State",
+    "name": "Idaho",
+    "capital": "Boise",
+    "fact": "Idaho produces more delicious potatoes than any other state! 🥔"
+  },
+  {
+    "type": "State",
+    "name": "Illinois",
+    "capital": "Springfield",
+    "fact": "The world's tallest man was born in Illinois! 🦒"
+  },
+  {
+    "type": "State",
+    "name": "Indiana",
+    "capital": "Indianapolis",
+    "fact": "Indiana holds the world's biggest and fastest single-day car race! 🏎️"
+  },
+  {
+    "type": "State",
+    "name": "Iowa",
+    "capital": "Des Moines",
+    "fact": "Iowa has more pigs than people! 🐷"
+  },
+  {
+    "type": "State",
+    "name": "Kansas",
+    "capital": "Topeka",
+    "fact": "Kansas is so flat that scientists compared it to a pancake! 🥞"
+  },
+  {
+    "type": "State",
+    "name": "Kentucky",
+    "capital": "Frankfort",
+    "fact": "Kentucky is where the world's most famous fried chicken recipe was created! 🍗"
+  },
+  {
+    "type": "State",
+    "name": "Louisiana",
+    "capital": "Baton Rouge",
+    "fact": "Louisiana has the longest bridge over water in the world! 🌉"
+  },
+  {
+    "type": "State",
+    "name": "Maine",
+    "capital": "Augusta",
+    "fact": "Maine catches over 100 million pounds of lobsters every year! 🦞"
+  },
+  {
+    "type": "State",
+    "name": "Maryland",
+    "capital": "Annapolis",
+    "fact": "The first umbrella factory in the United States was started here! ☔"
+  },
+  {
+    "type": "State",
+    "name": "Massachusetts",
+    "capital": "Boston",
+    "fact": "The chocolate chip cookie was invented in Massachusetts! 🍪"
+  },
+  {
+    "type": "State",
+    "name": "Michigan",
+    "capital": "Lansing",
+    "fact": "Michigan is surrounded by four of the five giant Great Lakes! 🌊"
+  },
+  {
+    "type": "State",
+    "name": "Minnesota",
+    "capital": "St. Paul",
+    "fact": "Minnesota has over 10,000 lakes and is super cold in winter! ❄️"
+  },
+  {
+    "type": "State",
+    "name": "Mississippi",
+    "capital": "Jackson",
+    "fact": "The Mississippi River is one of the longest rivers in the world! 🏞️"
+  },
+  {
+    "type": "State",
+    "name": "Missouri",
+    "capital": "Jefferson City",
+    "fact": "The first ice cream cone was served in Missouri! 🍦"
+  },
+  {
+    "type": "State",
+    "name": "Montana",
+    "capital": "Helena",
+    "fact": "Montana is home to massive grizzly bears and wild mountain goats! 🐻"
+  },
+  {
+    "type": "State",
+    "name": "Nebraska",
+    "capital": "Lincoln",
+    "fact": "Nebraska invented the sweet powdered drink Kool-Aid! 🥤"
+  },
+  {
+    "type": "State",
+    "name": "Nevada",
+    "capital": "Carson City",
+    "fact": "Nevada is the driest state in the US and has cool desert canyons! 🏜️"
+  },
+  {
+    "type": "State",
+    "name": "New Hampshire",
+    "capital": "Concord",
+    "fact": "New Hampshire was the first state to declare independence! 📜"
+  },
+  {
+    "type": "State",
+    "name": "New Jersey",
+    "capital": "Trenton",
+    "fact": "New Jersey is the diner capital of the world with over 500 of them! 🍔"
+  },
+  {
+    "type": "State",
+    "name": "New Mexico",
+    "capital": "Santa Fe",
+    "fact": "Santa Fe is the highest capital city in the United States! ⛰️"
+  },
+  {
+    "type": "State",
+    "name": "New York",
+    "capital": "Albany",
+    "fact": "The Empire State Building has its very own zip code (10118)! 🗽"
+  },
+  {
+    "type": "State",
+    "name": "North Carolina",
+    "capital": "Raleigh",
+    "fact": "The Wright brothers made the first airplane flight in North Carolina! ✈️"
+  },
+  {
+    "type": "State",
+    "name": "North Dakota",
+    "capital": "Bismarck",
+    "fact": "North Dakota grows the most sunflowers in the United States! 🌻"
+  },
+  {
+    "type": "State",
+    "name": "Ohio",
+    "capital": "Columbus",
+    "fact": "The first traffic light was installed in Ohio! 🚦"
+  },
+  {
+    "type": "State",
+    "name": "Oklahoma",
+    "capital": "Oklahoma City",
+    "fact": "Oklahoma has more man-made lakes than any other state! ⛵"
+  },
+  {
+    "type": "State",
+    "name": "Oregon",
+    "capital": "Salem",
+    "fact": "Oregon is home to the deepest lake in America, Crater Lake! 🌊"
+  },
+  {
+    "type": "State",
+    "name": "Pennsylvania",
+    "capital": "Harrisburg",
+    "fact": "Pennsylvania makes the most potato chips and pretzels! 🥨"
+  },
+  {
+    "type": "State",
+    "name": "Rhode Island",
+    "capital": "Providence",
+    "fact": "Rhode Island is the smallest state, but has the longest official name! 📏"
+  },
+  {
+    "type": "State",
+    "name": "South Carolina",
+    "capital": "Columbia",
+    "fact": "South Carolina has the oldest monkey colony in the US! 🐒"
+  },
+  {
+    "type": "State",
+    "name": "South Dakota",
+    "capital": "Pierre",
+    "fact": "South Dakota has Mount Rushmore, where four giant president faces are carved! ⛰️"
+  },
+  {
+    "type": "State",
+    "name": "Tennessee",
+    "capital": "Nashville",
+    "fact": "Tennessee is famous for country music and cool acoustic guitars! 🎸"
+  },
+  {
+    "type": "State",
+    "name": "Texas",
+    "capital": "Austin",
+    "fact": "Texas is the only state to have six different flags fly over it! 🤠"
+  },
+  {
+    "type": "State",
+    "name": "Utah",
+    "capital": "Salt Lake City",
+    "fact": "Utah is home to the Great Salt Lake, which is saltier than the ocean! 🧂"
+  },
+  {
+    "type": "State",
+    "name": "Vermont",
+    "capital": "Montpelier",
+    "fact": "Vermont makes the most delicious sweet maple syrup in the US! 🍁"
+  },
+  {
+    "type": "State",
+    "name": "Virginia",
+    "capital": "Richmond",
+    "fact": "More US presidents were born in Virginia than in any other state! 🇺🇸"
+  },
+  {
+    "type": "State",
+    "name": "Washington",
+    "capital": "Olympia",
+    "fact": "Washington state produces more sweet apples than any other state! 🍎"
+  },
+  {
+    "type": "State",
+    "name": "West Virginia",
+    "capital": "Charleston",
+    "fact": "West Virginia is covered in beautiful green hills and forests! 🌳"
+  },
+  {
+    "type": "State",
+    "name": "Wisconsin",
+    "capital": "Madison",
+    "fact": "Wisconsin makes more cheese than any other state, yum! 🧀"
+  },
+  {
+    "type": "State",
+    "name": "Wyoming",
+    "capital": "Cheyenne",
+    "fact": "Wyoming was the first state to let women vote! 🗳️"
+  },
+  {
+    "type": "Country",
+    "name": "Afghanistan",
+    "capital": "Kabul",
+    "fact": "Kabul is one of the oldest cities in central Asia, and polo is very popular! 🐎"
+  },
+  {
+    "type": "Country",
+    "name": "Albania",
+    "capital": "Tirana",
+    "fact": "Albania has more than 170,000 concrete bunkers built all over the country! 🛡️"
+  },
+  {
+    "type": "Country",
+    "name": "Algeria",
+    "capital": "Algiers",
+    "fact": "Algeria is the biggest country in Africa, and most of it is the Sahara Desert! 🏜️"
+  },
+  {
+    "type": "Country",
+    "name": "Andorra",
+    "capital": "Andorra la Vella",
+    "fact": "Andorra is so small that you can drive across it in less than an hour! 🚗"
+  },
+  {
+    "type": "Country",
+    "name": "Angola",
+    "capital": "Luanda",
+    "fact": "Angola has beautiful waterfalls and giant, ancient baobab trees! 🌳"
+  },
+  {
+    "type": "Country",
+    "name": "Antigua and Barbuda",
+    "capital": "St. John's",
+    "fact": "This country has exactly 365 beaches—one for every day of the year! 🏖️"
+  },
+  {
+    "type": "Country",
+    "name": "Argentina",
+    "capital": "Buenos Aires",
+    "fact": "Argentina has the world's widest avenue, which has 14 lanes of traffic! 🛣️"
+  },
+  {
+    "type": "Country",
+    "name": "Armenia",
+    "capital": "Yerevan",
+    "fact": "Yerevan is one of the world's oldest continuously inhabited cities! 🏛️"
+  },
+  {
+    "type": "Country",
+    "name": "Australia",
+    "capital": "Canberra",
+    "fact": "Australia is home to kookaburras, and there are more kangaroos than people! 🦘"
+  },
+  {
+    "type": "Country",
+    "name": "Austria",
+    "capital": "Vienna",
+    "fact": "Austria has the world's oldest zoo, which was built in 1752! 🐼"
+  },
+  {
+    "type": "Country",
+    "name": "Azerbaijan",
+    "capital": "Baku",
+    "fact": "Baku has the Flame Towers, giant skyscrapers that look like real flames at night! 🔥"
+  },
+  {
+    "type": "Country",
+    "name": "Bahamas",
+    "capital": "Nassau",
+    "fact": "The Bahamas has an island where wild pigs love to swim in the sea! 🐷"
+  },
+  {
+    "type": "Country",
+    "name": "Bahrain",
+    "capital": "Manama",
+    "fact": "Bahrain is a small island nation famous for its beautiful natural pearls! 🦪"
+  },
+  {
+    "type": "Country",
+    "name": "Bangladesh",
+    "capital": "Dhaka",
+    "fact": "Bangladesh has the longest natural sandy beach in the world, Cox's Bazar! 🏖️"
+  },
+  {
+    "type": "Country",
+    "name": "Barbados",
+    "capital": "Bridgetown",
+    "fact": "Barbados is known as the land of the flying fish! 🐟"
+  },
+  {
+    "type": "Country",
+    "name": "Belarus",
+    "capital": "Minsk",
+    "fact": "Belarus is famous for its dense, ancient forests and wild European bison! 🦬"
+  },
+  {
+    "type": "Country",
+    "name": "Belgium",
+    "capital": "Brussels",
+    "fact": "Belgium makes over 220,000 tons of delicious chocolate every year! 🍫"
+  },
+  {
+    "type": "Country",
+    "name": "Belize",
+    "capital": "Belmopan",
+    "fact": "Belize has the massive Great Blue Hole, a giant underwater sinkhole! 🕳️"
+  },
+  {
+    "type": "Country",
+    "name": "Benin",
+    "capital": "Porto-Novo",
+    "fact": "Benin is the birthplace of the voodoo religion and has unique stilt villages! 🛖"
+  },
+  {
+    "type": "Country",
+    "name": "Bhutan",
+    "capital": "Thimphu",
+    "fact": "Bhutan is the only country in the world that measures Happiness instead of money! 😊"
+  },
+  {
+    "type": "Country",
+    "name": "Bolivia",
+    "capital": "Sucre",
+    "fact": "Bolivia has the world's largest salt flat, which looks like a giant mirror! 🧂"
+  },
+  {
+    "type": "Country",
+    "name": "Bosnia and Herzegovina",
+    "capital": "Sarajevo",
+    "fact": "Sarajevo hosted the Winter Olympics and is surrounded by green mountains! 🏂"
+  },
+  {
+    "type": "Country",
+    "name": "Botswana",
+    "capital": "Gaborone",
+    "fact": "Botswana is home to more African elephants than any other country! 🐘"
+  },
+  {
+    "type": "Country",
+    "name": "Brazil",
+    "capital": "Brasilia",
+    "fact": "Brazil has the Amazon Rainforest, the biggest jungle on Earth! 🌳"
+  },
+  {
+    "type": "Country",
+    "name": "Brunei",
+    "capital": "Bandar Seri Begawan",
+    "fact": "Brunei has a palace with over 1,700 rooms, one of the biggest in the world! 🏰"
+  },
+  {
+    "type": "Country",
+    "name": "Bulgaria",
+    "capital": "Sofia",
+    "fact": "Bulgaria produces most of the world's rose oil, used to make perfume! 🌹"
+  },
+  {
+    "type": "Country",
+    "name": "Burkina Faso",
+    "capital": "Ouagadougou",
+    "fact": "Burkina Faso has sacred lakes filled with friendly crocodiles! 🐊"
+  },
+  {
+    "type": "Country",
+    "name": "Burundi",
+    "capital": "Gitega",
+    "fact": "Burundi is famous for its traditional energetic royal drum dancers! 🥁"
+  },
+  {
+    "type": "Country",
+    "name": "Cambodia",
+    "capital": "Phnom Penh",
+    "fact": "Cambodia has Angkor Wat, the largest stone temple complex in the world! 🛕"
+  },
+  {
+    "type": "Country",
+    "name": "Cameroon",
+    "capital": "Yaounde",
+    "fact": "Cameroon is called 'Africa in miniature' because it has all climates! 🌍"
+  },
+  {
+    "type": "Country",
+    "name": "Canada",
+    "capital": "Ottawa",
+    "fact": "Canada has more lakes than all other countries in the world combined! 🦫"
+  },
+  {
+    "type": "Country",
+    "name": "Cape Verde",
+    "capital": "Praia",
+    "fact": "Cape Verde is a collection of ten volcanic islands in the Atlantic Ocean! 🌋"
+  },
+  {
+    "type": "Country",
+    "name": "Central African Republic",
+    "capital": "Bangui",
+    "fact": "This country has some of the darkest night skies, perfect for stargazing! 🌟"
+  },
+  {
+    "type": "Country",
+    "name": "Chad",
+    "capital": "N'Djamena",
+    "fact": "Chad has the amazing Sahara desert dunes and unique desert camels! 🐫"
+  },
+  {
+    "type": "Country",
+    "name": "Chile",
+    "capital": "Santiago",
+    "fact": "Chile is the longest, thinnest country in the world—like a green bean! 📏"
+  },
+  {
+    "type": "Country",
+    "name": "China",
+    "capital": "Beijing",
+    "fact": "China has the Great Wall, which is so long it could wrap around the Earth! 🧱"
+  },
+  {
+    "type": "Country",
+    "name": "Colombia",
+    "capital": "Bogota",
+    "fact": "Colombia has the most species of birds and colorful butterflies! 🦋"
+  },
+  {
+    "type": "Country",
+    "name": "Comoros",
+    "capital": "Moroni",
+    "fact": "Comoros is known as the Perfume Islands because of sweet ylang-ylang flowers! 🌸"
+  },
+  {
+    "type": "Country",
+    "name": "Republic of the Congo",
+    "capital": "Brazzaville",
+    "fact": "This country is home to the rare and beautiful lowland gorillas! 🦍"
+  },
+  {
+    "type": "Country",
+    "name": "Democratic Republic of the Congo",
+    "capital": "Kinshasa",
+    "fact": "This country has the second largest rainforest in the entire world! 🌳"
+  },
+  {
+    "type": "Country",
+    "name": "Costa Rica",
+    "capital": "San Jose",
+    "fact": "Costa Rica has no army, and over a quarter of its land is protected nature! 🦥"
+  },
+  {
+    "type": "Country",
+    "name": "Croatia",
+    "capital": "Zagreb",
+    "fact": "Croatia is the home invention place of the modern necktie! 👔"
+  },
+  {
+    "type": "Country",
+    "name": "Cuba",
+    "capital": "Havana",
+    "fact": "Cuba is famous for its colorful retro American cars from the 1950s! 🚗"
+  },
+  {
+    "type": "Country",
+    "name": "Cyprus",
+    "capital": "Nicosia",
+    "fact": "Cyprus is an island nation that has the world's oldest active wine label! 🍇"
+  },
+  {
+    "type": "Country",
+    "name": "Czech Republic",
+    "capital": "Prague",
+    "fact": "Czech Republic has more castles than any other country in Europe! 🏰"
+  },
+  {
+    "type": "Country",
+    "name": "Denmark",
+    "capital": "Copenhagen",
+    "fact": "Denmark is the birthplace of LEGO bricks! Play well! 🧱"
+  },
+  {
+    "type": "Country",
+    "name": "Djibouti",
+    "capital": "Djibouti",
+    "fact": "Djibouti has Lake Assal, which is ten times saltier than the ocean! 🧂"
+  },
+  {
+    "type": "Country",
+    "name": "Dominica",
+    "capital": "Roseau",
+    "fact": "Dominica has a natural boiling lake heated by volcanic heat! 🌋"
+  },
+  {
+    "type": "Country",
+    "name": "Dominican Republic",
+    "capital": "Santo Domingo",
+    "fact": "Santo Domingo was the very first European city built in the Americas! 🇩🇴"
+  },
+  {
+    "type": "Country",
+    "name": "East Timor",
+    "capital": "Dili",
+    "fact": "East Timor has incredibly diverse coral reefs teeming with colorful fish! 🐠"
+  },
+  {
+    "type": "Country",
+    "name": "Ecuador",
+    "capital": "Quito",
+    "fact": "Ecuador is named after the Equator, the line that splits the Earth in half! 🌎"
+  },
+  {
+    "type": "Country",
+    "name": "Egypt",
+    "capital": "Cairo",
+    "fact": "Egypt has massive pyramids that were built over 4,500 years ago! 🔺"
+  },
+  {
+    "type": "Country",
+    "name": "El Salvador",
+    "capital": "San Salvador",
+    "fact": "El Salvador is known as the Land of Volcanoes because it has so many! 🌋"
+  },
+  {
+    "type": "Country",
+    "name": "Equatorial Guinea",
+    "capital": "Malabo",
+    "fact": "This is the only country in Africa where Spanish is the official language! 🇪🇸"
+  },
+  {
+    "type": "Country",
+    "name": "Eritrea",
+    "capital": "Asmara",
+    "fact": "Asmara has beautiful vintage Italian architecture and espresso coffee! ☕"
+  },
+  {
+    "type": "Country",
+    "name": "Estonia",
+    "capital": "Tallinn",
+    "fact": "Estonia was the first country to let citizens vote online from home! 💻"
+  },
+  {
+    "type": "Country",
+    "name": "Eswatini",
+    "capital": "Mbabane",
+    "fact": "Eswatini is famous for its colorful festivals and handcrafted candles! 🕯️"
+  },
+  {
+    "type": "Country",
+    "name": "Ethiopia",
+    "capital": "Addis Ababa",
+    "fact": "Ethiopia is the birthplace of coffee! Coffee beans were discovered here! ☕"
+  },
+  {
+    "type": "Country",
+    "name": "Fiji",
+    "capital": "Suva",
+    "fact": "Fiji is made of more than 300 beautiful tropical islands! 🏝️"
+  },
+  {
+    "type": "Country",
+    "name": "Finland",
+    "capital": "Helsinki",
+    "fact": "Finland has more saunas than private cars! 🧖"
+  },
+  {
+    "type": "Country",
+    "name": "France",
+    "capital": "Paris",
+    "fact": "The Eiffel Tower grows taller in the summer because hot weather expands metal! 🗼"
+  },
+  {
+    "type": "Country",
+    "name": "Gabon",
+    "capital": "Libreville",
+    "fact": "Over 80% of Gabon is covered in lush tropical rainforests! 🌳"
+  },
+  {
+    "type": "Country",
+    "name": "Gambia",
+    "capital": "Banjul",
+    "fact": "Gambia is the smallest country in mainland Africa, shaped like a river! 🏞️"
+  },
+  {
+    "type": "Country",
+    "name": "Georgia",
+    "capital": "Tbilisi",
+    "fact": "Georgia has been making delicious grape juices and wines for 8,000 years! 🍇"
+  },
+  {
+    "type": "Country",
+    "name": "Germany",
+    "capital": "Berlin",
+    "fact": "Germany is famous for castles, sausages, and fast highway autobahns! 🏰"
+  },
+  {
+    "type": "Country",
+    "name": "Ghana",
+    "capital": "Accra",
+    "fact": "Ghana is the second-largest exporter of cocoa beans to make chocolate! 🍫"
+  },
+  {
+    "type": "Country",
+    "name": "Greece",
+    "capital": "Athens",
+    "fact": "Greece has thousands of islands and is the birthplace of the Olympics! 🇬🇷"
+  },
+  {
+    "type": "Country",
+    "name": "Grenada",
+    "capital": "St. George's",
+    "fact": "Grenada is known as the 'Spice Isle' because it grows lots of nutmeg! 🌰"
+  },
+  {
+    "type": "Country",
+    "name": "Guatemala",
+    "capital": "Guatemala City",
+    "fact": "Guatemala is where chocolate bars were originally invented by the Mayans! 🍫"
+  },
+  {
+    "type": "Country",
+    "name": "Guinea",
+    "capital": "Conakry",
+    "fact": "Guinea has massive reserves of bauxite, the rock used to make aluminum! 🪨"
+  },
+  {
+    "type": "Country",
+    "name": "Guinea-Bissau",
+    "capital": "Bissau",
+    "fact": "Guinea-Bissau is famous for its sandy islands filled with saltwater hippos! 🦛"
+  },
+  {
+    "type": "Country",
+    "name": "Guyana",
+    "capital": "Georgetown",
+    "fact": "Guyana has the world's largest single-drop waterfall, Kaieteur Falls! 🌊"
+  },
+  {
+    "type": "Country",
+    "name": "Haiti",
+    "capital": "Port-au-Prince",
+    "fact": "Haiti was the first independent black-led republic in the world! 🇭🇹"
+  },
+  {
+    "type": "Country",
+    "name": "Honduras",
+    "capital": "Tegucigalpa",
+    "fact": "Honduras has ancient Mayan ruins and beautiful scarlet macaws! 🦜"
+  },
+  {
+    "type": "Country",
+    "name": "Hungary",
+    "capital": "Budapest",
+    "fact": "The Rubik's Cube was invented in Hungary by Erno Rubik! 🎲"
+  },
+  {
+    "type": "Country",
+    "name": "Iceland",
+    "capital": "Reykjavik",
+    "fact": "Iceland has active volcanoes, glaciers, and natural hot spring pools! 🌋"
+  },
+  {
+    "type": "Country",
+    "name": "India",
+    "capital": "New Delhi",
+    "fact": "India is the birthplace of chess, yoga, and holds the festival of colors! 🎨"
+  },
+  {
+    "type": "Country",
+    "name": "Indonesia",
+    "capital": "Jakarta",
+    "fact": "Indonesia is home to the Komodo Dragon, the largest lizard on Earth! 🦎"
+  },
+  {
+    "type": "Country",
+    "name": "Iran",
+    "capital": "Tehran",
+    "fact": "Iran is famous for beautiful Persian rugs and sweet, delicious pistachios! 🥜"
+  },
+  {
+    "type": "Country",
+    "name": "Iraq",
+    "capital": "Baghdad",
+    "fact": "Iraq is located in Mesopotamia, which is called the Cradle of Civilization! 📜"
+  },
+  {
+    "type": "Country",
+    "name": "Ireland",
+    "capital": "Dublin",
+    "fact": "Ireland is called the Emerald Isle because it is so green and rainy! ☘️"
+  },
+  {
+    "type": "Country",
+    "name": "Israel",
+    "capital": "Jerusalem",
+    "fact": "The Dead Sea in Israel is so salty that you can float easily without swimming! 🌊"
+  },
+  {
+    "type": "Country",
+    "name": "Italy",
+    "capital": "Rome",
+    "fact": "Italy invented pizza, pasta, gelato, and has the Leaning Tower of Pisa! 🍕"
+  },
+  {
+    "type": "Country",
+    "name": "Ivory Coast",
+    "capital": "Yamoussoukro",
+    "fact": "Ivory Coast produces more cocoa beans than any other country! 🍫"
+  },
+  {
+    "type": "Country",
+    "name": "Jamaica",
+    "capital": "Kingston",
+    "fact": "Jamaica is the birthplace of reggae music and speed-runner Usain Bolt! 🏃"
+  },
+  {
+    "type": "Country",
+    "name": "Japan",
+    "capital": "Tokyo",
+    "fact": "Tokyo is the most crowded city in the world, and Japan has wild snow monkeys! 🐒"
+  },
+  {
+    "type": "Country",
+    "name": "Jordan",
+    "capital": "Amman",
+    "fact": "Jordan has the ancient rock city of Petra, carved into pink sandstone! 🏛️"
+  },
+  {
+    "type": "Country",
+    "name": "Kazakhstan",
+    "capital": "Astana",
+    "fact": "Kazakhstan is the largest landlocked country, and wild apples came from here! 🍎"
+  },
+  {
+    "type": "Country",
+    "name": "Kenya",
+    "capital": "Nairobi",
+    "fact": "Kenya has amazing national parks where lions, giraffes, and zebras roam! 🦁"
+  },
+  {
+    "type": "Country",
+    "name": "Kiribati",
+    "capital": "Tarawa",
+    "fact": "Kiribati is the only country located in all four hemispheres of Earth! 🧭"
+  },
+  {
+    "type": "Country",
+    "name": "North Korea",
+    "capital": "Pyongyang",
+    "fact": "North Korea has its own time zone and holds giant stadium performances! 🏟️"
+  },
+  {
+    "type": "Country",
+    "name": "South Korea",
+    "capital": "Seoul",
+    "fact": "South Korea is famous for Taekwondo, K-pop music, and kimchi! 🥋"
+  },
+  {
+    "type": "Country",
+    "name": "Kuwait",
+    "capital": "Kuwait City",
+    "fact": "Kuwait has the highest valued money currency in the world! 💰"
+  },
+  {
+    "type": "Country",
+    "name": "Kyrgyzstan",
+    "capital": "Bishkek",
+    "fact": "Kyrgyzstan is surrounded by the giant Tien Shan mountain range! ⛰️"
+  },
+  {
+    "type": "Country",
+    "name": "Laos",
+    "capital": "Vientiane",
+    "fact": "Laos was historically called the 'Land of a Million Elephants'! 🐘"
+  },
+  {
+    "type": "Country",
+    "name": "Latvia",
+    "capital": "Riga",
+    "fact": "Latvia has one of the oldest traditions of midsummer song festivals! 🎶"
+  },
+  {
+    "type": "Country",
+    "name": "Lebanon",
+    "capital": "Beirut",
+    "fact": "Lebanon has ancient cedar trees that can live for over 1,000 years! 🌲"
+  },
+  {
+    "type": "Country",
+    "name": "Lesotho",
+    "capital": "Maseru",
+    "fact": "Lesotho is a kingdom completely surrounded by the country of South Africa! 🇱🇸"
+  },
+  {
+    "type": "Country",
+    "name": "Liberia",
+    "capital": "Monrovia",
+    "fact": "Liberia is the oldest modern republic in Africa, founded in 1847! 🇱🇷"
+  },
+  {
+    "type": "Country",
+    "name": "Libya",
+    "capital": "Tripoli",
+    "fact": "Libya has the remains of large ancient Roman cities along the sea! 🏛️"
+  },
+  {
+    "type": "Country",
+    "name": "Liechtenstein",
+    "capital": "Vaduz",
+    "fact": "Liechtenstein is one of the smallest and richest countries in the world! 👑"
+  },
+  {
+    "type": "Country",
+    "name": "Lithuania",
+    "capital": "Vilnius",
+    "fact": "Lithuania has its own official national scent called the Scent of Lithuania! 👃"
+  },
+  {
+    "type": "Country",
+    "name": "Luxembourg",
+    "capital": "Luxembourg",
+    "fact": "Luxembourg has free public transport for everyone in the country! 🎫"
+  },
+  {
+    "type": "Country",
+    "name": "Madagascar",
+    "capital": "Antananarivo",
+    "fact": "Madagascar is home to wild lemurs and giant baobab trees! 🐒"
+  },
+  {
+    "type": "Country",
+    "name": "Malawi",
+    "capital": "Lilongwe",
+    "fact": "Lake Malawi has more species of fish than any other lake in the world! 🐠"
+  },
+  {
+    "type": "Country",
+    "name": "Malaysia",
+    "capital": "Kuala Lumpur",
+    "fact": "Malaysia has the Petronas Twin Towers, once the tallest buildings! 🏢"
+  },
+  {
+    "type": "Country",
+    "name": "Maldives",
+    "capital": "Male",
+    "fact": "Maldives is the lowest and flattest country in the entire world! 🏝️"
+  },
+  {
+    "type": "Country",
+    "name": "Mali",
+    "capital": "Bamako",
+    "fact": "Mali was home to Timbuktu, an ancient center of learning and trade! 📚"
+  },
+  {
+    "type": "Country",
+    "name": "Malta",
+    "capital": "Valletta",
+    "fact": "Malta has ancient stone temples that are older than the pyramids! 🪨"
+  },
+  {
+    "type": "Country",
+    "name": "Marshall Islands",
+    "capital": "Majuro",
+    "fact": "This country consists of over 1,000 small islands and coral reefs! 🏝️"
+  },
+  {
+    "type": "Country",
+    "name": "Mauritania",
+    "capital": "Nouakchott",
+    "fact": "Mauritania has the Eye of the Sahara, a giant circular rock structure! 👁️"
+  },
+  {
+    "type": "Country",
+    "name": "Mauritius",
+    "capital": "Port Louis",
+    "fact": "Mauritius was the only home of the famous dodo bird before it went extinct! 🦤"
+  },
+  {
+    "type": "Country",
+    "name": "Mexico",
+    "capital": "Mexico City",
+    "fact": "Mexico has the world's smallest volcano, Cuexcomate, which is 43 feet tall! 🌋"
+  },
+  {
+    "type": "Country",
+    "name": "Micronesia",
+    "capital": "Palikir",
+    "fact": "Micronesia uses giant heavy stone money discs on some islands! 🪙"
+  },
+  {
+    "type": "Country",
+    "name": "Moldova",
+    "capital": "Chisinau",
+    "fact": "Moldova has the largest wine cellars in the world, stretching for miles! 🍇"
+  },
+  {
+    "type": "Country",
+    "name": "Monaco",
+    "capital": "Monaco",
+    "fact": "Monaco is so small it would fit inside Central Park in New York! 🌳"
+  },
+  {
+    "type": "Country",
+    "name": "Mongolia",
+    "capital": "Ulaanbaatar",
+    "fact": "Mongolia is the most sparsely populated country, famous for horse riding! 🐎"
+  },
+  {
+    "type": "Country",
+    "name": "Montenegro",
+    "capital": "Podgorica",
+    "fact": "Montenegro has one of the deepest river canyons in Europe, Tara Canyon! 🏞️"
+  },
+  {
+    "type": "Country",
+    "name": "Morocco",
+    "capital": "Rabat",
+    "fact": "Morocco has goats that climb argan trees to eat the fruit! 🐐"
+  },
+  {
+    "type": "Country",
+    "name": "Mozambique",
+    "capital": "Maputo",
+    "fact": "Mozambique's flag has a picture of an AK-47, a book, and a hoe! 🇲🇿"
+  },
+  {
+    "type": "Country",
+    "name": "Myanmar",
+    "capital": "Naypyidaw",
+    "fact": "Myanmar is famous for its thousands of golden Buddhist pagodas! 🛕"
+  },
+  {
+    "type": "Country",
+    "name": "Namibia",
+    "capital": "Windhoek",
+    "fact": "Namibia has the oldest desert on Earth, with giant orange sand dunes! 🏜️"
+  },
+  {
+    "type": "Country",
+    "name": "Nauru",
+    "capital": "Yaren District",
+    "fact": "Nauru is the smallest island nation and has no official capital city! 🏝️"
+  },
+  {
+    "type": "Country",
+    "name": "Nepal",
+    "capital": "Kathmandu",
+    "fact": "Nepal has Mount Everest, the tallest mountain peak in the world! ⛰️"
+  },
+  {
+    "type": "Country",
+    "name": "Netherlands",
+    "capital": "Amsterdam",
+    "fact": "The Netherlands has more bicycles than people, and lots of windmills! 🚲"
+  },
+  {
+    "type": "Country",
+    "name": "New Zealand",
+    "capital": "Wellington",
+    "fact": "New Zealand was the first country to let women vote in 1893! 🗳️"
+  },
+  {
+    "type": "Country",
+    "name": "Nicaragua",
+    "capital": "Managua",
+    "fact": "Nicaragua has the only freshwater lake with sharks, Lake Nicaragua! 🦈"
+  },
+  {
+    "type": "Country",
+    "name": "Niger",
+    "capital": "Niamey",
+    "fact": "Niger is called the 'Fringe of the Sahara' and has dinosaur fossils! 🦖"
+  },
+  {
+    "type": "Country",
+    "name": "Nigeria",
+    "capital": "Abuja",
+    "fact": "Nigeria has Nollywood, which makes more movies than Hollywood! 🎬"
+  },
+  {
+    "type": "Country",
+    "name": "North Macedonia",
+    "capital": "Skopje",
+    "fact": "Skopje has hundreds of giant statues built all over the city center! 🗿"
+  },
+  {
+    "type": "Country",
+    "name": "Norway",
+    "capital": "Oslo",
+    "fact": "Norway introduced salmon sushi to the Japanese in the 1980s! 🍣"
+  },
+  {
+    "type": "Country",
+    "name": "Oman",
+    "capital": "Muscat",
+    "fact": "Oman has ancient irrigation systems that distribute mountain water! 💧"
+  },
+  {
+    "type": "Country",
+    "name": "Pakistan",
+    "capital": "Islamabad",
+    "fact": "Pakistan has the world's highest paved international road, Karakoram Highway! 🛣️"
+  },
+  {
+    "type": "Country",
+    "name": "Palau",
+    "capital": "Ngerulmud",
+    "fact": "Palau has a lake filled with millions of friendly, non-stinging jellyfish! 🪼"
+  },
+  {
+    "type": "Country",
+    "name": "Palestine",
+    "capital": "Jerusalem",
+    "fact": "Palestine contains Jericho, one of the oldest cities in the world! 🏛️"
+  },
+  {
+    "type": "Country",
+    "name": "Panama",
+    "capital": "Panama City",
+    "fact": "Panama is the only place where you can see the sun rise on the Pacific and set on the Atlantic! 🌅"
+  },
+  {
+    "type": "Country",
+    "name": "Papua New Guinea",
+    "capital": "Port Moresby",
+    "fact": "Over 800 different languages are spoken in Papua New Guinea! 🗣️"
+  },
+  {
+    "type": "Country",
+    "name": "Paraguay",
+    "capital": "Asuncion",
+    "fact": "Most homes in Paraguay do not have doorbells, people clap hands to visit! 👏"
+  },
+  {
+    "type": "Country",
+    "name": "Peru",
+    "capital": "Lima",
+    "fact": "Peru has Machu Picchu, a secret ancient city built high in the Andes! ⛰️"
+  },
+  {
+    "type": "Country",
+    "name": "Philippines",
+    "capital": "Manila",
+    "fact": "The Philippines is made of more than 7,000 tropical islands! 🏝️"
+  },
+  {
+    "type": "Country",
+    "name": "Poland",
+    "capital": "Warsaw",
+    "fact": "Poland has the world's largest brick castle, Malbork Castle! 🏰"
+  },
+  {
+    "type": "Country",
+    "name": "Portugal",
+    "capital": "Lisbon",
+    "fact": "Portugal was the first country to map and sail around the globe! ⛵"
+  },
+  {
+    "type": "Country",
+    "name": "Qatar",
+    "capital": "Doha",
+    "fact": "Qatar is one of the richest countries and hosted the FIFA World Cup! ⚽"
+  },
+  {
+    "type": "Country",
+    "name": "Romania",
+    "capital": "Bucharest",
+    "fact": "Romania has the heaviest building in the world, the Palace of the Parliament! 🏢"
+  },
+  {
+    "type": "Country",
+    "name": "Russia",
+    "capital": "Moscow",
+    "fact": "Russia is the largest country on Earth and has 11 different time zones! 🇷🇺"
+  },
+  {
+    "type": "Country",
+    "name": "Rwanda",
+    "capital": "Kigali",
+    "fact": "Rwanda is the cleanest country in Africa, plastic bags are banned! 🚫"
+  },
+  {
+    "type": "Country",
+    "name": "Saint Kitts and Nevis",
+    "capital": "Basseterre",
+    "fact": "This is the smallest country in the Americas, consisting of two islands! 🏝️"
+  },
+  {
+    "type": "Country",
+    "name": "Saint Lucia",
+    "capital": "Castries",
+    "fact": "Saint Lucia is the only country named after a historical woman! 👩"
+  },
+  {
+    "type": "Country",
+    "name": "Saint Vincent and the Grenadines",
+    "capital": "Kingstown",
+    "fact": "This island nation has active volcanoes and black sand beaches! 🌋"
+  },
+  {
+    "type": "Country",
+    "name": "Samoa",
+    "capital": "Apia",
+    "fact": "Samoa has the amazing To Sua Ocean Trench, a giant natural swimming hole! 🏊"
+  },
+  {
+    "type": "Country",
+    "name": "San Marino",
+    "capital": "San Marino",
+    "fact": "San Marino is the oldest active constitutional republic in the world! 📜"
+  },
+  {
+    "type": "Country",
+    "name": "Sao Tome and Principe",
+    "capital": "Sao Tome",
+    "fact": "This island nation has the giant volcanic plug peak, Pico Cao Grande! 🌋"
+  },
+  {
+    "type": "Country",
+    "name": "Saudi Arabia",
+    "capital": "Riyadh",
+    "fact": "Saudi Arabia is the largest country in the world without a single river! 🏜️"
+  },
+  {
+    "type": "Country",
+    "name": "Senegal",
+    "capital": "Dakar",
+    "fact": "Senegal has Lake Retba, a natural lake that turns bright pink! 🌸"
+  },
+  {
+    "type": "Country",
+    "name": "Serbia",
+    "capital": "Belgrade",
+    "fact": "Serbia produces about one-third of the world's raspberries! 🍓"
+  },
+  {
+    "type": "Country",
+    "name": "Seychelles",
+    "capital": "Victoria",
+    "fact": "Seychelles is home to the heavy Aldabra giant tortoises! 🐢"
+  },
+  {
+    "type": "Country",
+    "name": "Sierra Leone",
+    "capital": "Freetown",
+    "fact": "Sierra Leone has a famous cotton tree that has stood since 1792! 🌳"
+  },
+  {
+    "type": "Country",
+    "name": "Singapore",
+    "capital": "Singapore",
+    "fact": "Singapore is a city-state with a giant indoor waterfall at the airport! ✈️"
+  },
+  {
+    "type": "Country",
+    "name": "Slovakia",
+    "capital": "Bratislava",
+    "fact": "Bratislava is the only capital city that borders two independent countries! 🇸🇰"
+  },
+  {
+    "type": "Country",
+    "name": "Slovenia",
+    "capital": "Ljubljana",
+    "fact": "Slovenia is so green that forest covers over half of the country! 🌳"
+  },
+  {
+    "type": "Country",
+    "name": "Solomon Islands",
+    "capital": "Honiara",
+    "fact": "The Solomon Islands has an underwater volcano that sharks live inside! 🦈"
+  },
+  {
+    "type": "Country",
+    "name": "Somalia",
+    "capital": "Mogadishu",
+    "fact": "Somalia has the longest coastline in mainland Africa! 🏖️"
+  },
+  {
+    "type": "Country",
+    "name": "South Africa",
+    "capital": "Pretoria",
+    "fact": "South Africa has three different capital cities for different branches of government! 🇿🇦"
+  },
+  {
+    "type": "Country",
+    "name": "South Sudan",
+    "capital": "Juba",
+    "fact": "South Sudan is the youngest country in the world, founded in 2011! 👶"
+  },
+  {
+    "type": "Country",
+    "name": "Spain",
+    "capital": "Madrid",
+    "fact": "Spain has the world's oldest running restaurant, Sobrino de Botín! 🍽️"
+  },
+  {
+    "type": "Country",
+    "name": "Sri Lanka",
+    "capital": "Colombo",
+    "fact": "Sri Lanka is known as the Pearl of the Indian Ocean and has wild elephants! 🐘"
+  },
+  {
+    "type": "Country",
+    "name": "Sudan",
+    "capital": "Khartoum",
+    "fact": "Sudan has more pyramids than Egypt—over 200 of them! 🔺"
+  },
+  {
+    "type": "Country",
+    "name": "Suriname",
+    "capital": "Paramaribo",
+    "fact": "Suriname is the smallest country in South America, covered in rainforests! 🌳"
+  },
+  {
+    "type": "Country",
+    "name": "Sweden",
+    "capital": "Stockholm",
+    "fact": "Sweden is home to the giant Icehotel, built from blocks of river ice! 🧊"
+  },
+  {
+    "type": "Country",
+    "name": "Switzerland",
+    "capital": "Bern",
+    "fact": "Switzerland has enough bomb shelters to fit its entire population! 🛡️"
+  },
+  {
+    "type": "Country",
+    "name": "Syria",
+    "capital": "Damascus",
+    "fact": "Damascus is considered one of the oldest continuously inhabited cities! 🏛️"
+  },
+  {
+    "type": "Country",
+    "name": "Taiwan",
+    "capital": "Taipei",
+    "fact": "Taiwan has Taipei 101, which has a giant tuned mass damper ball to stop earthquakes! 🏙️"
+  },
+  {
+    "type": "Country",
+    "name": "Tajikistan",
+    "capital": "Dushanbe",
+    "fact": "Over 90% of Tajikistan is covered by high mountains! ⛰️"
+  },
+  {
+    "type": "Country",
+    "name": "Tanzania",
+    "capital": "Dodoma",
+    "fact": "Tanzania has Mount Kilimanjaro, the highest free-standing mountain peak! ⛰️"
+  },
+  {
+    "type": "Country",
+    "name": "Thailand",
+    "capital": "Bangkok",
+    "fact": "Thailand has a festival where monkeys are served a giant fruit buffet! 🐒"
+  },
+  {
+    "type": "Country",
+    "name": "Togo",
+    "capital": "Lome",
+    "fact": "Togo has beautiful sandy beaches and is famous for local fabrics! 🏖️"
+  },
+  {
+    "type": "Country",
+    "name": "Tonga",
+    "capital": "Nuku'alofa",
+    "fact": "Tonga is the only monarchy in the Pacific that was never colonized! 👑"
+  },
+  {
+    "type": "Country",
+    "name": "Trinidad and Tobago",
+    "capital": "Port of Spain",
+    "fact": "This country is the birthplace of steelpan musical drums! 🥁"
+  },
+  {
+    "type": "Country",
+    "name": "Tunisia",
+    "capital": "Tunis",
+    "fact": "Tunisia has the ancient city of Carthage and was where Star Wars was filmed! 🛸"
+  },
+  {
+    "type": "Country",
+    "name": "Turkey",
+    "capital": "Ankara",
+    "fact": "Turkey is located on two continents: Europe and Asia! 🌍"
+  },
+  {
+    "type": "Country",
+    "name": "Turkmenistan",
+    "capital": "Ashgabat",
+    "fact": "Turkmenistan has a natural burning gas crater called the Gates of Hell! 🔥"
+  },
+  {
+    "type": "Country",
+    "name": "Tuvalu",
+    "capital": "Funafuti",
+    "fact": "Tuvalu is one of the smallest and lowest-lying countries on Earth! 🏝️"
+  },
+  {
+    "type": "Country",
+    "name": "Uganda",
+    "capital": "Kampala",
+    "fact": "Uganda is home to more than half of the world's mountain gorillas! 🦍"
+  },
+  {
+    "type": "Country",
+    "name": "Ukraine",
+    "capital": "Kyiv",
+    "fact": "Ukraine is the largest country located entirely within Europe! 🇺🇦"
+  },
+  {
+    "type": "Country",
+    "name": "United Arab Emirates",
+    "capital": "Abu Dhabi",
+    "fact": "The UAE has the Burj Khalifa, the tallest building on the planet! 🏢"
+  },
+  {
+    "type": "Country",
+    "name": "United Kingdom",
+    "capital": "London",
+    "fact": "Big Ben is actually the name of the heavy bell inside the tower, not the clock! 🔔"
+  },
+  {
+    "type": "Country",
+    "name": "United States",
+    "capital": "Washington, D.C.",
+    "fact": "The US has the world's longest cave system, Mammoth Cave in Kentucky! 🕳️"
+  },
+  {
+    "type": "Country",
+    "name": "Uruguay",
+    "capital": "Montevideo",
+    "fact": "Uruguay is the first country to provide a free laptop to every child! 💻"
+  },
+  {
+    "type": "Country",
+    "name": "Uzbekistan",
+    "capital": "Tashkent",
+    "fact": "Uzbekistan is one of only two double-landlocked countries in the world! ⛰️"
+  },
+  {
+    "type": "Country",
+    "name": "Vanuatu",
+    "capital": "Port Vila",
+    "fact": "Vanuatu has the world's only underwater post office box! ✉️"
+  },
+  {
+    "type": "Country",
+    "name": "Vatican City",
+    "capital": "Vatican City",
+    "fact": "Vatican City is the smallest independent state in the world! 🇻🇦"
+  },
+  {
+    "type": "Country",
+    "name": "Venezuela",
+    "capital": "Caracas",
+    "fact": "Venezuela has Angel Falls, the tallest uninterrupted waterfall on Earth! 🌊"
+  },
+  {
+    "type": "Country",
+    "name": "Vietnam",
+    "capital": "Hanoi",
+    "fact": "Vietnam is the world's second-largest exporter of coffee! ☕"
+  },
+  {
+    "type": "Country",
+    "name": "Yemen",
+    "capital": "Sana'a",
+    "fact": "Yemen has the island of Socotra, which has strange dragon blood trees! 🩸"
+  },
+  {
+    "type": "Country",
+    "name": "Zambia",
+    "capital": "Lusaka",
+    "fact": "Zambia shares Victoria Falls, one of the biggest waterfalls in the world! 🌊"
+  },
+  {
+    "type": "Country",
+    "name": "Zimbabwe",
+    "capital": "Harare",
+    "fact": "Zimbabwe has 16 official languages, more than most other countries! 🗣️"
+  }
+]

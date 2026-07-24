@@ -1,0 +1,1052 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Outfit:wght@400;600;800&display=swap');
+
+/* ==========================================================================
+   Design System & Variables
+   ========================================================================== */
+:root {
+  --sky-blue: #3498db;
+  --sky-blue-dark: #2980b9;
+  --sunny-yellow: #f1c40f;
+  --sunny-yellow-dark: #f39c12;
+  --lime-green: #2ecc71;
+  --lime-green-dark: #27ae60;
+  --bright-coral: #e74c3c;
+  --bright-coral-dark: #c0392b;
+  --dark-gray: #1a1a1a;
+  --off-white: #fcfcf9;
+  --white: #ffffff;
+  
+  --font-primary: 'Fredoka', system-ui, -apple-system, sans-serif;
+  --font-header: 'Outfit', system-ui, -apple-system, sans-serif;
+  
+  --border-width: 4px;
+  --border-radius: 20px;
+  --shadow-offset: 6px;
+  
+  /* Safe scrolling scrollbar gutter space */
+  scrollbar-gutter: stable;
+}
+
+/* ==========================================================================
+   Base resets & layouts
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: var(--dark-gray);
+  background-color: var(--off-white);
+  padding: 1.5rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header & Navigation */
+header.app-header {
+  margin-bottom: 2rem;
+}
+
+.nav-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.logo-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo-block {
+  display: inline-block;
+  background-color: var(--sunny-yellow);
+  border: var(--border-width) solid var(--dark-gray);
+  border-radius: 12px;
+  padding: 0.5rem 1.5rem;
+  box-shadow: 4px 4px 0px var(--dark-gray);
+  transform: rotate(-1.5deg);
+  transition: transform 0.2s ease;
+}
+
+.logo-block:hover {
+  transform: rotate(1deg) scale(1.05);
+}
+
+.logo-text {
+  font-family: var(--font-header);
+  font-size: 2.25rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.logo-emoji {
+  margin-left: 0.5rem;
+}
+
+/* LEGO Block Navigation Menu */
+.lego-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  list-style: none;
+}
+
+.lego-nav-item a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  font-family: var(--font-header);
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--white);
+  border: var(--border-width) solid var(--dark-gray);
+  border-radius: 15px;
+  box-shadow: 4px 4px 0px var(--dark-gray);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+/* Nav Item Colors */
+.lego-nav-item.blue a   { background-color: var(--sky-blue); }
+.lego-nav-item.yellow a { background-color: var(--sunny-yellow); color: var(--dark-gray); }
+.lego-nav-item.green a  { background-color: var(--lime-green); }
+.lego-nav-item.coral a  { background-color: var(--bright-coral); }
+.lego-nav-item.white a  { background-color: var(--white); color: var(--dark-gray); }
+
+.lego-nav-item a:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px var(--dark-gray);
+}
+
+.lego-nav-item a:active,
+.lego-nav-item.active a {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px var(--dark-gray);
+}
+
+/* Main Area Layout */
+main {
+  flex-grow: 1;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: 3rem;
+}
+
+/* ==========================================================================
+   LEGO Card Components
+   ========================================================================== */
+.lego-card {
+  --card-color: var(--white);
+  --card-text-color: var(--dark-gray);
+  
+  background-color: var(--card-color);
+  color: var(--card-text-color);
+  border: var(--border-width) solid var(--dark-gray);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-offset) var(--shadow-offset) 0px var(--dark-gray);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lego-card.blue {
+  --card-color: var(--sky-blue);
+  --card-text-color: var(--white);
+}
+
+.lego-card.yellow {
+  --card-color: var(--sunny-yellow);
+  --card-text-color: var(--dark-gray);
+}
+
+.lego-card.green {
+  --card-color: var(--lime-green);
+  --card-text-color: var(--white);
+}
+
+.lego-card.coral {
+  --card-color: var(--bright-coral);
+  --card-text-color: var(--white);
+}
+
+/* LEGO Studs Row decoration */
+.lego-studs-row {
+  display: flex;
+  gap: 12px;
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-bottom: var(--border-width) solid var(--dark-gray);
+}
+
+.lego-stud {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--card-color);
+  border: 3px solid var(--dark-gray);
+  box-shadow: inset -2px -2px 0px rgba(0, 0, 0, 0.15), 1px 1px 0px rgba(255, 255, 255, 0.2);
+}
+
+/* Card Body Content */
+.lego-card-body {
+  padding: 2rem;
+  flex-grow: 1;
+}
+
+.lego-card-body h1, 
+.lego-card-body h2 {
+  font-family: var(--font-header);
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+}
+
+.lego-card-body h1 {
+  font-size: 2.5rem;
+  letter-spacing: -0.5px;
+}
+
+.lego-card-body h2 {
+  font-size: 1.85rem;
+}
+
+/* Tactile oversized buttons */
+.lego-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  font-family: var(--font-header);
+  font-size: 1.35rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  border: var(--border-width) solid var(--dark-gray);
+  border-radius: 18px;
+  color: var(--white);
+  box-shadow: 4px 4px 0px var(--dark-gray);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  min-height: 54px;
+  touch-action: manipulation;
+}
+
+.lego-btn.blue { background-color: var(--sky-blue); }
+.lego-btn.blue:hover { background-color: var(--sky-blue-dark); }
+
+.lego-btn.yellow { background-color: var(--sunny-yellow); color: var(--dark-gray); }
+.lego-btn.yellow:hover { background-color: var(--sunny-yellow-dark); }
+
+.lego-btn.green { background-color: var(--lime-green); }
+.lego-btn.green:hover { background-color: var(--lime-green-dark); }
+
+.lego-btn.coral { background-color: var(--bright-coral); }
+.lego-btn.coral:hover { background-color: var(--bright-coral-dark); }
+
+.lego-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px var(--dark-gray);
+}
+
+.lego-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px var(--dark-gray);
+}
+
+/* Grid Layouts for Child Content */
+.lego-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .lego-grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.lego-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ==========================================================================
+   Homepage Features (index.html)
+   ========================================================================== */
+.intro-header-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.intro-photo-container {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: var(--border-width) solid var(--dark-gray);
+  box-shadow: 4px 4px 0px var(--dark-gray);
+  overflow: hidden;
+  background-color: var(--white);
+  transform: rotate(-3deg);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.intro-photo-container:hover {
+  transform: rotate(2deg) scale(1.05);
+  box-shadow: 6px 6px 0px var(--dark-gray);
+}
+
+.intro-photo-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.intro-header-wrapper h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.intro-bio {
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+/* Desktop layout: Switch to block to float image and wrap text */
+@media (min-width: 576px) {
+  .intro-header-wrapper {
+    display: block;
+    text-align: left;
+  }
+  
+  .intro-photo-container {
+    float: left;
+    margin-right: 1.75rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .intro-header-wrapper h1 {
+    margin-top: 0;
+  }
+  
+  .intro-header-wrapper::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+}
+
+.favorites-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.favorites-list li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: var(--white);
+  border: 3px solid var(--dark-gray);
+  border-radius: 12px;
+  box-shadow: 3px 3px 0px var(--dark-gray);
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.favorites-list li .emoji-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background-color: var(--sunny-yellow);
+  border: 3px solid var(--dark-gray);
+  border-radius: 10px;
+  font-size: 1.8rem;
+}
+
+.favorites-list li:nth-child(even) .emoji-container {
+  background-color: var(--lime-green);
+}
+
+/* Custom Audio Player Layout */
+.audio-player-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background-color: var(--white);
+  border: 3px solid var(--dark-gray);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: 4px 4px 0px var(--dark-gray);
+}
+
+.audio-animation {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 40px;
+  margin-top: 0.5rem;
+}
+
+.audio-bar {
+  width: 6px;
+  height: 5px;
+  background-color: var(--sky-blue);
+  border: 1px solid var(--dark-gray);
+  border-radius: 3px;
+  transition: height 0.1s ease;
+}
+
+.audio-bar.coral { background-color: var(--bright-coral); }
+.audio-bar.yellow { background-color: var(--sunny-yellow); }
+.audio-bar.green { background-color: var(--lime-green); }
+
+.audio-animation.playing .audio-bar {
+  animation: audio-bounce 0.8s ease-in-out infinite alternate;
+}
+
+.audio-animation.playing .audio-bar:nth-child(2) { animation-delay: 0.15s; }
+.audio-animation.playing .audio-bar:nth-child(3) { animation-delay: 0.3s; }
+.audio-animation.playing .audio-bar:nth-child(4) { animation-delay: 0.05s; }
+.audio-animation.playing .audio-bar:nth-child(5) { animation-delay: 0.2s; }
+
+@keyframes audio-bounce {
+  from { height: 5px; }
+  to { height: 35px; }
+}
+
+/* ==========================================================================
+   Gallery & Lightbox Features (gallery.html)
+   ========================================================================== */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.gallery-item {
+  position: relative;
+  cursor: pointer;
+  border: var(--border-width) solid var(--dark-gray);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: 4px 4px 0px var(--dark-gray);
+  aspect-ratio: 1 / 1;
+  background-color: var(--white);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-item-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(26, 26, 26, 0.95);
+  color: var(--white);
+  padding: 0.75rem;
+  border-top: 3px solid var(--dark-gray);
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transform: translateY(100%);
+  transition: transform 0.2s ease;
+}
+
+.gallery-item:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 7px 7px 0px var(--dark-gray);
+}
+
+.gallery-item:hover .gallery-item-info {
+  transform: translateY(0);
+}
+
+/* Lightbox Modal Dialog Styling */
+.lightbox-dialog {
+  border: var(--border-width) solid var(--dark-gray);
+  border-radius: var(--border-radius);
+  padding: 0;
+  max-width: 700px;
+  width: 90%;
+  margin: auto;
+  box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.5);
+  background-color: var(--white);
+}
+
+.lightbox-dialog::backdrop {
+  background-color: rgba(26, 26, 26, 0.85);
+  backdrop-filter: blur(5px);
+}
+
+.lightbox-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.lightbox-header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.75rem;
+  background-color: var(--sunny-yellow);
+  border-bottom: var(--border-width) solid var(--dark-gray);
+}
+
+.lightbox-close-btn {
+  background: var(--white);
+  border: 3px solid var(--dark-gray);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 2px 2px 0px var(--dark-gray);
+}
+
+.lightbox-close-btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px var(--dark-gray);
+}
+
+.lightbox-content {
+  position: relative;
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lightbox-img {
+  max-width: 100%;
+  max-height: 60vh;
+  object-fit: contain;
+  border: var(--border-width) solid var(--dark-gray);
+  border-radius: 12px;
+  box-shadow: 4px 4px 0px var(--dark-gray);
+}
+
+.lightbox-caption {
+  margin-top: 1rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.lightbox-nav {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 1rem 1rem 1rem;
+}
+
+/* ==========================================================================
+   Journals Features (journals.html)
+   ========================================================================== */
+.notebook-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.notebook-paper {
+  background-color: var(--white);
+  /* Wide ruled lines */
+  background-image: linear-gradient(rgba(0,0,0,0) 96%, #cad5eb 96%);
+  background-size: 100% 2.75rem;
+  line-height: 2.75rem;
+  padding: 3.5rem 2rem 2rem 4.5rem;
+  position: relative;
+  border: var(--border-width) solid var(--dark-gray);
+  border-radius: var(--border-radius);
+  box-shadow: 6px 6px 0px var(--dark-gray);
+}
+
+/* Notebook margins */
+.notebook-paper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 3.5rem;
+  width: 2px;
+  background-color: #ff8b8b;
+  border-right: 1px solid #ff8b8b;
+}
+
+/* Notebook Binder Holes */
+.notebook-holes {
+  position: absolute;
+  left: 1rem;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 2rem 0;
+}
+
+.notebook-hole {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: var(--off-white);
+  border: 3px solid var(--dark-gray);
+  box-shadow: inset 1px 1px 2px rgba(0,0,0,0.4);
+}
+
+.journal-header {
+  margin-bottom: 1rem;
+}
+
+.journal-date {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--bright-coral);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.journal-title {
+  font-family: var(--font-header);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--sky-blue-dark);
+}
+
+.journal-story {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #333333;
+}
+
+.journal-bullets {
+  margin-top: 1.5rem;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.journal-bullets li {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.journal-bullets li::before {
+  content: "✏️";
+  position: absolute;
+  left: 0;
+  font-size: 1.2rem;
+}
+
+/* ==========================================================================
+   Projects & Badges Features (projects.html)
+   ========================================================================== */
+.badges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.badge-card {
+  background-color: var(--white);
+  border: var(--border-width) solid var(--dark-gray);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-offset) var(--shadow-offset) 0px var(--dark-gray);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.badge-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 8px 8px 0px var(--dark-gray);
+}
+
+.badge-icon-box {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: var(--border-width) solid var(--dark-gray);
+  background-color: var(--off-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  overflow: hidden;
+  box-shadow: inset 0 4px 8px rgba(0,0,0,0.1), 3px 3px 0 var(--dark-gray);
+}
+
+.badge-icon-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.badge-title {
+  font-family: var(--font-header);
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.badge-desc {
+  font-size: 1.1rem;
+  color: #555555;
+  font-weight: 600;
+}
+
+/* Visual color tabs on badge cards */
+.badge-card.blue   { border-top: 12px solid var(--sky-blue); }
+.badge-card.yellow { border-top: 12px solid var(--sunny-yellow); }
+.badge-card.green  { border-top: 12px solid var(--lime-green); }
+.badge-card.coral  { border-top: 12px solid var(--bright-coral); }
+
+/* ==========================================================================
+   Games Features (games.html)
+   ========================================================================== */
+.game-layout-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.game-scoreboard {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 600px;
+  background-color: var(--dark-gray);
+  color: var(--white);
+  border: var(--border-width) solid var(--dark-gray);
+  border-radius: 15px;
+  padding: 0.75rem 1.5rem;
+  box-shadow: 4px 4px 0px rgba(0,0,0,0.15);
+}
+
+.score-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.score-label {
+  font-family: var(--font-header);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--sunny-yellow);
+}
+
+.score-val {
+  font-family: var(--font-header);
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.canvas-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  aspect-ratio: 4 / 3;
+  background-color: #b3e5fc; /* sky background */
+  border: var(--border-width) solid var(--dark-gray);
+  border-radius: var(--border-radius);
+  box-shadow: 8px 8px 0px var(--dark-gray);
+  overflow: hidden;
+}
+
+canvas#game-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.game-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(26, 26, 26, 0.85);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  color: var(--white);
+  padding: 2rem;
+  text-align: center;
+}
+
+.game-overlay h2 {
+  font-family: var(--font-header);
+  font-size: 3rem;
+  color: var(--sunny-yellow);
+}
+
+.game-overlay p {
+  font-size: 1.35rem;
+  max-width: 400px;
+}
+
+.game-controls {
+  display: flex;
+  gap: 1rem;
+}
+
+/* ==========================================================================
+   Contact Form Features (contact.html)
+   ========================================================================== */
+.contact-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.postbox-header {
+  background-color: var(--bright-coral);
+  color: var(--white);
+  padding: 1.5rem;
+  border-bottom: var(--border-width) solid var(--dark-gray);
+  text-align: center;
+}
+
+.postbox-header h2 {
+  font-family: var(--font-header);
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-family: var(--font-header);
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--dark-gray);
+  display: inline-block;
+  padding: 4px 0;
+}
+
+.form-control {
+  font-family: var(--font-primary);
+  font-size: 1.25rem;
+  font-weight: 600;
+  padding: 0.85rem 1rem;
+  border: 3px solid var(--dark-gray);
+  border-radius: 12px;
+  background-color: var(--white);
+  color: var(--dark-gray);
+  box-shadow: inset 2px 2px 4px rgba(0,0,0,0.05);
+  min-height: 48px;
+  width: 100%;
+}
+
+.form-control:focus-visible {
+  outline: 4px solid var(--sky-blue);
+  outline-offset: 2px;
+}
+
+/* Non-intrusive validation indicators */
+.form-control:invalid:user-invalid {
+  border-color: var(--bright-coral);
+  outline-color: var(--bright-coral);
+}
+
+textarea.form-control {
+  resize: vertical;
+  min-height: 150px;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+footer.app-footer {
+  margin-top: auto;
+  padding: 2rem 0 1rem 0;
+  border-top: var(--border-width) solid var(--dark-gray);
+  text-align: center;
+}
+
+.footer-brick {
+  display: inline-block;
+  background-color: var(--lime-green);
+  border: var(--border-width) solid var(--dark-gray);
+  border-radius: 10px;
+  padding: 0.5rem 1.5rem;
+  box-shadow: 4px 4px 0px var(--dark-gray);
+}
+
+.footer-text {
+  font-weight: 700;
+  color: var(--white);
+}
+
+.footer-attribution {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: #777777;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   Science STEM Lab Features (science.html)
+   ========================================================================== */
+.graph-paper {
+  background-color: var(--white);
+  background-image: 
+    linear-gradient(rgba(52, 152, 219, 0.09) 1.5px, transparent 1.5px),
+    linear-gradient(90deg, rgba(52, 152, 219, 0.09) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+  border: var(--border-width) solid var(--dark-gray);
+  border-radius: var(--border-radius);
+  box-shadow: 6px 6px 0px var(--dark-gray);
+  padding: 2.25rem 2rem 2rem 2rem;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.graph-paper:hover {
+  transform: translateY(-4px);
+  box-shadow: 8px 8px 0px var(--dark-gray);
+}
+
+.science-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  border-bottom: 3px dashed var(--dark-gray);
+  padding-bottom: 0.75rem;
+}
+
+.science-date {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--bright-coral);
+  text-transform: uppercase;
+}
+
+.science-category {
+  font-family: var(--font-header);
+  font-size: 0.95rem;
+  font-weight: 800;
+  background-color: var(--sunny-yellow);
+  border: 2px solid var(--dark-gray);
+  border-radius: 8px;
+  padding: 2px 8px;
+  color: var(--dark-gray);
+  text-transform: uppercase;
+}
+
+.science-title {
+  font-family: var(--font-header);
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--sky-blue-dark);
+  margin-bottom: 1rem;
+}
+
+.science-desc {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #444444;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+.stud-rating-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--dark-gray);
+  border-top: 2px dashed rgba(0,0,0,0.1);
+  padding-top: 1rem;
+}
+
+.rating-studs {
+  display: flex;
+  gap: 6px;
+}
+
+.rating-studs .rating-stud {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: var(--lime-green);
+  border: 2.5px solid var(--dark-gray);
+  box-shadow: inset -2px -2px 0px rgba(0,0,0,0.15);
+}
+
+.rating-studs .rating-stud.empty {
+  background-color: #e8e8e3;
+  box-shadow: none;
+}
+
+/* ==========================================================================
+   Game-specific Interactive Cursors
+   ========================================================================== */
+.game-canvas-pop {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' style='font-size: 24px'><text y='24'>📍</text></svg>") 8 20, pointer;
+}
+
+.game-canvas-geo {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' style='font-size: 24px'><text y='24'>🧱</text></svg>") 16 16, pointer;
+}
+
+

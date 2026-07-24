@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marwaan's Art Gallery | Lego Builds &amp; Drawings 🎨</title>
+  <meta name="description" content="Take a look at my awesome drawings and Lego creations!">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  
+  <header class="app-header">
+    <div class="nav-container">
+      <a href="index.html" class="logo-link" aria-label="Marwaan's Lego World Home">
+        <div class="logo-block">
+          <span class="logo-text">Marwaan's World<span class="logo-emoji">🧱</span></span>
+        </div>
+      </a>
+      <nav aria-label="Main Navigation">
+        <ul class="lego-nav">
+          <li class="lego-nav-item blue"><a href="index.html"><span>🏠</span> Me</a></li>
+          <li class="lego-nav-item yellow"><a href="gallery.html"><span>🎨</span> Gallery</a></li>
+          <li class="lego-nav-item green"><a href="journals.html"><span>📖</span> Stories</a></li>
+          <li class="lego-nav-item coral"><a href="projects.html"><span>🏆</span> Badges</a></li>
+          <li class="lego-nav-item white"><a href="science.html"><span>🔬</span> Science</a></li>
+          <li class="lego-nav-item blue"><a href="games.html"><span>🎮</span> Games</a></li>
+          <li class="lego-nav-item yellow"><a href="contact.html"><span>✉️</span> Message</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="lego-card green">
+      <div class="lego-studs-row">
+        <span class="lego-stud"></span>
+        <span class="lego-stud"></span>
+        <span class="lego-stud"></span>
+        <span class="lego-stud"></span>
+      </div>
+      <div class="lego-card-body">
+        <h1>My Awesome Gallery 🎨</h1>
+        <p style="font-size: 1.35rem; margin-bottom: 2rem; font-weight: 600;">
+          Here are some of the drawings I made with crayons and the cool models I built with my Lego blocks! Click on any image to open the magic projector.
+        </p>
+        
+        <!-- CSS Grid Gallery of Photos/Art -->
+        <div class="gallery-grid">
+          
+          <div class="gallery-item" tabindex="0" role="button" aria-label="Open LEGO Space Rocket in slide viewer">
+            <img src="images/gallery/lego_spaceship.png" alt="A toy spaceship made of red, yellow, and blue LEGO blocks" width="300" height="300" loading="lazy">
+            <div class="gallery-item-info">My Custom LEGO Space Rocket! 🚀</div>
+          </div>
+          
+          <div class="gallery-item" tabindex="0" role="button" aria-label="Open Dino Crayon Drawing in slide viewer">
+            <img src="images/gallery/crayon_dino.png" alt="A green T-Rex cartoon drawing with a smiling sun" width="300" height="300" loading="lazy">
+            <div class="gallery-item-info">Green T-Rex Roaring! 🦖</div>
+          </div>
+          
+          <div class="gallery-item" tabindex="0" role="button" aria-label="Open Dream Tree House in slide viewer">
+            <img src="images/gallery/play_house.png" alt="A child drawing of a yellow house with a red roof and flower" width="300" height="300" loading="lazy">
+            <div class="gallery-item-info">My Dream Tree House! 🏡</div>
+          </div>
+          
+          <div class="gallery-item" tabindex="0" role="button" aria-label="Open Robo-Block Friend in slide viewer">
+            <img src="images/gallery/lego_robot.png" alt="A toy robot built out of primary-colored LEGO blocks" width="300" height="300" loading="lazy">
+            <div class="gallery-item-info">Boxy Robo-Block Friend! 🤖</div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- HTML5 Dialog Lightbox Overlay -->
+    <dialog id="lightbox-dialog" class="lightbox-dialog" aria-label="Image Viewer modal">
+      <div class="lightbox-container">
+        <div class="lightbox-header">
+          <button id="lightbox-close" class="lightbox-close-btn" type="button" aria-label="Close image viewer overlay">❌</button>
+        </div>
+        <div class="lightbox-content">
+          <img id="lightbox-img" class="lightbox-img" src="" alt="Expanded art preview">
+          <p id="lightbox-caption" class="lightbox-caption"></p>
+        </div>
+        <div class="lightbox-nav">
+          <button id="lightbox-prev" class="lego-btn blue" type="button" aria-label="Go to previous photo">⬅️ Prev</button>
+          <button id="lightbox-next" class="lego-btn blue" type="button" aria-label="Go to next photo">Next ➡️</button>
+        </div>
+      </div>
+    </dialog>
+
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-brick">
+      <span class="footer-text">Made with 🧱 by Marwaan's Dad &copy; 2026</span>
+    </div>
+    <p class="footer-attribution">Built with HTML5, CSS3 &amp; vanilla JS. Powered by Lego brick power!</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
