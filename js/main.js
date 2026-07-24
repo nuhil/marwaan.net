@@ -1,24 +1,71 @@
+/* ==========================================================================
+   1. Shared Site Chrome (Header + Footer)
+   Single source of truth for the navigation and footer that every page
+   shares. Rendered into <div id="site-header"> / <div id="site-footer">
+   placeholders so the markup lives in exactly one place instead of being
+   copy-pasted across every HTML file.
+   ========================================================================== */
+const NAV_ITEMS = [
+  { href: 'index.html',    color: 'blue',   emoji: '🏠', label: 'Me' },
+  { href: 'gallery.html',  color: 'yellow', emoji: '🎨', label: 'Gallery' },
+  { href: 'journals.html', color: 'green',  emoji: '📖', label: 'Stories' },
+  { href: 'projects.html', color: 'coral',  emoji: '🏆', label: 'Badges' },
+  { href: 'science.html',  color: 'white',  emoji: '🔬', label: 'Science' },
+  { href: 'games.html',    color: 'blue',   emoji: '🎮', label: 'Games' },
+  { href: 'contact.html',  color: 'yellow', emoji: '✉️', label: 'Message' }
+];
+
+function renderSiteChrome() {
+  // Determine the current page filename (defaults to index.html at the root).
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+
+  const headerHost = document.getElementById('site-header');
+  if (headerHost) {
+    const navItems = NAV_ITEMS.map(item => {
+      const isActive = item.href === currentPage;
+      const activeClass = isActive ? ' active' : '';
+      const ariaCurrent = isActive ? ' aria-current="page"' : '';
+      return `<li class="lego-nav-item ${item.color}${activeClass}">` +
+        `<a href="${item.href}"${ariaCurrent}><span>${item.emoji}</span> ${item.label}</a></li>`;
+    }).join('\n          ');
+
+    headerHost.outerHTML = `
+  <header class="app-header">
+    <div class="nav-container">
+      <a href="index.html" class="logo-link" aria-label="Marwaan's Lego World Home">
+        <div class="logo-block">
+          <span class="logo-text">Marwaan's World<span class="logo-emoji">🧱</span></span>
+        </div>
+      </a>
+      <nav aria-label="Main Navigation">
+        <ul class="lego-nav">
+          ${navItems}
+        </ul>
+      </nav>
+    </div>
+  </header>`;
+  }
+
+  const footerHost = document.getElementById('site-footer');
+  if (footerHost) {
+    footerHost.outerHTML = `
+  <footer class="app-footer">
+    <div class="footer-brick">
+      <span class="footer-text">Made with 🧱 by Marwaan's Dad &copy; 2026</span>
+    </div>
+    <p class="footer-attribution">Built with HTML5, CSS3 &amp; vanilla JS. Powered by Lego brick power!</p>
+  </footer>`;
+  }
+}
+
+// Render chrome immediately (the placeholders are parsed before this script
+// runs at the end of <body>), which avoids a flash of missing navigation.
+renderSiteChrome();
+
 document.addEventListener('DOMContentLoaded', () => {
-  setupNavigation();
   setupVocalGreeting();
   setupLightbox();
 });
-
-/* ==========================================================================
-   1. Navigation Active State
-   ========================================================================== */
-function setupNavigation() {
-  const currentPath = window.location.pathname;
-  const navLinks = document.querySelectorAll('.lego-nav-item a');
-  
-  navLinks.forEach(link => {
-    // Check if the link href matches the current path
-    const href = link.getAttribute('href');
-    if (currentPath.endsWith(href) || (currentPath === '/' && href === 'index.html')) {
-      link.parentElement.classList.add('active');
-    }
-  });
-}
 
 /* ==========================================================================
    2. Vocal Greeting (HTML5 Audio + Web Speech API Fallback)

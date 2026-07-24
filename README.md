@@ -74,7 +74,7 @@ npx http-server -p 8000
 
 ## 🛠️ Regenerating the Greeting Chime
 If you want to alter or regenerate the arpeggio WAV chime:
-1. Open the [audio_generator.py](file:///Users/azm0523/Documents/website/scratch/audio_generator.py) script.
+1. Open the [audio_generator.py](scratch/audio_generator.py) script.
 2. Run it inside the `scratch/` directory:
    ```bash
    cd scratch
