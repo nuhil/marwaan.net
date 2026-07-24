@@ -2,6 +2,12 @@
    Game Coordinator (Responsive Arcade Interface + Balloon Pop Game Engine)
    ========================================================================== */
 
+// Speed slider levels -> movement multiplier applied to both games.
+// Medium (2) is the default and preserves the original tuning; Slow is
+// gentler for younger toddlers, Fast is a light challenge boost.
+const SPEED_LEVELS = { 1: 0.55, 2: 1.0, 3: 1.6 };
+const SPEED_LABELS = { 1: 'Slow 🐢', 2: 'Medium 🚶', 3: 'Fast 🐇' };
+
 class GameEngine {
   constructor() {
     this.canvas = document.getElementById('game-canvas');
@@ -59,6 +65,9 @@ class GameEngine {
     
     // Active game tracker: null (Lobby), 'POP' (Balloon Pop), 'GEO' (Geography Game)
     this.activeGame = null;
+
+    // Movement speed multiplier shared by both games (set via the speed slider)
+    this.speedMultiplier = 1.0;
     
     // Initial setup
     this.highValEl.textContent = this.highScore;
@@ -68,7 +77,11 @@ class GameEngine {
     // Instantiate sub-game GeographyGame
     // Passes context and coordinates back to coordinator
     this.geoGame = new GeographyGame(this.canvas, this.ctx, null, this);
-    
+
+    // Wire up the shared speed slider (must run after geoGame exists so the
+    // initial multiplier can be synced into it)
+    this.setupSpeedControl();
+
     // Bind Selection events
     this.btnSelectPop.addEventListener('click', () => this.selectGame('POP'));
     this.btnSelectGeo.addEventListener('click', () => this.selectGame('GEO'));
@@ -100,6 +113,37 @@ class GameEngine {
     requestAnimationFrame((t) => this.loop(t));
   }
   
+  setupSpeedControl() {
+    this.speedSlider = document.getElementById('speed-slider');
+    this.speedValueEl = document.getElementById('speed-value');
+
+    // Restore the saved preference (default to Medium)
+    let level = parseInt(localStorage.getItem('lego_game_speed') || '2', 10);
+    if (!SPEED_LEVELS[level]) level = 2;
+
+    this.applySpeedLevel(level);
+
+    if (this.speedSlider) {
+      this.speedSlider.value = level;
+      this.speedSlider.addEventListener('input', () => {
+        const lvl = parseInt(this.speedSlider.value, 10);
+        this.applySpeedLevel(lvl);
+        localStorage.setItem('lego_game_speed', lvl);
+      });
+    }
+  }
+
+  applySpeedLevel(level) {
+    this.speedMultiplier = SPEED_LEVELS[level] || 1.0;
+    if (this.speedValueEl) {
+      this.speedValueEl.textContent = SPEED_LABELS[level] || SPEED_LABELS[2];
+    }
+    // Keep the geography sub-game in sync
+    if (this.geoGame) {
+      this.geoGame.speedMultiplier = this.speedMultiplier;
+    }
+  }
+
   initAudio() {
     if (!this.audioCtx) {
       this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -302,7 +346,8 @@ class GameEngine {
     const radius = Math.floor(Math.random() * 15) + 30; // 30-45px radius
     const x = Math.floor(Math.random() * (this.canvas.width - radius * 2)) + radius;
     const y = this.canvas.height + radius;
-    const speed = (Math.random() * 2) + 1.5 + (this.score * 0.05); // Speed accelerates as score rises
+    // Base speed accelerates as score rises, then scaled by the speed slider
+    const speed = ((Math.random() * 2) + 1.5 + (this.score * 0.05)) * this.speedMultiplier;
     const color = this.balloonColors[Math.floor(Math.random() * this.balloonColors.length)];
     
     this.balloons.push({ x, y, radius, speed, color });

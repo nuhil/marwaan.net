@@ -53,6 +53,19 @@
             </div>
           </div>
           
+          <!-- Speed Control (applies to both Balloon Pop and Capital Builder) -->
+          <div class="game-speed-control">
+            <label for="speed-slider" class="speed-label">
+              🎚️ Game Speed: <strong id="speed-value">Medium 🚶</strong>
+            </label>
+            <div class="speed-slider-row">
+              <span class="speed-end" aria-hidden="true">🐢</span>
+              <input type="range" id="speed-slider" min="1" max="3" step="1" value="2"
+                     aria-label="Game speed: 1 is slow, 2 is medium, 3 is fast">
+              <span class="speed-end" aria-hidden="true">🐇</span>
+            </div>
+          </div>
+
           <!-- Game Canvas and Screen Overlays -->
           <div class="canvas-container">
             <canvas id="game-canvas" aria-label="Interactive Balloon Popping Playground"></canvas>

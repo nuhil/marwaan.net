@@ -11,6 +11,7 @@ class GeographyGame {
     
     // Game state
     this.active = false;
+    this.speedMultiplier = 1.0; // Set by the shared speed slider in games.js
     this.towerHeight = 0;
     this.correctCount = 0;
     this.maxTower = 5;
@@ -182,7 +183,8 @@ class GeographyGame {
     answers.forEach((ans, i) => {
       const x = (laneWidth * i) + (laneWidth / 2);
       const y = -50 - (Math.random() * 80);
-      const speed = 1.2 + (this.correctCount * 0.1); // Accelerates slightly
+      // Accelerates slightly with progress, then scaled by the speed slider
+      const speed = (1.2 + (this.correctCount * 0.1)) * this.speedMultiplier;
       const color = this.brickColors[i % this.brickColors.length];
       
       this.fallingBrits.push({
