@@ -5,7 +5,7 @@
 // Speed slider levels -> movement multiplier applied to both games.
 // Medium (2) is the default and preserves the original tuning; Slow is
 // gentler for younger toddlers, Fast is a light challenge boost.
-const SPEED_LEVELS = { 1: 0.55, 2: 1.0, 3: 1.6 };
+const SPEED_LEVELS = { 1: 0.3, 2: 1.0, 3: 1.6 };
 const SPEED_LABELS = { 1: 'Slow 🐢', 2: 'Medium 🚶', 3: 'Fast 🐇' };
 
 class GameEngine {
