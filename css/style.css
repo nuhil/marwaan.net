@@ -1160,6 +1160,120 @@ footer.app-footer {
   box-shadow: none;
 }
 
+/* Category filter bar */
+.science-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.filter-chip {
+  font-family: var(--font-header);
+  font-weight: 800;
+  font-size: 1rem;
+  padding: 0.5rem 1.1rem;
+  background-color: var(--white);
+  color: var(--dark-gray);
+  border: 3px solid var(--dark-gray);
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 3px 3px 0px var(--dark-gray);
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.1s ease;
+  min-height: 44px;
+  touch-action: manipulation;
+}
+
+.filter-chip:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0px var(--dark-gray);
+}
+
+.filter-chip.active {
+  background-color: var(--sky-blue);
+  color: var(--white);
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px var(--dark-gray);
+}
+
+.science-count {
+  text-align: center;
+  font-weight: 700;
+  color: #777777;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+/* Category color accents on cards + badges */
+.graph-paper.cat-chemistry   { border-top: 10px solid var(--bright-coral); }
+.graph-paper.cat-physics     { border-top: 10px solid var(--sky-blue); }
+.graph-paper.cat-biology     { border-top: 10px solid var(--lime-green); }
+.graph-paper.cat-engineering { border-top: 10px solid var(--sunny-yellow); }
+
+.science-category.cat-badge-chemistry   { background-color: var(--bright-coral); color: var(--white); }
+.science-category.cat-badge-physics     { background-color: var(--sky-blue); color: var(--white); }
+.science-category.cat-badge-biology     { background-color: var(--lime-green); color: var(--white); }
+.science-category.cat-badge-engineering { background-color: var(--sunny-yellow); color: var(--dark-gray); }
+
+/* Big emoji in the card title */
+.science-emoji {
+  font-size: 1.7rem;
+  margin-right: 0.15rem;
+}
+
+/* Labelled sections inside a card (materials / hypothesis / observation) */
+.science-section {
+  margin-bottom: 1rem;
+}
+
+.science-section-label {
+  display: inline-block;
+  font-family: var(--font-header);
+  font-weight: 800;
+  font-size: 0.92rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: var(--sky-blue-dark);
+  margin-bottom: 0.35rem;
+}
+
+.science-section-text {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333333;
+  line-height: 1.45;
+}
+
+/* Material chips */
+.science-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.science-chip {
+  font-size: 0.95rem;
+  font-weight: 700;
+  background-color: var(--off-white);
+  border: 2px solid var(--dark-gray);
+  border-radius: 8px;
+  padding: 0.2rem 0.6rem;
+}
+
+/* "Cool fact" highlight */
+.science-funfact {
+  margin-top: 0.25rem;
+  background-color: rgba(241, 196, 15, 0.18);
+  border: 2px dashed var(--sunny-yellow-dark);
+  border-radius: 12px;
+  padding: 0.65rem 0.9rem;
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--dark-gray);
+  line-height: 1.4;
+}
+
 /* ==========================================================================
    Game-specific Interactive Cursors
    ========================================================================== */

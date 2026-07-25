@@ -1,0 +1,68 @@
+[
+  {
+    "title": "Marshmallow & Spaghetti Tower",
+    "emoji": "🗼",
+    "date": "2026-06-20",
+    "category": "Engineering",
+    "materials": ["mini marshmallows", "dry spaghetti noodles"],
+    "hypothesis": "I thought I could build a super tall tower using marshmallows as the corners.",
+    "observation": "I poked spaghetti into marshmallows to make triangles, then stacked them up high! The triangles kept it from wobbling. My tower ended up taller than my teddy bear!",
+    "funFact": "Engineers use triangle shapes in bridges and towers because a triangle is the strongest, steadiest shape.",
+    "rating": 5
+  },
+  {
+    "title": "The Walking Rainbow Water",
+    "emoji": "🌈",
+    "date": "2026-06-15",
+    "category": "Chemistry",
+    "materials": ["6 clear cups", "paper towels", "red food coloring", "yellow food coloring", "blue food coloring", "water"],
+    "hypothesis": "I thought the colored water would climb up the paper towels and mix together to make brand new colors.",
+    "observation": "The water slowly walked up the paper towels into the empty cups! Red and yellow made orange, and blue and yellow made green — like magic!",
+    "funFact": "Water can climb uphill through tiny tubes in the paper. Scientists call this 'capillary action'.",
+    "rating": 4
+  },
+  {
+    "title": "The Erupting Kitchen Volcano!",
+    "emoji": "🌋",
+    "date": "2026-06-08",
+    "category": "Chemistry",
+    "materials": ["baking soda", "white vinegar", "red dish soap", "warm water", "a plastic cup"],
+    "hypothesis": "If I pour vinegar onto the baking soda, it will fizz up and bubble over like a real volcano.",
+    "observation": "It instantly bubbled up and overflowed like hot red lava! I chased the foam all across the counter while Dad cheered.",
+    "funFact": "The fizzy bubbles are a gas called carbon dioxide — the very same gas that makes soda pop fizzy!",
+    "rating": 5
+  },
+  {
+    "title": "Light-Up Lego Spaceship",
+    "emoji": "💡",
+    "date": "2026-05-30",
+    "category": "Physics",
+    "materials": ["a yellow LED bulb", "copper tape", "a coin battery", "Lego blocks"],
+    "hypothesis": "If I connect the battery to the tiny bulb with copper tape, the light will turn on.",
+    "observation": "We taped the wires to the battery and the LED glowed bright yellow! We built it right into the cockpit of my Lego space shuttle so it shines in the dark.",
+    "funFact": "Electricity has to travel in a complete loop called a 'circuit'. If there is a gap, the light won't glow.",
+    "rating": 5
+  },
+  {
+    "title": "The Floating Salt-Water Egg",
+    "emoji": "🥚",
+    "date": "2026-05-15",
+    "category": "Physics",
+    "materials": ["2 tall glasses", "water", "4 big spoons of salt", "2 eggs"],
+    "hypothesis": "I thought both eggs would sink straight down, because eggs are heavy.",
+    "observation": "The egg in plain water sank to the bottom, but the egg in the salty water floated right at the top! The salt made the water stronger.",
+    "funFact": "Salt water is denser (more packed) than plain water, so it can hold heavier things up — that's why it's easy to float in the ocean!",
+    "rating": 4
+  },
+  {
+    "title": "Growing a Bean Seed",
+    "emoji": "🌱",
+    "date": "2026-05-05",
+    "category": "Biology",
+    "materials": ["a dry bean", "a clear jar", "a wet paper towel", "sunlight"],
+    "hypothesis": "I thought if I keep the bean wet and sunny, a little plant would pop out.",
+    "observation": "After a few days a white root wiggled out, and then a tiny green leaf popped up! I watered it every morning and watched it grow bigger and bigger.",
+    "funFact": "A seed already has a baby plant tucked inside — it just needs water, warmth, and light to wake up!",
+    "rating": 5
+  }
+]

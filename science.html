@@ -33,73 +33,19 @@
         <span class="lego-stud"></span>
       </div>
       <div class="lego-card-body">
-        <div style="display: flex; flex-direction: column; gap: 1.5rem; align-items: center; justify-content: space-between; text-align: center;">
-          <div style="width: 100%;">
-            <h1 style="margin-bottom: 0.75rem;">My STEM &amp; Science Experiments! 🔬</h1>
-            <p style="font-size: 1.35rem; font-weight: 600; max-width: 800px; margin: 0 auto;">
-              I love mixing ingredients in the kitchen lab, connecting electrical wires, and studying how things work. Here are my observation logs recorded with my dad!
-            </p>
-          </div>
-          <button id="btn-add-experiment" class="lego-btn yellow" type="button" aria-label="Log a new experiment">
-            <span>🧪</span> Add New Experiment
-          </button>
-        </div>
+        <h1 style="text-align: center; margin-bottom: 0.75rem;">My STEM &amp; Science Experiments! 🔬</h1>
+        <p style="font-size: 1.25rem; font-weight: 600; max-width: 800px; margin: 0 auto; text-align: center;">
+          I love mixing ingredients in the kitchen lab, connecting electrical wires, and studying how things work. Here are my real experiment logs — recorded with my dad! 🧪
+        </p>
       </div>
     </section>
 
-    <!-- STEM Logs grid list -->
-    <div id="science-logs-grid" class="lego-grid-2">
-      <!-- Injected programmatically by science.js -->
-    </div>
+    <!-- Category filter (built by science.js from the data) -->
+    <div id="science-filter-bar" class="science-filter-bar" role="group" aria-label="Filter experiments by category"></div>
+    <p id="science-count" class="science-count" aria-live="polite"></p>
 
-    <!-- HTML5 Dialog Form for Recording New Experiment -->
-    <dialog id="science-dialog" class="lightbox-dialog" style="max-width: 550px; padding: 2rem;" aria-label="Log new science experiment form">
-      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: var(--border-width) solid var(--dark-gray); padding-bottom: 0.75rem; margin-bottom: 1.5rem; background-color: var(--sunny-yellow); padding: 1rem; border-radius: 12px; border: var(--border-width) solid var(--dark-gray); box-shadow: 3px 3px 0 var(--dark-gray);">
-        <h2 style="font-family: var(--font-header); font-weight: 800; font-size: 1.6rem; color: var(--dark-gray); margin: 0;">Record Lab Experiment 🧪</h2>
-        <button id="dialog-close" type="button" style="background: var(--white); border: 3px solid var(--dark-gray); width: 36px; height: 36px; border-radius: 50%; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center;" aria-label="Close form">❌</button>
-      </div>
-      <form id="science-form" method="dialog">
-        <fieldset style="border: none;">
-          <legend class="visually-hidden">Lab log entry inputs</legend>
-          
-          <div class="form-group">
-            <label for="exp-title">Experiment Name:</label>
-            <input type="text" id="exp-title" class="form-control" required placeholder="e.g. Baking Soda Volcano" maxlength="50">
-          </div>
-          
-          <div class="form-group">
-            <label for="exp-date">Date Conducted:</label>
-            <input type="date" id="exp-date" class="form-control" required>
-          </div>
-          
-          <div class="form-group">
-            <label for="exp-category">Experiment Category:</label>
-            <select id="exp-category" class="form-control" required style="appearance: auto; padding-right: 2rem;">
-              <option value="Chemistry">Chemistry 🌋</option>
-              <option value="Physics">Physics 💡</option>
-              <option value="Engineering">Engineering ⚙️</option>
-              <option value="Biology">Biology 🌿</option>
-            </select>
-          </div>
-          
-          <div class="form-group">
-            <label for="exp-desc">Observations &amp; Notes:</label>
-            <textarea id="exp-desc" class="form-control" required placeholder="Describe the materials, reactions, or results..." maxlength="300" style="min-height: 100px;"></textarea>
-          </div>
-          
-          <div class="form-group">
-            <label for="exp-rating">Fun Rating (1-5 Lego Studs):</label>
-            <input type="range" id="exp-rating" class="form-control" min="1" max="5" value="5" step="1" style="height: 38px;">
-          </div>
-          
-          <div style="display: flex; justify-content: center; margin-top: 2rem;">
-            <button type="submit" class="lego-btn yellow" id="btn-save-exp">
-              <span>💾</span> Save Lab Notes
-            </button>
-          </div>
-        </fieldset>
-      </form>
-    </dialog>
+    <!-- STEM Logs grid list (injected by science.js from data/experiments.json) -->
+    <div id="science-logs-grid" class="lego-grid-2"></div>
   </main>
 
   <div id="site-footer"></div>
