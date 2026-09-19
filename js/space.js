@@ -23,8 +23,14 @@ const MISSIONS = [
 ];
 
 let renderer;
-try { renderer = new THREE.WebGLRenderer({ antialias:true, powerPreference:'high-performance', alpha:false }); }
-catch (error) { $('#webgl-fallback').hidden=false; $('#loading-screen').classList.add('done'); throw error; }
+try { renderer = new THREE.WebGLRenderer({ antialias:true }); }
+catch (error) {
+  const fallback = $('#webgl-fallback');
+  fallback.hidden = false;
+  fallback.querySelector('p').textContent = `Renderer could not start: ${error.message || 'unknown browser error'}`;
+  $('#loading-screen').classList.add('done');
+  throw error;
+}
 renderer.setPixelRatio(Math.min(devicePixelRatio, 1.8)); renderer.setSize(innerWidth, innerHeight); renderer.outputColorSpace=THREE.SRGBColorSpace; renderer.toneMapping=THREE.ACESFilmicToneMapping; renderer.toneMappingExposure=1.08; container.appendChild(renderer.domElement);
 const labelRenderer = new CSS2DRenderer(); labelRenderer.setSize(innerWidth,innerHeight); labelRenderer.domElement.style.cssText='position:absolute;inset:0;pointer-events:none'; container.appendChild(labelRenderer.domElement);
 const scene = new THREE.Scene(); scene.background = new THREE.Color(0x01030a); scene.fog = new THREE.FogExp2(0x01030a,.006);
