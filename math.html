@@ -1,28 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#080b24">
-  <title>Math Galaxy | Marwaan's Wonder Lab</title><meta name="description" content="Play intuitive animated math games for counting, addition, subtraction and patterns.">
-  <link rel="stylesheet" href="css/style.css"><link rel="canonical" href="https://marwaan.net/math.html">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🪐</text></svg>">
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="theme-color" content="#050817">
+  <title>Math Dynamics Lab 3D | Marwaan's Wonder Lab</title>
+  <meta name="description" content="Build numbers, combine quantities and explore geometry in a tactile real-time 3D math laboratory.">
+  <link rel="canonical" href="https://marwaan.net/math.html"><link rel="stylesheet" href="css/math-lab.css">
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.186.0/examples/jsm/"}}</script>
 </head>
-<body class="wonder-body math-page">
-  <div class="cosmos" aria-hidden="true"><span></span><span></span><span></span><span></span></div><div id="site-header"></div>
-  <main class="wonder-main math-main">
-    <section class="math-intro"><div><p class="eyebrow"><span class="live-dot"></span> Learning engines ready</p><h1>Math <span>Galaxy</span></h1><p>Touch the numbers. Move the stars. Watch every idea come alive.</p></div><div class="star-bank" aria-live="polite"><span aria-hidden="true">⭐</span><strong id="total-stars">0</strong><small>stars earned</small></div></section>
-    <nav class="mission-tabs" aria-label="Choose a math mission">
-      <button class="mission-tab active" type="button" data-mode="count"><span>🌱</span><b>Number Garden</b><small>Counting</small></button>
-      <button class="mission-tab" type="button" data-mode="add"><span>🚀</span><b>Addition Orbit</b><small>Joining</small></button>
-      <button class="mission-tab" type="button" data-mode="subtract"><span>🦕</span><b>Dino Takeaway</b><small>Subtracting</small></button>
-      <button class="mission-tab" type="button" data-mode="pattern"><span>⚙️</span><b>Pattern Factory</b><small>Sequences</small></button>
+<body>
+  <main id="math-lab">
+    <div id="math-canvas" aria-label="Interactive three-dimensional mathematics laboratory"></div><div class="lab-vignette" aria-hidden="true"></div>
+    <header class="lab-header">
+      <a class="lab-brand" href="index.html"><span>M</span><div><b>MATH DYNAMICS</b><small>WONDER LAB / SYSTEM 02</small></div></a>
+      <div class="lab-status"><i></i> SIMULATION ACTIVE <b id="renderer-label">THREE.JS</b></div>
+      <div class="star-score"><span>DISCOVERY ENERGY</span><strong id="star-count">0</strong></div>
+    </header>
+
+    <nav class="lab-modes" aria-label="Choose a math laboratory">
+      <button class="mode-button active" data-mode="number" type="button"><i>01</i><span><b>NUMBER REACTOR</b><small>Construct quantities</small></span></button>
+      <button class="mode-button" data-mode="addition" type="button"><i>02</i><span><b>ADDITION DOCK</b><small>Combine groups</small></span></button>
+      <button class="mode-button" data-mode="geometry" type="button"><i>03</i><span><b>GEOMETRY SCANNER</b><small>Explore solids</small></span></button>
     </nav>
-    <section id="mission" class="math-console" aria-labelledby="mission-name">
-      <div class="console-topbar"><div><span class="console-light red"></span><span class="console-light yellow"></span><span class="console-light green"></span></div><div class="progress-track" aria-label="Mission progress"><span id="progress-fill"></span></div><button id="speak-prompt" class="sound-button" type="button" aria-label="Read the question aloud">🔊</button></div>
-      <div class="math-stage"><div class="stage-copy"><p id="mission-label" class="eyebrow">Number Garden • Mission 1</p><h2 id="mission-name">Plant the right number of stars</h2><p id="mission-prompt" class="mission-prompt">Tap 5 sleepy seeds to wake them up!</p></div><div id="visual-equation" class="visual-equation" aria-live="polite"></div><div id="play-space" class="play-space" aria-label="Interactive math objects"></div><div id="answer-zone" class="answer-zone"></div><div id="feedback" class="math-feedback" role="status" aria-live="polite"></div></div>
-      <div class="console-controls"><button id="hint-button" class="console-button" type="button">💡 Show me</button><button id="check-button" class="console-button primary" type="button">Check my answer <span>→</span></button><button id="next-button" class="console-button primary" type="button" hidden>Next mission <span>→</span></button></div>
+
+    <section class="mission-card" aria-live="polite">
+      <div class="mission-meta"><span id="mission-code">MISSION N-01</span><i></i></div>
+      <p id="mission-kicker">QUANTITY CONSTRUCTION</p><h1 id="mission-title">Build a tower of <strong>6</strong></h1>
+      <p id="mission-copy">Select energy cells in the field. Watch each unit travel into the reactor and become part of the number.</p>
+      <button id="speak-mission" type="button">◖ READ MISSION</button>
     </section>
-    <section class="grownup-note"><span aria-hidden="true">🛡️</span><div><h2>Made for confident learning</h2><p>No ads, no timer and no account. Hints demonstrate ideas with motion, while progress stays in this browser.</p></div></section>
+
+    <section class="quantity-display" id="quantity-display"><span>REACTOR COUNT</span><strong id="quantity-value">0</strong><small id="quantity-target">TARGET / 6</small></section>
+    <section class="addition-console" id="addition-console" hidden><span>YOUR PREDICTION</span><div><button id="answer-down" type="button">−</button><strong id="answer-value">0</strong><button id="answer-up" type="button">+</button></div></section>
+    <section class="geometry-data" id="geometry-data" hidden><span>OBJECT SCAN</span><h2 id="shape-name">Select a solid</h2><div><p><small>FACES</small><strong id="shape-faces">—</strong></p><p><small>EDGES</small><strong id="shape-edges">—</strong></p><p><small>VERTICES</small><strong id="shape-vertices">—</strong></p></div></section>
+
+    <div class="lab-controls">
+      <button id="remove-unit" type="button">REMOVE</button><button id="primary-action" class="primary-action" type="button">VERIFY STRUCTURE <span>→</span></button><button id="next-mission" class="primary-action" type="button" hidden>NEXT MISSION <span>→</span></button>
+    </div>
+    <div class="interaction-hint"><span>DRAG TO ORBIT</span><i></i><span>SCROLL TO ZOOM</span><i></i><span>SELECT OBJECTS</span></div>
+    <div class="feedback-panel" id="feedback-panel" role="status" aria-live="polite"><span></span><p id="feedback-text"></p></div>
+    <div id="math-loading"><div class="math-loader"><i></i><i></i><i></i></div><p>CALIBRATING THE MATH LAB</p></div>
+    <div class="lab-fallback" id="lab-fallback" hidden><h1>3D renderer unavailable</h1><p>The laboratory could not start in this browser.</p><a href="index.html">Return to Wonder Lab</a></div>
   </main>
-  <div id="site-footer"></div><script src="js/main.js"></script><script src="js/math.js"></script>
+  <script type="module" src="js/math-lab.js"></script>
 </body>
 </html>
