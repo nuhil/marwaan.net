@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Outfit:wght@400;600;800&display=swap');
+@import url('wonder.css');
 
 /* ==========================================================================
    Design System & Variables
@@ -1531,5 +1532,4 @@ footer.app-footer {
     height: 20px;
   }
 }
-
 

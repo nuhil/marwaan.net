@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://marwaan.net/</loc><priority>1.0</priority></url>
+  <url><loc>https://marwaan.net/math.html</loc><priority>0.9</priority></url>
+  <url><loc>https://marwaan.net/science.html</loc><priority>0.8</priority></url>
+  <url><loc>https://marwaan.net/games.html</loc><priority>0.8</priority></url>
+  <url><loc>https://marwaan.net/paint.html</loc><priority>0.8</priority></url>
+  <url><loc>https://marwaan.net/gallery.html</loc><priority>0.7</priority></url>
+  <url><loc>https://marwaan.net/journals.html</loc><priority>0.7</priority></url>
+  <url><loc>https://marwaan.net/projects.html</loc><priority>0.6</priority></url>
+</urlset>

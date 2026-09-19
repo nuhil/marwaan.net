@@ -6,7 +6,8 @@
    copy-pasted across every HTML file.
    ========================================================================== */
 const NAV_ITEMS = [
-  { href: 'index.html',    color: 'blue',   emoji: '🏠', label: 'Me' },
+  { href: 'index.html',    color: 'blue',   emoji: '✨', label: 'Explore' },
+  { href: 'math.html',     color: 'purple', emoji: '🪐', label: 'Math' },
   { href: 'gallery.html',  color: 'yellow', emoji: '🎨', label: 'Gallery' },
   { href: 'paint.html',    color: 'coral',  emoji: '🖌️', label: 'Paint' },
   { href: 'journals.html', color: 'green',  emoji: '📖', label: 'Stories' },
@@ -31,11 +32,12 @@ function renderSiteChrome() {
     }).join('\n          ');
 
     headerHost.outerHTML = `
-  <header class="app-header">
+  <header class="app-header wonder-header">
     <div class="nav-container">
-      <a href="index.html" class="logo-link" aria-label="Marwaan's Lego World Home">
+      <a href="index.html" class="logo-link" aria-label="Marwaan's Wonder Lab Home">
         <div class="logo-block">
-          <span class="logo-text">Marwaan's World<span class="logo-emoji">🧱</span></span>
+          <span class="logo-orbit" aria-hidden="true">✦</span>
+          <span class="logo-text">Marwaan's Wonder Lab<span class="logo-emoji">🚀</span></span>
         </div>
       </a>
       <nav aria-label="Main Navigation">
@@ -52,9 +54,9 @@ function renderSiteChrome() {
     footerHost.outerHTML = `
   <footer class="app-footer">
     <div class="footer-brick">
-      <span class="footer-text">Made with 🧱 by Marwaan's Dad &copy; 2026</span>
+      <span class="footer-text">Dreamed up by Marwaan &amp; built with curiosity ✨ &copy; 2026</span>
     </div>
-    <p class="footer-attribution">Built with HTML5, CSS3 &amp; vanilla JS. Powered by Lego brick power!</p>
+    <p class="footer-attribution">A private-by-design learning playground. Progress stays on this device.</p>
   </footer>`;
   }
 }
@@ -164,13 +166,13 @@ function setupVocalGreeting() {
   function startAudioVisuals() {
     isPlaying = true;
     playBtn.innerHTML = '<span>⏸️</span> Stop Greeting';
-    animation.classList.add('playing');
+    if (animation) animation.classList.add('playing');
   }
   
   function stopAudioVisuals() {
     isPlaying = false;
     playBtn.innerHTML = '<span>🔊</span> Play Greeting';
-    animation.classList.remove('playing');
+    if (animation) animation.classList.remove('playing');
   }
   
   function playSpeechFallback() {
