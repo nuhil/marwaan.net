@@ -4,12 +4,6 @@ import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer
 
 const $ = (selector) => document.querySelector(selector);
 const container = $('#space-canvas');
-const canvasProbe = document.createElement('canvas');
-if (!canvasProbe.getContext('webgl2')) {
-  $('#webgl-fallback').hidden = false;
-  $('#loading-screen').classList.add('done');
-  throw new Error('WebGL 2 is unavailable');
-}
 
 const PLANETS = [
   { name:'Mercury', color:'#aaa8a1', accent:'#6e6d69', radius:.48, orbit:7, speed:1.61, year:'88 days', moons:'0', temp:'167°C', kind:'THE SWIFT ROCK', fact:'Mercury races around the Sun faster than any other planet, but turns very slowly.', tilt:.03 },
@@ -30,7 +24,7 @@ const MISSIONS = [
 
 let renderer;
 try { renderer = new THREE.WebGLRenderer({ antialias:true, powerPreference:'high-performance', alpha:false }); }
-catch (error) { $('#webgl-fallback').hidden=false; throw error; }
+catch (error) { $('#webgl-fallback').hidden=false; $('#loading-screen').classList.add('done'); throw error; }
 renderer.setPixelRatio(Math.min(devicePixelRatio, 1.8)); renderer.setSize(innerWidth, innerHeight); renderer.outputColorSpace=THREE.SRGBColorSpace; renderer.toneMapping=THREE.ACESFilmicToneMapping; renderer.toneMappingExposure=1.08; container.appendChild(renderer.domElement);
 const labelRenderer = new CSS2DRenderer(); labelRenderer.setSize(innerWidth,innerHeight); labelRenderer.domElement.style.cssText='position:absolute;inset:0;pointer-events:none'; container.appendChild(labelRenderer.domElement);
 const scene = new THREE.Scene(); scene.background = new THREE.Color(0x01030a); scene.fog = new THREE.FogExp2(0x01030a,.006);
