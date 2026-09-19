@@ -8,6 +8,7 @@
 const NAV_ITEMS = [
   { href: 'index.html',    color: 'blue',   emoji: '✨', label: 'Explore' },
   { href: 'math.html',     color: 'purple', emoji: '🪐', label: 'Math' },
+  { href: 'space.html',    color: 'white',  emoji: '◉', label: 'Space 3D' },
   { href: 'gallery.html',  color: 'yellow', emoji: '🎨', label: 'Gallery' },
   { href: 'paint.html',    color: 'coral',  emoji: '🖌️', label: 'Paint' },
   { href: 'journals.html', color: 'green',  emoji: '📖', label: 'Stories' },

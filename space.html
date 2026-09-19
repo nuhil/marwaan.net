@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="theme-color" content="#02040c">
+  <title>Solar System Explorer 3D | Marwaan's Wonder Lab</title>
+  <meta name="description" content="Pilot through a real-time 3D solar system, visit planets, control time and complete science missions.">
+  <link rel="canonical" href="https://marwaan.net/space.html"><link rel="stylesheet" href="css/space.css">
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.186.0/examples/jsm/"}}</script>
+</head>
+<body>
+  <main id="space-experience">
+    <div id="space-canvas" aria-label="Interactive three-dimensional model of the solar system"></div>
+    <div class="space-vignette" aria-hidden="true"></div>
+    <header class="space-hud">
+      <a class="hud-brand" href="index.html"><span class="brand-mark">W</span><span><b>WONDER LAB</b><small>SPACE EXPLORER</small></span></a>
+      <div class="flight-status"><i></i><span>SIMULATION LIVE</span><b id="fps-label">WEBGL 2</b></div>
+      <button id="sound-toggle" class="icon-control" type="button" aria-label="Toggle ambient sound">SOUND <b>OFF</b></button>
+    </header>
+
+    <section class="intro-overlay" id="intro-overlay" aria-labelledby="space-title">
+      <p class="overline">INTERACTIVE SCIENCE EXPERIENCE / 01</p>
+      <h1 id="space-title">Touch the<br><span>solar system.</span></h1>
+      <p>Orbit the Sun. Fly to eight worlds. Change the speed of time and uncover what makes every planet extraordinary.</p>
+      <button id="launch-button" class="launch-button" type="button"><span>BEGIN EXPEDITION</span><i>→</i></button>
+      <small>Drag to orbit · Pinch or scroll to travel · Select any world</small>
+    </section>
+
+    <aside class="mission-console" id="mission-console" aria-live="polite">
+      <div class="console-heading"><span>MISSION <b id="mission-index">01</b></span><i id="mission-dots"></i></div>
+      <p id="mission-type">PLANET DETECTIVE</p><h2 id="mission-title">Find the rusty world</h2>
+      <p id="mission-clue">I am covered in iron-rich dust, home to the tallest volcano we know.</p>
+      <div class="mission-footer"><span>SCAN A PLANET</span><b id="mission-score">0 / 4</b></div>
+    </aside>
+
+    <aside class="planet-panel" id="planet-panel" aria-live="polite">
+      <button id="close-panel" type="button" aria-label="Close planet information">×</button>
+      <p class="overline" id="planet-order">PLANET 03</p><h2 id="planet-name">Earth</h2><p id="planet-kind">OUR OCEAN WORLD</p>
+      <div class="planet-stats"><div><small>YEAR</small><strong id="planet-year">365 days</strong></div><div><small>MOONS</small><strong id="planet-moons">1</strong></div><div><small>AVG. TEMP</small><strong id="planet-temp">15°C</strong></div></div>
+      <p id="planet-fact">The only world known to have liquid water on its surface and life.</p>
+      <button id="planet-visit" type="button">ENTER CLOSE ORBIT <span>◎</span></button>
+    </aside>
+
+    <div class="time-console">
+      <button id="pause-time" type="button" aria-label="Pause or resume orbital motion">Ⅱ</button><label for="time-speed">TIME SPEED</label>
+      <input id="time-speed" type="range" min="0" max="4" step="1" value="2"><output id="time-output">1×</output>
+    </div>
+    <nav class="planet-dock" id="planet-dock" aria-label="Fly directly to a planet"></nav>
+    <button class="reset-view" id="reset-view" type="button">⌂ <span>SOLAR VIEW</span></button>
+    <div id="loading-screen"><div class="loader-orbit"><i></i></div><p>ASSEMBLING THE SOLAR SYSTEM</p><span id="load-progress"></span></div>
+    <div class="webgl-fallback" id="webgl-fallback" hidden><h1>This spacecraft needs WebGL 2</h1><p>Try a current version of Safari, Chrome, Edge, or Firefox.</p><a href="index.html">Return to Wonder Lab</a></div>
+  </main>
+  <script type="module" src="js/space.js"></script>
+</body>
+</html>
