@@ -1,54 +1,19 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="theme-color" content="#02040c">
-  <title>Solar System Explorer 3D | Marwaan's Wonder Lab</title>
-  <meta name="description" content="Pilot through a real-time 3D solar system, visit planets, control time and complete science missions.">
-  <link rel="canonical" href="https://marwaan.net/space.html"><link rel="stylesheet" href="css/space.css">
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta name="theme-color" content="#02040c">
+  <title>Space Explorer | Marwaan's Wonder Lab</title><meta name="description" content="Explore planet layers, watch a solar eclipse, and fly staged rockets to the Moon and Mars.">
+  <link rel="canonical" href="https://marwaan.net/space.html"><link rel="stylesheet" href="css/space.css?v=13">
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.186.0/examples/jsm/"}}</script>
 </head>
-<body>
-  <main id="space-experience">
-    <div id="space-canvas" aria-label="Interactive three-dimensional model of the solar system"></div>
-    <div class="space-vignette" aria-hidden="true"></div>
-    <header class="space-hud">
-      <a class="hud-brand" href="index.html"><span class="brand-mark">W</span><span><b>WONDER LAB</b><small>SPACE EXPLORER</small></span></a>
-      <div class="flight-status"><i></i><span>SIMULATION LIVE</span><b id="fps-label">WEBGL 2</b></div>
-      <button id="sound-toggle" class="icon-control" type="button" aria-label="Toggle ambient sound">SOUND <b>OFF</b></button>
-    </header>
-
-    <section class="intro-overlay" id="intro-overlay" aria-labelledby="space-title">
-      <p class="overline">INTERACTIVE SCIENCE EXPERIENCE / 01</p>
-      <h1 id="space-title">Touch the<br><span>solar system.</span></h1>
-      <p>Orbit the Sun. Fly to eight worlds. Change the speed of time and uncover what makes every planet extraordinary.</p>
-      <button id="launch-button" class="launch-button" type="button"><span>BEGIN EXPEDITION</span><i>→</i></button>
-      <small>Drag to orbit · Pinch or scroll to travel · Select any world</small>
-    </section>
-
-    <aside class="mission-console" id="mission-console" aria-live="polite">
-      <div class="console-heading"><span>MISSION <b id="mission-index">01</b></span><i id="mission-dots"></i></div>
-      <p id="mission-type">PLANET DETECTIVE</p><h2 id="mission-title">Find the rusty world</h2>
-      <p id="mission-clue">I am covered in iron-rich dust, home to the tallest volcano we know.</p>
-      <div class="mission-footer"><span>SCAN A PLANET</span><b id="mission-score">0 / 4</b></div>
-    </aside>
-
-    <aside class="planet-panel" id="planet-panel" aria-live="polite">
-      <button id="close-panel" type="button" aria-label="Close planet information">×</button>
-      <p class="overline" id="planet-order">PLANET 03</p><h2 id="planet-name">Earth</h2><p id="planet-kind">OUR OCEAN WORLD</p>
-      <div class="planet-stats"><div><small>YEAR</small><strong id="planet-year">365 days</strong></div><div><small>MOONS</small><strong id="planet-moons">1</strong></div><div><small>AVG. TEMP</small><strong id="planet-temp">15°C</strong></div></div>
-      <p id="planet-fact">The only world known to have liquid water on its surface and life.</p>
-      <button id="planet-visit" type="button">ENTER CLOSE ORBIT <span>◎</span></button>
-    </aside>
-
-    <div class="time-console">
-      <button id="pause-time" type="button" aria-label="Pause or resume orbital motion">Ⅱ</button><label for="time-speed">TIME SPEED</label>
-      <input id="time-speed" type="range" min="0" max="4" step="1" value="2"><output id="time-output">1×</output>
-    </div>
-    <nav class="planet-dock" id="planet-dock" aria-label="Fly directly to a planet"></nav>
-    <button class="reset-view" id="reset-view" type="button">⌂ <span>SOLAR VIEW</span></button>
-    <div id="loading-screen"><div class="loader-orbit"><i></i></div><p>ASSEMBLING THE SOLAR SYSTEM</p><span id="load-progress"></span></div>
-    <div class="webgl-fallback" id="webgl-fallback" hidden><h1>This spacecraft needs WebGL 2</h1><p>Try a current version of Safari, Chrome, Edge, or Firefox.</p><a href="index.html">Return to Wonder Lab</a></div>
-  </main>
-  <script type="module" src="js/space.js"></script>
-</body>
+<body><main class="space-app">
+  <div id="space-canvas" class="space-stage" aria-label="Interactive three-dimensional space explorer. Drag to turn and pinch or scroll to zoom."></div><div class="stage-shade"></div>
+  <header class="space-brand glass-panel"><a href="index.html" class="brand-mark" aria-label="Back to Wonder Lab"><i data-icon="space"></i></a><a href="index.html" class="brand-copy"><b>SPACE EXPLORER</b><small>WONDER LAB</small></a></header>
+  <nav class="viewer-tools glass-panel" aria-label="Space viewer tools"><button id="reset-view" aria-label="Show full solar system" title="Solar system view"><i data-icon="reset"></i></button><button id="auto-rotate" class="active" aria-label="Auto rotate" title="Auto rotate" aria-pressed="true"><i data-icon="rotate"></i></button><button id="toggle-labels" class="active" aria-label="Toggle planet labels" title="Planet labels" aria-pressed="true"><i data-icon="tag"></i></button><button id="music-toggle" class="audio-toggle" aria-label="Toggle music" aria-pressed="false"><i data-icon="music"></i><span>Music off</span></button></nav>
+  <section class="planet-finder glass-panel" id="planet-finder" aria-labelledby="finder-title"><div class="finder-heading"><span><small>PLANET HOPPER</small><b id="finder-title">Pick a world</b></span><button id="close-finder" aria-label="Close planet picker"><i data-icon="close"></i></button></div><div class="planet-grid" id="planet-dock"></div></section>
+  <button class="open-finder glass-panel" id="open-finder" aria-label="Choose a planet"><i data-icon="space"></i><span>Planets</span></button>
+  <aside class="info-panel glass-panel" id="info-panel" aria-live="polite"><button id="close-info" class="panel-close" aria-label="Close information"><i data-icon="close"></i></button><p id="info-kicker">SOLAR SYSTEM</p><h1 id="info-title">Choose a planet</h1><p id="info-copy">Tap a world to fly close and look inside.</p><div class="planet-stats" id="planet-stats" hidden><div><small>YEAR</small><b id="planet-year">365 days</b></div><div><small>MOONS</small><b id="planet-moons">1</b></div><div><small>TEMP</small><b id="planet-temp">15°C</b></div></div><div class="layer-list" id="layer-list" hidden></div><div class="progress-wrap" id="mission-progress" hidden><span><b id="progress-label">LAUNCH</b><strong id="progress-value">0%</strong></span><i><em id="progress-bar"></em></i></div><button id="replay-simulation" class="replay" type="button" hidden><i data-icon="reset"></i><span>Play again</span></button></aside>
+  <section class="mode-ribbon glass-panel" aria-label="Space activities"><div class="ribbon-title"><i data-icon="spark"></i><span><small>SPACE LAB</small><b>Choose an adventure</b></span></div><div class="mode-grid"><button class="mode-button active" data-mode="explore"><i data-icon="space"></i><span><b>Planets</b><small>Look inside</small></span></button><button class="mode-button" data-mode="eclipse"><i data-icon="eye"></i><span><b>Eclipse</b><small>Moon shadow</small></span></button><button class="mode-button" data-mode="moon"><i data-icon="launch"></i><span><b>Moon trip</b><small>3 stages</small></span></button><button class="mode-button" data-mode="mars"><i data-icon="launch"></i><span><b>Mars trip</b><small>Long flight</small></span></button></div></section>
+  <div class="control-hint"><span><b>Drag</b> turn</span><span><b>Pinch</b> zoom</span><span><b>Tap</b> explore</span></div><div id="load-status" class="load-status"><span></span><b>Building the solar system…</b></div><div id="feedback" class="feedback" role="status"></div><div id="webgl-fallback" class="world-fallback" hidden><div><h1>3D needs WebGL</h1><p>Try a current browser.</p><a href="index.html">Go home</a></div></div>
+</main><script type="module" src="js/space.js?v=13"></script></body>
 </html>

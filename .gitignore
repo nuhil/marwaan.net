@@ -9,3 +9,8 @@
 # Python
 __pycache__/
 *.pyc
+
+# Local visual QA captures
+assets/*preview*.png
+assets/**/*preview*.png
+assets/navigation-mobile-preview.png
