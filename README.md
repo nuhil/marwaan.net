@@ -8,7 +8,7 @@ A responsive, static 3D learning playground for young children.
 - **Physics:** a detailed 3D car explorer with selectable mechanical systems and an animated energy journey.
 - **Chemistry:** a 3D periodic table of all 118 elements with family, state, weight, and “in my body” views. Each element opens on a display stand with a real-life 3D specimen, an animated atom model, and kid-friendly facts. Deep links such as `chemistry.html#Au` open an element directly.
 - **Biology:** a layered 3D anatomy explorer with searchable bones, muscles, organs, nerves, and vessels.
-- **Space:** an explorable 3D solar system with planet cutaways, an eclipse simulation, and staged Moon and Mars flights.
+- **Space:** an explorable 3D solar system with planet cutaways; a realistic solar eclipse (spinning Earth, orbiting Moon, umbra/penumbra on Earth's surface, and a “view from Earth” sky); and seven-step Moon and Mars missions with real orbit shapes (phasing orbits, lunar capture, a Hohmann transfer around the Sun), numbered path markers, and a camera that zooms from launch to touchdown.
 - **Games:** a 3D Game Room with Toy Match (memory cards with real-looking toys), Shape Sorter (wooden blocks into a sorter box), Star Road (steer a toy car to collect stars), and Castle Launch (a catapult with real physics via cannon-es). Each has three levels, earns stars, and works with touch, mouse, or keyboard. Links like `games.html#race` open a game.
 
 ## Develop locally

@@ -20,3 +20,31 @@
 .meadow-home.home-btn{display:flex;align-items:center;gap:7px;height:46px;padding:0 16px;border-radius:99px;background:#fffaf0f2;box-shadow:0 5px 0 #2b235014,0 12px 26px #2b23501f;color:#2b2350;text-decoration:none;font:900 14px Nunito,system-ui,sans-serif}
 .meadow-home.home-btn svg{width:19px;height:19px}
 @media(max-width:760px){.viewer-tools .home-btn{padding:0;width:38px;justify-content:center;margin-right:2px}.viewer-tools .home-btn span{display:none}.meadow-home.home-btn{height:42px;width:42px;padding:0;justify-content:center}.meadow-home.home-btn span{display:none}}
+
+/* Simulations: mission timeline, path markers and the eclipse sky view. */
+.simulation-mode #planet-finder,.simulation-mode #open-finder{display:none!important}
+.mission-timeline{top:86px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:4px;padding:6px;border-radius:18px;max-width:calc(100% - 36px);overflow-x:auto;scrollbar-width:none}
+.mission-timeline[hidden]{display:none}
+.mission-timeline::-webkit-scrollbar{display:none}
+.ms-step{flex:none;display:flex;align-items:center;gap:7px;height:40px;padding:0 11px 0 6px;border:1px solid transparent;border-radius:12px;background:transparent;color:#8e9db5;font:700 11px Nunito,system-ui,sans-serif;cursor:pointer;white-space:nowrap;transition:.2s}
+.ms-step b{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;border:1.5px solid #ffffff30;font:800 12px "Space Mono",monospace;color:#cfd8e6}
+.ms-step:hover{color:#fff;background:#ffffff0d}
+.ms-step.done b{background:#3d8bff44;border-color:#62d9ff88;color:#fff}
+.ms-step.active{color:#fff;background:#d4ff3a14;border-color:#d4ff3a55}
+.ms-step.active b{background:#d4ff3a;border-color:#d4ff3a;color:#11160a}
+.mission-marker{display:grid;place-items:center;width:24px;height:24px;border-radius:50% 50% 50% 8px;background:#2a3446;border:2px solid #ffffff40;color:#cfd8e6;font:800 11px "Space Mono",monospace;transform:translateY(-14px);opacity:.55;transition:.3s;pointer-events:none}
+.mission-marker.reached{background:#d4ff3a;border-color:#11160a55;color:#11160a;opacity:1}
+.mission-marker.active{transform:translateY(-14px) scale(1.25);box-shadow:0 0 18px #d4ff3a99}
+.eclipse-view{top:86px;right:18px;width:220px;padding:10px;border-radius:22px}
+.eclipse-view[hidden]{display:none}
+.eclipse-view canvas{display:block;width:100%;height:auto;border-radius:50%;box-shadow:inset 0 0 0 1px #ffffff20}
+.eclipse-view p{margin:8px 4px 0;display:flex;justify-content:space-between;align-items:center;gap:6px}
+.eclipse-view small{font:700 9px "Space Mono",monospace;letter-spacing:.12em;color:#78dbff}
+.eclipse-view span{font-size:12px;color:#bbc6d8}
+.eclipse-view b{color:#fff;font-size:15px}
+@media(max-width:760px){
+  .mission-timeline{top:70px;left:10px;right:10px;transform:none;max-width:none;justify-content:space-between;padding:5px}
+  .ms-step{padding:0 4px;height:36px}.ms-step span{display:none}.ms-step.active span{display:inline}
+  .eclipse-view{top:70px;right:10px;width:128px;padding:7px;border-radius:18px}
+  .eclipse-view p{flex-direction:column;align-items:flex-start;gap:0}.eclipse-view small{font-size:7px}
+}

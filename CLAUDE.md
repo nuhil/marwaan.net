@@ -20,7 +20,7 @@ A `.githooks/pre-push` hook runs `npm run check` (enabled by `npm install`).
 |---|---|---|---|
 | `index.html`, `404.html` | `js/hub.js` | `css/hub.css` | `hub.js` injects the shared header/nav/footer (Home, five worlds, Games). |
 | `games.html` | `js/games/games.js` (host: scene, HUD, dock, touch pad, keyboard, levels, stars) + one module per game (`memory`, `sorter`, `race`, `launch`) and `kit.js` (textures, tweens, toys) | `css/core/explorer.css` + `css/worlds/games.css` | Each game exports `enter/exit/restart/update/key/tap`; Castle Launch lazy-loads `cannon-es` from the import map. Textures in `assets/games/textures` (CC0). |
-| `space.html` | `js/space.js` | `css/space.css` | Solar system, cutaways, eclipse and rocket simulations |
+| `space.html` | `js/space.js` (solar system, cutaways) + `js/space-sims.js` (eclipse and Moon/Mars missions: Kepler orbits, step timeline, auto camera) | `css/space.css` | Bump `?v=` in `space.html` when changing its CSS/JS |
 | `physics.html` | `js/worlds/physics.js` | `css/worlds/physics.css` | GLB car with systems, X-ray and energy-journey demo |
 | `biology.html` | `js/worlds/biology.js` | `css/worlds/biology.css` | Draco GLB anatomy layers, finder, callout labels |
 | `chemistry.html` | `js/worlds/chemistry.js`, data in `js/worlds/elements-data.js` | `css/core/explorer.css` + `css/worlds/chemistry.css` | 3D periodic table, specimen stage, atom model, `#Au` deep links |
