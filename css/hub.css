@@ -28,3 +28,21 @@ main{overflow-x:clip}
 .six-worlds{grid-template-columns:repeat(3,1fr)}
 @media(max-width:900px){.six-worlds{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:680px){.six-worlds{grid-template-columns:1fr}}
+
+/* Marwaan's photo in the hero, framed like the old glowing tile. */
+.art-photo{position:relative;overflow:hidden;padding:0;border:6px solid transparent;background:linear-gradient(#1b1d3f,#1b1d3f) padding-box,linear-gradient(135deg,#ffdf9a,#ef8ea9 50%,#794fe6) border-box;transform:rotate(-8deg)}
+.art-photo img{display:block;width:100%;height:100%;object-fit:cover;transform:rotate(8deg) scale(1.22)}
+.art-photo::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px #ffffff30;pointer-events:none}
+
+/* Footer credit line. */
+.site-footer .wrap{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px;text-align:center;min-height:110px;padding:24px 0}
+.site-footer p{margin:0}
+.made-with{color:#fff;font-weight:700;font-size:1rem}
+.reach-out{font-size:.9rem;color:#bdc0d4}
+.site-footer a{color:#ffce70;font-weight:700;text-decoration:underline;text-decoration-color:#ffce7066;text-underline-offset:3px}
+.site-footer a:hover{text-decoration-color:#ffce70}
+.heart{display:inline-block;animation:beat 1.6s ease-in-out infinite}
+@keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.25)}30%{transform:scale(1)}}
+@media(max-width:680px){.site-footer{display:block}.site-footer .wrap{padding:22px 4px 90px}.made-with{font-size:.95rem}.reach-out{font-size:.85rem;line-height:1.5}}
+@media(prefers-reduced-motion:reduce){.heart{animation:none}}
+.site-footer .heart{display:inline-block;margin:0}
