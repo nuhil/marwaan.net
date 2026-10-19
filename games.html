@@ -1,1 +1,29 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101632"><title>Game Room | Marwaan's Wonder Lab</title><meta name="description" content="Play four gentle games: memory pairs, shape puzzle, mini race and castle launcher."><link rel="stylesheet" href="css/hub.css"></head><body class="games-body"><a class="skip" href="#main">Skip to content</a><div id="site-header"></div><main id="main" class="wrap"><section class="page-hero compact"><p class="eyebrow">GAME ROOM</p><h1>Pick a game</h1><p>Tap. Play. Try again.</p></section><nav class="game-picker" aria-label="Choose a game"><button class="game-pick active" data-game="memory"><span data-icon="memory"></span><b>Pairs</b></button><button class="game-pick" data-game="puzzle"><span data-icon="puzzle"></span><b>Puzzle</b></button><button class="game-pick" data-game="race"><span data-icon="race"></span><b>Race</b></button><button class="game-pick" data-game="launcher"><span data-icon="launch"></span><b>Launch</b></button></nav><section class="arcade panel"><div class="arcade-top"><div><p class="eyebrow" id="game-tag">MEMORY PAIRS</p><h2 id="game-title">Find the matching friends</h2></div><button class="pill-button" id="restart" type="button">↻ Restart</button></div><div id="game-stage" class="game-stage"></div><p class="status" id="game-status" role="status" aria-live="polite"></p></section></main><div id="site-footer"></div><script type="module" src="js/hub.js?v=2"></script><script type="module" src="js/games/arcade.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#120d24">
+  <title>Game Room | Marwaan's Wonder Lab</title><meta name="description" content="Four gentle 3D games for kids: Toy Match, Shape Sorter, Star Road and Castle Launch. Play with touch, mouse or keyboard.">
+  <link rel="stylesheet" href="css/core/world.css"><link rel="stylesheet" href="css/core/explorer.css"><link rel="stylesheet" href="css/worlds/games.css">
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.186.0/examples/jsm/","cannon-es":"https://cdn.jsdelivr.net/npm/cannon-es@0.20.0/dist/cannon-es.js"}}</script>
+</head>
+<body><main class="explorer-app games-app" id="games-app">
+  <div id="world-canvas" class="explorer-stage" aria-label="3D game area"></div><div class="stage-shade"></div>
+  <header class="explorer-brand glass-panel"><a href="index.html" class="brand-mark" aria-label="Back to Wonder Lab"><i data-icon="games"></i></a><a href="index.html" class="brand-copy"><b>GAME ROOM</b><small>WONDER LAB</small></a></header>
+  <nav class="viewer-tools glass-panel" aria-label="Game tools"><button id="restart" aria-label="Start this level again" title="Start again"><i data-icon="reset"></i></button><button id="toggle-keys" aria-label="Show keyboard keys" title="Keyboard keys" aria-pressed="false"><i data-icon="keyboard"></i></button><button id="fullscreen" aria-label="Full screen" title="Full screen"><i data-icon="fullscreen"></i></button><button id="music-toggle" class="audio-toggle" aria-label="Toggle music" aria-pressed="false"><i data-icon="music"></i><span>Music off</span></button></nav>
+  <div class="score-pill glass-panel" aria-live="polite"><span class="score-star" aria-hidden="true">★</span><b id="stars">0</b><span class="score-level" id="level-label">Level 1</span></div>
+
+  <section class="game-hud glass-panel" aria-live="polite"><p class="fact-system" id="hud-kicker">TOY MATCH</p><h2 id="hud-title">Find the pairs</h2><p id="hud-text" class="hud-text"></p><p id="hud-note" class="hud-note"></p><div class="hud-progress" aria-hidden="true"><i id="hud-bar"></i></div><p class="hud-count" id="hud-count">0 / 0</p><div class="key-chips" id="key-chips"></div></section>
+
+  <div class="game-pad" id="game-pad" role="group" aria-label="Game controls"></div>
+
+  <nav class="game-dock glass-panel" aria-label="Choose a game">
+    <button class="game-btn active" data-game="memory" aria-pressed="true" style="--c:#ffb627"><i data-icon="memory"></i><b>Toy Match</b></button>
+    <button class="game-btn" data-game="sorter" aria-pressed="false" style="--c:#4dabf7"><i data-icon="puzzle"></i><b>Shapes</b></button>
+    <button class="game-btn" data-game="race" aria-pressed="false" style="--c:#ff6b6b"><i data-icon="race"></i><b>Star Road</b></button>
+    <button class="game-btn" data-game="launch" aria-pressed="false" style="--c:#9775fa"><i data-icon="launch"></i><b>Castle</b></button>
+  </nav>
+
+  <div class="win-layer" id="win-layer" hidden><section class="win-card glass-panel" role="dialog" aria-modal="true" aria-labelledby="win-title"><div class="win-star" aria-hidden="true">★</div><h2 id="win-title">You did it!</h2><p id="win-text"></p><p class="win-earned">+1 star</p><div class="win-actions"><button id="win-next" class="win-btn primary">Next level ›</button><button id="win-again" class="win-btn">Play again</button></div></section></div>
+
+  <div id="load-status" class="load-status"><span></span><b>SETTING UP THE GAME ROOM…</b></div><div id="feedback" class="feedback" role="status"></div><div id="fallback" class="world-fallback" hidden><div><h1>3D needs WebGL</h1><a href="index.html">Go home</a></div></div>
+</main><script type="module" src="js/games/games.js"></script></body></html>

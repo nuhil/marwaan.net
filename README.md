@@ -9,7 +9,7 @@ A responsive, static 3D learning playground for young children.
 - **Chemistry:** a 3D periodic table of all 118 elements with family, state, weight, and “in my body” views. Each element opens on a display stand with a real-life 3D specimen, an animated atom model, and kid-friendly facts. Deep links such as `chemistry.html#Au` open an element directly.
 - **Biology:** a layered 3D anatomy explorer with searchable bones, muscles, organs, nerves, and vessels.
 - **Space:** an explorable 3D solar system with planet cutaways, an eclipse simulation, and staged Moon and Mars flights.
-- **Games:** a Game Room with memory pairs, a shape puzzle, a mini race, and a castle launcher.
+- **Games:** a 3D Game Room with Toy Match (memory cards with real-looking toys), Shape Sorter (wooden blocks into a sorter box), Star Road (steer a toy car to collect stars), and Castle Launch (a catapult with real physics via cannon-es). Each has three levels, earns stars, and works with touch, mouse, or keyboard. Links like `games.html#race` open a game.
 
 ## Develop locally
 

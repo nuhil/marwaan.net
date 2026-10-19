@@ -1,0 +1,88 @@
+:root{--accent:#ff8fab;--accent2:#9775fa;--accent3:#ffc9d6}
+.games-app{background:radial-gradient(circle at 50% 30%,#3a2a4f,#1b1430 60%,#0e0a1a)}
+.games-app.indoor{background:radial-gradient(ellipse at 50% 20%,#7b5a45,#3b2a22 55%,#1d1511)}
+.games-app .stage-shade{background:linear-gradient(180deg,#0508107d,transparent 18%,transparent 70%,#05081099)}
+.brand-mark{color:#1d0f1a}
+
+/* Score */
+.score-pill{top:18px;right:18px;height:52px;display:flex;align-items:center;gap:8px;padding:0 16px;border-radius:17px;font-weight:900}
+.score-star{color:#ffd43b;font-size:22px;text-shadow:0 0 12px #ffd43b88}
+.score-pill b{font-size:20px}
+.score-level{margin-left:6px;padding:4px 10px;border-radius:99px;background:#ffffff10;font:700 11px "Space Mono",monospace;color:#d8dfeb}
+.score-pill.pop{animation:score-pop .6s cubic-bezier(.3,1.6,.5,1)}
+@keyframes score-pop{40%{transform:scale(1.18)}}
+
+/* HUD */
+.game-hud .fact-system{margin:0;color:#9ba7ba;font:700 10px "Space Mono",monospace;letter-spacing:.14em}
+.game-hud{left:18px;bottom:118px;width:300px;padding:16px 18px;border-radius:22px}
+.game-hud h2{margin:6px 0;font-size:22px;line-height:1.1}
+.hud-text{margin:0;font-size:14px;line-height:1.4;color:#c9d1de}
+.hud-note{margin:8px 0 0;font:700 12px "Space Mono",monospace;color:var(--accent3)}
+.hud-note:empty{display:none}
+.hud-progress{margin-top:12px;height:10px;border-radius:99px;background:#ffffff12;overflow:hidden}
+.hud-progress i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#ffd43b,#ff8fab);transition:width .4s}
+.hud-count{margin:6px 0 0;font:700 11px "Space Mono",monospace;color:#9aa6b8}
+.key-chips{display:none;flex-wrap:wrap;gap:6px;margin-top:10px}
+.show-keys .key-chips{display:flex}
+.key-chip{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:#b9c3d3}
+.key-chip kbd{font:700 11px "Space Mono",monospace;color:#fff;background:#ffffff14;border:1px solid #ffffff26;border-bottom-width:3px;border-radius:7px;padding:3px 7px}
+
+/* Dock */
+.game-dock{left:50%;bottom:18px;transform:translateX(-50%);display:flex;gap:6px;padding:7px;border-radius:24px}
+.game-btn{width:108px;height:72px;border:1px solid transparent;border-radius:17px;background:#ffffff06;color:#9aa6b8;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;transition:.2s}
+.game-btn i{display:grid;place-items:center;width:36px;height:36px;border-radius:12px;background:color-mix(in srgb,var(--c) 18%,transparent);color:var(--c)}
+.game-btn svg{width:20px;height:20px}
+.game-btn b{font-size:12px}
+.game-btn:hover{color:#fff;background:#ffffff0d}
+.game-btn.active{color:#fff;background:#ffffff12;border-color:color-mix(in srgb,var(--c) 55%,transparent);transform:translateY(-2px)}
+.game-btn.active i{background:var(--c);color:#170f1f}
+
+/* Touch pad */
+.game-pad{position:absolute;z-index:8;left:50%;bottom:110px;transform:translateX(-50%);display:flex;gap:10px;align-items:center}
+.game-pad:empty{display:none}
+.game-pad.split{left:18px;right:18px;transform:none;justify-content:space-between;bottom:118px;pointer-events:none}
+.game-pad.split .pad-btn{pointer-events:auto}
+.pad-btn{min-width:62px;height:62px;padding:0 14px;border:1px solid #ffffff24;border-radius:20px;background:linear-gradient(145deg,#1d2638ee,#0f1522ee);color:#fff;font:900 24px Nunito,system-ui,sans-serif;cursor:pointer;box-shadow:0 6px 0 #0007,0 14px 30px #0006;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+.pad-btn:active,.pad-btn.held{transform:translateY(4px);box-shadow:0 2px 0 #0007}
+.pad-btn.big{min-width:92px;height:80px;font-size:34px}
+.pad-btn.primary{background:linear-gradient(135deg,#ff8fab,#9775fa);border-color:transparent;font-size:20px}
+.pad-btn.wide{min-width:120px}
+
+/* Win card */
+.win-layer{position:absolute;inset:0;z-index:30;display:grid;place-items:center;background:#05030d66;backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);animation:fade .3s}
+.win-layer[hidden]{display:none}
+.win-card{position:relative;width:min(380px,calc(100% - 32px));padding:28px 24px 22px;text-align:center;border-radius:28px;animation:win-in .5s cubic-bezier(.3,1.5,.5,1)}
+.win-star{font-size:72px;line-height:1;color:#ffd43b;text-shadow:0 0 30px #ffd43baa;animation:spin-star 1.6s ease-in-out infinite}
+.win-card h2{margin:10px 0 6px;font-size:28px}
+.win-card p{margin:0;color:#c9d1de;font-size:15px}
+.win-card .win-earned{margin-top:10px;font:700 13px "Space Mono",monospace;color:#ffd43b}
+.win-actions{display:flex;gap:10px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+.win-btn{min-height:50px;padding:0 22px;border-radius:99px;border:1px solid #ffffff26;background:#ffffff10;color:#fff;font:900 16px Nunito,system-ui,sans-serif;cursor:pointer}
+.win-btn.primary{background:linear-gradient(135deg,#ff8fab,#9775fa);border-color:transparent}
+@keyframes win-in{from{transform:scale(.6);opacity:0}}
+@keyframes spin-star{50%{transform:rotate(12deg) scale(1.08)}}
+@keyframes fade{from{opacity:0}}
+.explorer-stage.pointing canvas{cursor:pointer}
+
+@media(min-width:1101px){.game-pad.split{left:340px}}
+@media(min-width:761px) and (max-width:1100px){.game-hud{top:84px;bottom:auto;width:260px}.game-btn{width:92px}}
+@media(max-width:760px){
+  .score-pill{top:70px;right:10px;height:44px;padding:0 12px}
+  .score-level{display:none}
+  .game-hud{left:10px;right:10px;top:122px;bottom:auto;width:auto;padding:10px 14px;border-radius:18px}
+  .game-hud h2{font-size:17px;margin:3px 0}
+  .hud-text{font-size:12px}
+  .hud-progress{margin-top:8px;height:8px}
+  .hud-count,.key-chips{display:none!important}
+  .game-dock{left:8px;right:8px;bottom:8px;transform:none;justify-content:space-between;gap:3px;padding:6px;border-radius:22px}
+  .game-btn{flex:1;width:auto;height:64px;border-radius:15px}
+  .game-btn i{width:30px;height:30px;border-radius:10px}
+  .game-btn b{font-size:10px}
+  .game-pad{bottom:90px;gap:8px}
+  .game-pad.split{left:10px;right:10px;bottom:92px}
+  .pad-btn{min-width:54px;height:54px;font-size:20px;border-radius:17px}
+  .pad-btn.big{min-width:86px;height:70px}
+  .pad-btn.wide{min-width:96px}
+}
+@media(hover:none){.key-chips{display:none!important}}
+@media(prefers-reduced-motion:reduce){.win-star,.win-card{animation:none}}
