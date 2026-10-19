@@ -9,3 +9,11 @@
 /* Hidden toasts stay invisible on every screen size. */
 .feedback{opacity:0;pointer-events:none}
 .feedback.show{opacity:1}
+
+/* Home button shown first in every world's toolbar. */
+.viewer-tools .home-btn{display:flex;align-items:center;gap:7px;height:100%;min-height:40px;padding:0 13px 0 10px;margin-right:4px;border-radius:11px;background:#ffffff14;border:1px solid #ffffff22;color:#fff;text-decoration:none;font:800 12px Nunito,system-ui,sans-serif;white-space:nowrap}
+.viewer-tools .home-btn:hover{background:#ffffff26}
+.viewer-tools .home-btn svg{width:18px;height:18px}
+.meadow-home.home-btn{display:flex;align-items:center;gap:7px;height:46px;padding:0 16px;border-radius:99px;background:#fffaf0f2;box-shadow:0 5px 0 #2b235014,0 12px 26px #2b23501f;color:#2b2350;text-decoration:none;font:900 14px Nunito,system-ui,sans-serif}
+.meadow-home.home-btn svg{width:19px;height:19px}
+@media(max-width:760px){.viewer-tools .home-btn{padding:0;width:38px;justify-content:center;margin-right:2px}.viewer-tools .home-btn span{display:none}.meadow-home.home-btn{height:42px;width:42px;padding:0;justify-content:center}.meadow-home.home-btn span{display:none}}
