@@ -1,94 +1,37 @@
-# CLAUDE.md - Antigravity Agent Guidelines
+# CLAUDE.md — Marwaan's Wonder Lab
 
-This file outlines the commands, architecture patterns, and design system rules for development on Marwaan's LEGO Personal Website.
+A static, no-build 3D learning site for young children, deployed to https://marwaan.net by GitHub Pages from `main` (repo root). Three.js `0.186.0` loads from jsDelivr through an import map in each 3D page.
 
-## 🚀 Quick Command Guides
+## Commands
 
-Node 22 is installed via Homebrew (`/opt/homebrew/opt/node@22/bin`, keg-only; added to PATH in `~/.zshrc`).
+Node 22 is installed via Homebrew (`/opt/homebrew/opt/node@22/bin`, keg-only; on PATH via `~/.zshrc`).
 
-### Start Local Dev Server (no-cache, http://localhost:8000)
 ```bash
-npm run dev
+npm run dev      # no-cache dev server at http://localhost:8000 (PORT=9000 to change); prints a LAN URL for phones
+npm run check    # same checks as CI: JS syntax + every local href/src in the HTML exists
+npm run deploy   # on clean main: check, push, wait for the GitHub Pages build
 ```
 
-### Validate (same as CI)
-```bash
-npm run check
-```
+A `.githooks/pre-push` hook runs `npm run check` (enabled by `npm install`).
 
-### Deploy
-Pushing `main` deploys via GitHub Pages (legacy build from `main` `/`). `npm run deploy` checks, pushes, and watches the Pages run. A `.githooks/pre-push` hook runs `npm run check` (enabled by `npm install`).
+## Pages
 
-### Regenerate Greeting Chime Audio
-```bash
-cd scratch && python3 audio_generator.py
-```
+| Page | Script | Styles | Notes |
+|---|---|---|---|
+| `index.html`, `404.html`, `games.html` | `js/hub.js` (+ `js/games/arcade.js`) | `css/hub.css` | `hub.js` injects the shared header/nav/footer (Home, five worlds, Games). |
+| `space.html` | `js/space.js` | `css/space.css` | Solar system, cutaways, eclipse and rocket simulations |
+| `physics.html` | `js/worlds/physics.js` | `css/worlds/physics.css` | GLB car with systems, X-ray and energy-journey demo |
+| `biology.html` | `js/worlds/biology.js` | `css/worlds/biology.css` | Draco GLB anatomy layers, finder, callout labels |
+| `chemistry.html` | `js/worlds/chemistry.js`, data in `js/worlds/elements-data.js` | `css/core/explorer.css` + `css/worlds/chemistry.css` | 3D periodic table, specimen stage, atom model, `#Au` deep links |
+| `math.html` | `js/worlds/math.js`, `math-models.js` (Number Pals, props), `math-scenery.js` (island) | `css/worlds/math.css` | Number Pals Meadow: five stations, `#add` etc. deep links |
 
----
+Shared modules: `js/core/icons.js` (inline SVG icons via `data-icon`), `js/core/audio.js` (Web Audio music + `playSfx('tap'|'pop'|'correct'|'wrong'|'chomp')`, starts only after a user gesture). `css/core/world.css` holds the toast (`.feedback`) and WebGL fallback styles used by every 3D page.
 
-## 🎨 Visual System & CSS Variables
+## Conventions
 
-Ensure all new visual edits rely on variables in [style.css](file:///css/style.css):
-
-```css
-:root {
-  --sky-blue: #3498db;
-  --sky-blue-dark: #2980b9;
-  --sunny-yellow: #f1c40f;
-  --sunny-yellow-dark: #f39c12;
-  --lime-green: #2ecc71;
-  --lime-green-dark: #27ae60;
-  --bright-coral: #e74c3c;
-  --bright-coral-dark: #c0392b;
-  --dark-gray: #1a1a1a;
-  --off-white: #fcfcf9;
-  --white: #ffffff;
-  
-  --font-primary: 'Fredoka', system-ui, sans-serif;
-  --font-header: 'Outfit', system-ui, sans-serif;
-  
-  --border-width: 4px;
-  --border-radius: 20px;
-  --shadow-offset: 6px;
-}
-```
-
----
-
-## 🧱 Architectural Patterns & Guidelines
-
-### 1. LEGO Card Component Pattern
-Use the following DOM structure to preserve visual LEGO brick vibes:
-```html
-<div class="lego-card [blue|yellow|green|coral]">
-  <!-- LEGO Stud rows decoration -->
-  <div class="lego-studs-row">
-    <span class="lego-stud"></span>
-    <span class="lego-stud"></span>
-    <span class="lego-stud"></span>
-    <span class="lego-stud"></span>
-  </div>
-  <div class="lego-card-body">
-    <h2>[Heading Title]</h2>
-    <p>[Body Text]</p>
-  </div>
-</div>
-```
-
-### 2. Tactile Button Markup
-All buttons and links trigger a visual press effect down-right when clicked. Use class names:
-- `<button class="lego-btn [blue|yellow|green|coral]" type="button">` for JavaScript triggers.
-- `<a class="lego-btn [blue|yellow|green|coral]" href="...">` for standard links.
-
-### 3. Accessible Forms Rules (Based on Web Best Practices)
-- **Top Labels**: Keep `<label>` labels directly above inputs.
-- **Autofill & Constraints**: Always supply matching `autocomplete`, `type`, and standard constraint validations (e.g. `required`, `maxlength`).
-- **Tactile Inputs**: Fields use `.form-control` with a minimum touch-target height of `48px`.
-- **Validation**: Utilize native `:invalid:user-invalid` styling selectors to check validation without premature alerts.
-- **Submit Protection**: Prevent double-submission by disabling form buttons upon valid submission triggers.
-
-### 4. Interactive Dialog Lightbox
-For photo or artwork viewing, do not implement custom overlay boxes. Use the native HTML5 `<dialog>` component styled in CSS via `::backdrop` and `.lightbox-dialog`. Open and close via standard `.showModal()` and `.close()` methods.
-
-### 5. Web Audio API Procedural Sounds
-Synthesize clean sound effects in JS using `AudioContext` sweeps to keep the codebase static-host friendly without external file loading requirements.
+- Every 3D page has: a brand link back to `index.html`, a music toggle, a loading overlay that gets `.done`, a `#fallback` shown when WebGL fails, and pauses rendering when `document.hidden`.
+- Camera moves use a `flight` object; while flying, skip `controls.update()` (OrbitControls would clamp distance) and call `camera.lookAt` instead.
+- Keep UI touch-first: 44–48px targets, no hover-only actions, labels that hide when their target is off-screen. Test at 1440×900, 820×1180 and 390×844.
+- Respect `prefers-reduced-motion`; wrap `localStorage` in try/catch (stars are stored under `wonder-stars`).
+- New third-party assets need a license file beside them (see `assets/*/ATTRIBUTION.md`, `assets/anatomy/NOTICE`). Math textures are CC0 from Poly Haven, downscaled to 1k color / 512px normal JPEGs.
+- Code style is compact (dense one-line functions); match the surrounding file.

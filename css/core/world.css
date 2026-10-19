@@ -5,3 +5,7 @@
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 .ui-icon{width:1.4em;height:1.4em;display:block}.world-brand>span .ui-icon{width:22px;height:22px}.station>span .ui-icon{width:23px;height:23px}.audio-toggle{display:flex;align-items:center;gap:8px;min-height:42px;padding:0 12px;border:1px solid var(--line);border-radius:14px;background:var(--glass);cursor:pointer;font:700 8px Space Mono;letter-spacing:.08em}.audio-toggle .ui-icon{width:18px}.audio-toggle.on{color:var(--accent);border-color:var(--accent)}
 @media(max-width:760px){.audio-toggle span{display:none}.audio-toggle{padding:0 10px}.audio-toggle .ui-icon{width:20px;height:20px}}
+
+/* Hidden toasts stay invisible on every screen size. */
+.feedback{opacity:0;pointer-events:none}
+.feedback.show{opacity:1}

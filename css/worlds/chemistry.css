@@ -1,0 +1,5 @@
+:root{--accent:#5ef2c2;--accent2:#8b6cff;--accent3:#9ef7dc}
+.lens-swatch.family{background:conic-gradient(#ff6b6b,#ffa94d,#ffd43b,#69db7c,#38d9a9,#4dabf7,#748ffc,#b197fc,#f783ac,#ff6b6b)}
+.lens-swatch.state{background:linear-gradient(135deg,#ffb35c 33%,#4fd8ff 33% 66%,#c58bff 66%)}
+.lens-swatch.mass{background:linear-gradient(0deg,#5ef2c2 0 25%,transparent 25% 35%,#5ef2c2aa 35% 60%,transparent 60% 70%,#5ef2c255 70%)}
+.lens-swatch.body{background:radial-gradient(circle,#a9ff68 40%,#a9ff6833 42%)}

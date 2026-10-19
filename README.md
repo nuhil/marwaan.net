@@ -4,11 +4,12 @@ A responsive, static 3D learning playground for young children.
 
 ## Worlds
 
-- **Math:** animated 3D farm stories for addition, subtraction, multiplication, and division.
+- **Math:** Number Pals Meadow, a sunny 3D island where original block characters (the Number Pals) teach counting and place value, and five stations cover counting, adding (two pals join into one), taking away (Rory the rabbit eats carrots), times (Milly the hen lays equal eggs in each nest), and sharing (tap bunnies to deal carrots fairly). Links like `math.html#divide` open a station.
 - **Physics:** a detailed 3D car explorer with selectable mechanical systems and an animated energy journey.
-- **Chemistry:** color mixing, states of matter, materials, reactions, and starter elements.
+- **Chemistry:** a 3D periodic table of all 118 elements with family, state, weight, and “in my body” views. Each element opens on a display stand with a real-life 3D specimen, an animated atom model, and kid-friendly facts. Deep links such as `chemistry.html#Au` open an element directly.
 - **Biology:** a layered 3D anatomy explorer with searchable bones, muscles, organs, nerves, and vessels.
 - **Space:** an explorable 3D solar system with planet cutaways, an eclipse simulation, and staged Moon and Mars flights.
+- **Games:** a Game Room with memory pairs, a shape puzzle, a mini race, and a castle launcher.
 
 ## Develop locally
 
@@ -34,4 +35,4 @@ Each page has an optional Music control. Music and feedback cues are synthesized
 
 The Biology viewer includes anatomical geometry derived from BodyParts3D and Z-Anatomy. The bundled model files keep their upstream Creative Commons terms and required notices in `assets/anatomy/`.
 
-The Math Meadow uses an Innerscene rabbit under CC0 and the Chickensoft mascot model under CC BY 4.0. Full credits are preserved in `assets/math/ATTRIBUTION.md`.
+The Math meadow uses an Innerscene rabbit under CC0 and the Chickensoft mascot model under CC BY 4.0. Full credits are preserved in `assets/math/ATTRIBUTION.md`. Its grass, soil, bark, plank, metal-roof, cobblestone, cliff and rock textures are CC0 from Poly Haven, listed in `assets/math/textures/ATTRIBUTION.md`.

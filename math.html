@@ -1,12 +1,32 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta name="theme-color" content="#163b52"><title>Math Meadow | Marwaan's Wonder Lab</title><meta name="description" content="Learn addition, subtraction, multiplication, and division through playful animated 3D stories."><link rel="stylesheet" href="css/core/world.css"><link rel="stylesheet" href="css/worlds/math.css"><script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.186.0/examples/jsm/"}}</script></head><body>
-<main class="math-app">
-  <div id="world-canvas" class="math-stage" aria-label="Interactive 3D math story"></div><div class="math-shade"></div>
-  <header class="math-header"><a class="math-brand" href="index.html"><span data-icon="math"></span><div><b>MATH MEADOW</b><small>WONDER LAB</small></div></a><div class="star-score"><i data-icon="spark"></i><span><small>STARS</small><strong id="points">0</strong></span></div><button id="music-toggle" class="audio-toggle" type="button" aria-label="Toggle background music" aria-pressed="false"><i data-icon="music"></i><span>Music off</span></button></header>
-  <nav class="story-tabs" aria-label="Math stories"><button class="story-tab active" data-mode="add"><span class="tab-picture egg-mark"></span><span><b>Eggs</b><small>Add</small></span></button><button class="story-tab" data-mode="subtract"><span class="tab-picture carrot-mark"></span><span><b>Carrots</b><small>Subtract</small></span></button><button class="story-tab" data-mode="multiply"><span class="tab-picture flower-mark"></span><span><b>Garden</b><small>Multiply</small></span></button><button class="story-tab" data-mode="divide"><span class="tab-picture apple-mark"></span><span><b>Picnic</b><small>Divide</small></span></button></nav>
-  <section class="story-card"><p class="story-kicker" id="mission-tag">HEN HOUSE</p><h1 id="mission-title">Milly lays more eggs</h1><p id="mission-copy">Count all the eggs in her nest.</p><div class="story-step"><span id="story-icon" class="egg-mark"></span><b id="story-line">2 eggs, then 3 more</b></div></section>
-  <aside class="answer-card"><div class="answer-top"><span>YOUR ANSWER</span><button id="new-story" aria-label="Try a new story"><i data-icon="reset"></i></button></div><div class="equation" id="equation">2 + 3 = ?</div><p id="control-copy">Tap the number that completes the story.</p><div class="answer-choices" id="actions"></div><div class="answer-progress"><i id="meter"></i></div></aside>
-  <div class="scene-tip" id="scene-tip"><i data-icon="spark"></i><span>Watch the story come alive!</span></div>
-  <div class="math-help"><span><b>Drag</b> look around</span><span><b>Tap</b> choose</span></div>
-  <div class="model-credit"><a href="assets/math/ATTRIBUTION.md" target="_blank">3D model credits</a></div>
-  <div class="feedback" id="feedback" role="status"></div><div class="math-loading" id="math-loading"><span data-icon="math"></span><b>OPENING THE MATH MEADOW…</b></div><div class="world-fallback" id="fallback" hidden><div><h1>3D needs WebGL</h1><a href="index.html">Go home</a></div></div>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#8fd8f5">
+  <title>Number Pals Meadow | Marwaan's Wonder Lab</title><meta name="description" content="Meet the Number Pals! Count, add, take away, multiply and share with friendly block characters, Rory the rabbit and Milly the chicken.">
+  <link rel="stylesheet" href="css/core/world.css"><link rel="stylesheet" href="css/worlds/math.css">
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.186.0/examples/jsm/"}}</script>
+</head>
+<body><main class="meadow-app" id="math-app">
+  <div id="world-canvas" class="meadow-stage" aria-label="A 3D meadow with Number Pals, a rabbit and a chicken. Drag to look around."></div>
+  <header class="meadow-header">
+    <a class="meadow-brand" href="index.html" aria-label="Back to Wonder Lab"><span class="brand-blocks" aria-hidden="true"><i></i><i></i><i></i></span><span><b>Number Pals</b><small>MEADOW · WONDER LAB</small></span></a>
+    <div class="header-right"><div class="star-pill" aria-label="Stars earned"><span aria-hidden="true">★</span><b id="stars">0</b></div><button id="music-toggle" class="audio-toggle meadow-round" type="button" aria-label="Toggle background music" aria-pressed="false"><i data-icon="music"></i><span>Music off</span></button></div>
+  </header>
+
+  <section class="question-card" aria-live="polite"><p id="q-kicker" class="q-kicker">MEET THE PALS</p><h1 id="q-title">Hello!</h1><div id="q-equation" class="q-equation"></div><p id="q-hint" class="q-hint"></p></section>
+
+  <div class="play-bar"><div id="answers" class="answers" role="group" aria-label="Answers"></div><div id="actions" class="actions"></div></div>
+
+  <nav class="station-dock" aria-label="Math activities">
+    <button class="station-btn active" data-station="meet" aria-pressed="true" style="--c:#2ec4b6"><span class="sym">123</span><b>Meet</b></button>
+    <button class="station-btn" data-station="add" aria-pressed="false" style="--c:#ff6f61"><span class="sym">+</span><b>Add</b></button>
+    <button class="station-btn" data-station="subtract" aria-pressed="false" style="--c:#57b846"><span class="sym">−</span><b>Take away</b></button>
+    <button class="station-btn" data-station="multiply" aria-pressed="false" style="--c:#ffb627"><span class="sym">×</span><b>Times</b></button>
+    <button class="station-btn" data-station="divide" aria-pressed="false" style="--c:#9b7bff"><span class="sym">÷</span><b>Share</b></button>
+  </nav>
+
+  <div class="model-credit"><a href="assets/math/ATTRIBUTION.md" target="_blank">Animal model credits</a></div>
+  <div id="feedback" class="feedback" role="status"></div>
+  <div id="load-status" class="meadow-loading"><span class="brand-blocks" aria-hidden="true"><i></i><i></i><i></i></span><b>Waking up the Number Pals…</b></div>
+  <div id="fallback" class="world-fallback" hidden><div><h1>3D needs WebGL</h1><a href="index.html">Go home</a></div></div>
 </main><script type="module" src="js/worlds/math.js"></script></body></html>
