@@ -1,0 +1,7 @@
+#!/bin/sh
+# Block pushes that would fail the Site quality workflow.
+export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
+npm run --silent check || {
+  echo "Site checks failed; push aborted. Fix the errors above (or bypass with git push --no-verify)."
+  exit 1
+}

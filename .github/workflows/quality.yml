@@ -16,7 +16,5 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Check JavaScript syntax
-        run: find js -name '*.js' -print0 | xargs -0 -n1 node --check
-      - name: Check local page assets
-        run: node tests/check-site.mjs
+      - name: Check JavaScript syntax and local page assets
+        run: npm run check

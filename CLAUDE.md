@@ -4,15 +4,20 @@ This file outlines the commands, architecture patterns, and design system rules 
 
 ## 🚀 Quick Command Guides
 
-### Start Local Dev Server
+Node 22 is installed via Homebrew (`/opt/homebrew/opt/node@22/bin`, keg-only; added to PATH in `~/.zshrc`).
+
+### Start Local Dev Server (no-cache, http://localhost:8000)
 ```bash
-python3 -m http.server 8000
+npm run dev
 ```
 
-### Validate JavaScript Syntax
+### Validate (same as CI)
 ```bash
-node -c js/main.js && node -c js/games.js
+npm run check
 ```
+
+### Deploy
+Pushing `main` deploys via GitHub Pages (legacy build from `main` `/`). `npm run deploy` checks, pushes, and watches the Pages run. A `.githooks/pre-push` hook runs `npm run check` (enabled by `npm install`).
 
 ### Regenerate Greeting Chime Audio
 ```bash

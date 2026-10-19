@@ -1,0 +1,15 @@
+{
+  "name": "marwaan-wonder-lab",
+  "private": true,
+  "description": "Static 3D learning playground deployed to marwaan.net with GitHub Pages.",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "node scripts/dev-server.mjs",
+    "check": "find js -name '*.js' -print0 | xargs -0 -n1 node --check && node tests/check-site.mjs",
+    "deploy": "sh scripts/deploy.sh",
+    "prepare": "git config core.hooksPath .githooks"
+  }
+}

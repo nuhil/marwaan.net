@@ -10,20 +10,21 @@ A responsive, static 3D learning playground for young children.
 - **Biology:** a layered 3D anatomy explorer with searchable bones, muscles, organs, nerves, and vessels.
 - **Space:** an explorable 3D solar system with planet cutaways, an eclipse simulation, and staged Moon and Mars flights.
 
-## Run locally
+## Develop locally
+
+Requires Node.js 22+ (`brew install node@22`) and Git. There are no npm dependencies to install; run `npm install` once to enable the pre-push check hook.
 
 ```bash
-python3 -m http.server 8000
+npm run dev      # serve at http://localhost:8000 with caching disabled (PORT=9000 npm run dev to change)
+npm run check    # same checks CI runs
+npm run deploy   # check, push main, and wait for GitHub Pages
 ```
 
-Open `http://localhost:8000`. Three.js loads as an ES module from jsDelivr, so a network connection and WebGL-capable browser are required for the 3D worlds.
+The dev server also prints a network URL so you can test on a phone or tablet on the same Wi-Fi. Three.js loads as an ES module from jsDelivr, so a network connection and WebGL-capable browser are required for the 3D worlds.
 
-## Quality checks
+## Deployment
 
-```bash
-find js -name '*.js' -print0 | xargs -0 -n1 node --check
-node tests/check-site.mjs
-```
+GitHub Pages publishes the `main` branch root to https://marwaan.net (see `CNAME`). Every push to `main` goes live in about a minute, and the Site quality workflow runs the same `npm run check`. For larger changes, work on a branch, open a pull request so CI runs, then merge and deploy.
 
 ## Sound
 
