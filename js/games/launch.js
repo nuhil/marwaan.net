@@ -33,7 +33,7 @@ function buildCatapult(){
 function launchPoint(){const rest=catapultArm.rotation.z;catapultArm.rotation.z=RELEASE;catapultArm.updateMatrixWorld(true);const p=loaded.getWorldPosition(V());catapultArm.rotation.z=rest;catapultArm.updateMatrixWorld(true);return p}
 function velocity(){const a=THREE.MathUtils.degToRad(angle);return V(Math.cos(a)*power,Math.sin(a)*power,0)}
 function drawAim(){const m=new THREE.Matrix4(),p0=launchPoint(),v=velocity();for(let i=0;i<32;i++){const t=i*.07,p=V(p0.x+v.x*t,p0.y+v.y*t-4.91*t*t,0),visible=p.y>0&&i<26;m.makeScale(visible?1-i/40:0,visible?1-i/40:0,visible?1-i/40:0);m.setPosition(p);dots.setMatrixAt(i,m)}dots.instanceMatrix.needsUpdate=true;dots.visible=aiming}
-function addBox(size,x,y,material,mass=1){const mesh=new THREE.Mesh(new RoundedBoxGeometry(...size,2,.04),material);mesh.castShadow=mesh.receiveShadow=true;root.add(mesh);const body=new CANNON.Body({mass,shape:new CANNON.Box(new CANNON.Vec3(size[0]/2,size[1]/2,size[2]/2)),linearDamping:.05,angularDamping:.1});body.position.set(x,y,0);body.allowSleep=true;body.sleepSpeedLimit=.15;world.addBody(body);bodies.push({mesh,body});return{mesh,body}}
+function addBox(size,x,y,material,mass=1){const mesh=new THREE.Mesh(new RoundedBoxGeometry(...size,2,.04),material);mesh.castShadow=mesh.receiveShadow=true;root.add(mesh);const body=new CANNON.Body({mass,shape:new CANNON.Box(new CANNON.Vec3(size[0]/2,size[1]/2,size[2]/2)),linearDamping:.05,angularDamping:.1});body.position.set(x,y,0);body.allowSleep=true;body.sleepSpeedLimit=.15;world.addBody(body);bodies.push({mesh,body});onImpact(body);return{mesh,body}}
 function buildCastle(lv){
   const L=LEVELS[lv-1],crateMat=surface('brown_planks_05',{repeat:[.45,.45],color:'#d6aa74',roughness:.8}),plankMat=paintedWood('#e9c46a'),top=PLATFORM[1];
   L.crates.forEach(([x,row])=>addBox([CRATE,CRATE,CRATE],CASTLE_X+x,top+CRATE/2+row*CRATE+.001,crateMat,1));
@@ -41,7 +41,7 @@ function buildCastle(lv){
   L.stars.forEach(([x,y])=>{const mesh=new THREE.Mesh(starGeometry(.42,.19,.18),goldMaterial());mesh.castShadow=true;root.add(mesh);const body=new CANNON.Body({mass:.25,shape:new CANNON.Box(new CANNON.Vec3(.38,.38,.12))});const start=V(CASTLE_X+x,top+y+.42,0);body.position.set(start.x,start.y,start.z);body.allowSleep=true;world.addBody(body);const s={mesh,body,start,down:false};bodies.push(s);stars.push(s)});
 }
 function fire(){
-  if(!aiming)return;aiming=false;shots++;ctx.sfx('pop');const v=velocity();drawAim();
+  if(!aiming)return;aiming=false;shots++;ctx.sfx('creak',{volume:.8});setTimeout(()=>ctx.sfx('whoosh',{volume:.55,rate:1.3}),220);const v=velocity();drawAim();
   const from=launchPoint();
   tween({duration:260,ease:t=>t*t,update:k=>catapultArm.rotation.z=THREE.MathUtils.lerp(REST,RELEASE,k)}).then(()=>{loaded.visible=false;
     const ballMesh=new THREE.Mesh(new THREE.SphereGeometry(.42,28,20),surface('castle_wall_slates',{repeat:[.5,.5],color:'#9a958d',roughness:.9,normal:1.6}));ballMesh.castShadow=true;root.add(ballMesh);
@@ -51,6 +51,8 @@ function fire(){
   }).then(()=>{loaded.visible=true;aiming=true;drawAim()});
 }
 function aim(dAngle,dPower){angle=THREE.MathUtils.clamp(angle+dAngle,15,75);power=THREE.MathUtils.clamp(power+dPower,7,19);ctx.hudNote(`Aim ${Math.round(angle)}° · Power ${Math.round((power-7)/12*100)}%`);drawAim()}
+// Crates and planks knock together with a wooden thud scaled by how hard they hit.
+let lastHit=0;function onImpact(body){body.addEventListener('collide',e=>{const v=Math.abs(e.contact.getImpactVelocityAlongNormal()),now=performance.now();if(v<2.2||now-lastHit<70)return;lastHit=now;ctx.sfx('crate-hit',{volume:Math.min(1,v/9),rate:.85+Math.random()*.3})})}
 function clearPhysics(){bodies.forEach(b=>{world.removeBody(b.body);root.remove(b.mesh);b.mesh.geometry.dispose()});bodies=[];stars=[];balls=[]}
 function start(lv){
   level=Math.min(lv,LEVELS.length);clearPhysics();buildCastle(level);shots=0;knocked=0;winShown=false;missHint=0;aiming=true;angle=45;power=11.5;

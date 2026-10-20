@@ -35,7 +35,7 @@ function deal(level){
     const home=slot(i);group.position.copy(home).add(V(0,6,0));group.rotation.y=(Math.random()-.5)*.6;root.add(group);
     const toy=TOYS[kind][1]();toy.position.copy(home);toy.visible=false;toy.scale.setScalar(.01);root.add(toy);
     const card={kind,name:TOYS[kind][0],group,toy,home,up:false,done:false};[body,back,face].forEach(m=>m.userData.card=card);cards.push(card);
-    const delay=i*70;tween({delay,duration:520,ease:ease.out,update:k=>{group.position.y=THREE.MathUtils.lerp(6,.03,k);group.rotation.y*=1-k*.2}}).then(()=>{group.rotation.y=0;if(i%2===0)ctx.sfx('tap')});
+    const delay=i*70;tween({delay,duration:520,ease:ease.out,update:k=>{group.position.y=THREE.MathUtils.lerp(6,.03,k);group.rotation.y*=1-k*.2}}).then(()=>{group.rotation.y=0;ctx.sfx('card-deal',{volume:.7,rate:.9+Math.random()*.2})});
   });
   ctx.hud(`Find ${pairs} pairs`,'Flip two cards. If the toys match, you keep them!');ctx.progress(0,pairs);placeRing();ctx.fit(cols*GAP[0]+.6,rows*GAP[1]+.8,V(0,0,.3),{elevation:1.15});
 }
@@ -46,7 +46,7 @@ async function flip(card,up){
 }
 async function choose(card){
   if(busy||!card||card.up||card.done)return;
-  busy=open.length===1;ctx.sfx('tap');open.push(card);await flip(card,true);ctx.feedback(`${card.name}!`);
+  busy=open.length===1;ctx.sfx('card-flip',{volume:.85});open.push(card);await flip(card,true);ctx.feedback(`${card.name}!`);
   if(open.length<2){busy=false;return}
   const [a,b]=open;open=[];
   if(a.kind===b.kind){

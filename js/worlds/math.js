@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {hydrateIcons} from '../core/icons.js';
-import {installAudio,playSfx} from '../core/audio.js';
+import {installAudio,playSfx,play,countTick,whoosh} from '../core/audio.js';
 import {NumberPal,PAL_COLORS,palColor,numberSprite,numberTexture,makeCarrot,makeEgg,makeNest,makePlate} from './math-models.js';
 import {buildScenery} from './math-scenery.js';
 
@@ -30,6 +30,8 @@ function readStars(){try{return Number(localStorage.getItem('wonder-stars'))||0}
 function saveStars(){try{localStorage.setItem('wonder-stars',String(stars))}catch{}}
 const rand=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
 const ease={inOut:t=>t*t*(3-2*t),out:t=>1-Math.pow(1-t,3),linear:t=>t};
+// Sample sounds respect the same rule as sfx(): nothing plays before the first tap or key.
+function snd(name,options){if(interacted)play(name,options)}
 function sfx(kind){if(interacted)playSfx(kind)}
 function feedback(message){const el=$('#feedback');el.textContent=message;el.classList.add('show');clearTimeout(feedback.timer);feedback.timer=setTimeout(()=>el.classList.remove('show'),Math.max(1800,message.length*60))}
 
@@ -87,10 +89,10 @@ async function hopBunny(bunny,to,{height=.45}={}){
     await tween({duration:140,update:k=>bunny.scale.set(1+.08*k,1-.14*k,1+.08*k)});
     const from=bunny.position.clone();
     await tween({duration:330,update:(k,p)=>{bunny.position.lerpVectors(from,target,k);bunny.position.y=Math.sin(Math.PI*p)*height;const s=1+Math.sin(Math.PI*p)*.12;bunny.scale.set(1/Math.sqrt(s),s,1/Math.sqrt(s))}});
-    await tween({duration:110,update:k=>bunny.scale.set(1+.08*(1-k),1-.14*(1-k),1+.08*(1-k))});
+    snd('grass-step',{volume:.6,rate:.9+Math.random()*.2});await tween({duration:110,update:k=>bunny.scale.set(1+.08*(1-k),1-.14*(1-k),1+.08*(1-k))});
   }
 }
-async function walkChicken(to,speed=2.2){faceTowards(milly,to,1);chicken('walk');const from=milly.position.clone();await tween({duration:from.distanceTo(to)/speed*1000,ease:ease.linear,update:k=>milly.position.lerpVectors(from,to,k)});chicken('idle')}
+async function walkChicken(to,speed=2.2){if(Math.random()<.6)snd('hen-cluck',{volume:.45,rate:.95+Math.random()*.1});faceTowards(milly,to,1);chicken('walk');const from=milly.position.clone();await tween({duration:from.distanceTo(to)/speed*1000,ease:ease.linear,update:k=>milly.position.lerpVectors(from,to,k)});chicken('idle')}
 function mouthOf(bunny){const f=V(0,0,-1).applyAxisAngle(UP,bunny.rotation.y);return bunny.position.clone().addScaledVector(f,.42).add(V(0,.5,0))}
 
 // ---------- confetti, crumbs and floating numbers ----------
@@ -99,7 +101,7 @@ function particles(at,count,colors,{size=[.12,.07],speed=5,lift=4,life=2.2,box=f
   for(let i=0;i<count;i++){const m=new THREE.Mesh(geo,mats[i%mats.length]);m.position.copy(at);m.userData.v=V((Math.random()-.5)*speed,lift*(.6+Math.random()*.8),(Math.random()-.5)*speed);m.userData.spin=V(Math.random()*8,Math.random()*8,0);group.add(m)}
   scene.add(group);bursts.push({group,life,geo,mats});
 }
-const confetti=at=>particles(at,80,['#ff6f61','#ffd34d','#2ec4b6','#9b7bff','#3fa7ff','#ff8fab']);
+const confetti=at=>{snd('crowd-cheer',{volume:.35});return particlesC(at)},particlesC=at=>particles(at,80,['#ff6f61','#ffd34d','#2ec4b6','#9b7bff','#3fa7ff','#ff8fab']);
 const crumbs=at=>particles(at,14,['#f07022','#ffa24d'],{size:[.07],speed:2,lift:1.5,life:.9,box:true});
 function updateBursts(dt){for(let i=bursts.length-1;i>=0;i--){const b=bursts[i];b.life-=dt;b.group.children.forEach(m=>{m.userData.v.y-=9*dt;m.position.addScaledVector(m.userData.v,dt);if(m.position.y<.03){m.position.y=.03;m.userData.v.multiplyScalar(.35)}m.rotation.x+=m.userData.spin.x*dt;m.rotation.y+=m.userData.spin.y*dt});if(b.life<=0){scene.remove(b.group);b.geo.dispose();b.mats.forEach(m=>m.dispose());bursts.splice(i,1)}}}
 function floatNumber(n,at,color){const s=numberSprite(n,{ring:color,scale:.6});s.position.copy(at);lesson.add(s);arcTo(s,at.clone().add(V(0,1,0)),{duration:900,height:0,e:ease.out}).then(()=>tween({duration:500,update:k=>s.material.opacity=1-k})).then(()=>{lesson.remove(s);s.material.map.dispose();s.material.dispose()})}
@@ -123,7 +125,7 @@ function showChoices(answer,onCorrect,onWrong){
   const host=$('#answers');host.replaceChildren();const values=new Set([answer]);while(values.size<3){const n=Math.max(0,answer+rand(-3,3));if(n!==answer)values.add(n)}
   [...values].sort(()=>Math.random()-.5).forEach(n=>{
     const b=document.createElement('button');b.type='button';b.className='answer-bubble';b.textContent=n;b.style.setProperty('--c',palColor(Math.min(20,Math.max(1,n))));b.setAttribute('aria-label',`Answer ${n}`);
-    b.onclick=()=>{if(solved)return;if(n===answer){solved=true;b.classList.add('good');if(firstTry){stars++;saveStars();$('#stars').textContent=stars;$('.star-pill').classList.add('pop');setTimeout(()=>$('.star-pill').classList.remove('pop'),600)}sfx('correct');feedback(firstTry?`${n} is right! ⭐`:`${n} is right!`);host.querySelectorAll('button').forEach(x=>x!==b&&(x.disabled=true));onCorrect()}else{firstTry=false;b.classList.add('shake');setTimeout(()=>b.classList.remove('shake'),450);sfx('wrong');onWrong?.()}};
+    b.onclick=()=>{if(solved)return;if(n===answer){solved=true;b.classList.add('good');if(interacted)setTimeout(()=>play(firstTry?'jingle-win':'jingle-small',{volume:.6}),250);if(firstTry){stars++;saveStars();$('#stars').textContent=stars;$('.star-pill').classList.add('pop');setTimeout(()=>$('.star-pill').classList.remove('pop'),600)}sfx('correct');feedback(firstTry?`${n} is right! ⭐`:`${n} is right!`);host.querySelectorAll('button').forEach(x=>x!==b&&(x.disabled=true));onCorrect()}else{firstTry=false;b.classList.add('shake');setTimeout(()=>b.classList.remove('shake'),450);sfx('wrong');onWrong?.()}};
     host.append(b)});
 }
 function revealEquation(answer){const eq=$('#q-equation');eq.innerHTML=eq.innerHTML.replace(QUESTION,num(answer));eq.classList.add('solved')}
@@ -135,7 +137,7 @@ function clearLesson(){
   while(lesson.children.length){const o=lesson.children.pop();disposeObject(o)}
   lesson.userData.width=0;$('#answers').replaceChildren();setActions([]);$('#q-equation').classList.remove('solved');homeAnimals();
 }
-function startRound(){clearLesson();({meet:roundMeet,add:roundAdd,subtract:roundSubtract,multiply:roundMultiply,divide:roundDivide})[station]();flyTo(viewFor(),1300)}
+function startRound(){if(interacted)whoosh(true,.8);clearLesson();({meet:roundMeet,add:roundAdd,subtract:roundSubtract,multiply:roundMultiply,divide:roundDivide})[station]();flyTo(viewFor(),1300)}
 function addPal(n,x){const p=new NumberPal(n);p.group.userData.palRoot=true;p.group.position.set(SPOTS.plaza.x+x,.18,SPOTS.plaza.z);lesson.add(p.group);pals.push(p);return p}
 const cubeTop=(pal,i)=>pal.cubes[i].getWorldPosition(V(0,0,0)).add(V(0,0,.6));
 
@@ -146,10 +148,10 @@ function roundMeet(){
   const recount=()=>{counted=0;pal.cubes.forEach((_,i)=>pal.highlight(i,false))};
   const change=delta=>{
     const n=pal.count+delta;if(n<1||n>20)return feedback(n<1?'One is the smallest pal here!':'Twenty is as tall as we grow today!');recount();
-    if(delta>0)pal.addCube();
-    else{const popped=pal.popCube();lesson.add(popped.mesh);popped.mesh.position.copy(popped.world);const away=popped.world.clone().add(V((Math.random()-.5)*3,-popped.world.y+.3,2.2));arcTo(popped.mesh,away,{duration:650,height:1.4}).then(()=>scaleTo(popped.mesh,.001,250)).then(()=>{lesson.remove(popped.mesh);popped.mesh.material.dispose()})}
-    sfx('pop');meetN=n;pal.recolor(n);describe();hopPal(pal,.25);flyTo(viewFor(),700)};
-  pal.onTap=()=>{if(counted>=pal.count)recount();const i=counted++;pal.highlight(i,true);floatNumber(i+1,cubeTop(pal,i),palColor(pal.count));sfx('pop');if(counted===pal.count){pal.wave();hopPal(pal,.4);feedback(`${pal.count}! You counted all my blocks!`)}};
+    if(delta>0){pal.addCube();snd('wood-drop',{volume:.7,delay:.38})}
+    else{snd('ui-pluck',{volume:.7});const popped=pal.popCube();lesson.add(popped.mesh);popped.mesh.position.copy(popped.world);const away=popped.world.clone().add(V((Math.random()-.5)*3,-popped.world.y+.3,2.2));arcTo(popped.mesh,away,{duration:650,height:1.4}).then(()=>scaleTo(popped.mesh,.001,250)).then(()=>{lesson.remove(popped.mesh);popped.mesh.material.dispose()})}
+    meetN=n;pal.recolor(n);describe();hopPal(pal,.25);flyTo(viewFor(),700)};
+  pal.onTap=()=>{if(counted>=pal.count)recount();const i=counted++;pal.highlight(i,true);floatNumber(i+1,cubeTop(pal,i),palColor(pal.count));if(interacted)countTick(i+1);if(counted===pal.count){pal.wave();hopPal(pal,.4);feedback(`${pal.count}! You counted all my blocks!`)}};
   describe();setActions([['−',()=>change(-1),'round minus'],['+',()=>change(1),'round plus'],['New pal',()=>{meetN=rand(1,20);startRound()}]]);
 }
 
@@ -161,7 +163,7 @@ function roundAdd(){
   const party=()=>{confetti(V(SPOTS.plaza.x,left.height+.8,SPOTS.plaza.z));left.wave(2);hopPal(left,.5);setActions([['Next party ›',startRound,'next']])};
   const join=async()=>{
     if(joined)return;joined=true;setActions([]);plus.visible=false;await Promise.all([hopPal(left,.5),hopPal(right,.5)]);
-    for(let i=0;i<b;i++){if(round!==run)return;const p=right.popCube();left.addCube({fromWorld:p.world});p.mesh.material.dispose();sfx('pop');await wait(330)}
+    for(let i=0;i<b;i++){if(round!==run)return;const p=right.popCube();left.addCube({fromWorld:p.world});p.mesh.material.dispose();snd('wood-tap',{volume:.75,rate:1+i*.06,delay:.45});await wait(330)}
     lesson.remove(right.group);right.dispose();pals.splice(pals.indexOf(right),1);
     await tween({duration:500,update:k=>left.group.position.x=SPOTS.plaza.x-1.5*(1-k)});left.recolor(total);flyTo(viewFor(),700);
     if(solved)party();else{left.wave(2);hopPal(left,.4);setQuestion(`Now they are one pal!`,`${num(a)} + ${num(b)} = ${QUESTION}`,'Count the blocks. How many are there now?');setActions([['New party',startRound]])}};
@@ -203,10 +205,10 @@ async function roundMultiply(){
       chicken('butt_slide',.12);await wait(240);if(round!==run)return;
       const egg=makeEgg(laid++);egg.position.copy(milly.position).add(V(0,.35,0));egg.scale.setScalar(.01);lesson.add(egg);scaleTo(egg,1,200);
       await arcTo(egg,spot.nest.position.clone().add(slot(k)),{duration:320,height:.35,e:ease.out});sfx('pop');
-      spot.count++;spot.sign.material.map.dispose();spot.sign.material.map=numberTexture(spot.count,{ring:'#ffb627'});chicken('idle',.12);await wait(110);
+      spot.count++;snd('ui-pop',{volume:.5});spot.sign.material.map.dispose();spot.sign.material.map=numberTexture(spot.count,{ring:'#ffb627'});chicken('idle',.12);await wait(110);
     }
   }
-  await walkChicken(SPOTS.farm.clone().add(V(nests/2*gap+1.2,0,1.3)));if(round!==run)return;faceTowards(milly,camera.position,1);
+  snd('hen-egg-song',{volume:.65});await walkChicken(SPOTS.farm.clone().add(V(nests/2*gap+1.2,0,1.3)));if(round!==run)return;faceTowards(milly,camera.position,1);
   setQuestion('How many eggs did Milly lay?',equation,`Count by ${each}s, one nest at a time!`);
   showChoices(total,async()=>{revealEquation(total);chicken('jump');let sum=0;for(const spot of spots){if(round!==run)return;sum+=each;floatNumber(sum,spot.nest.position.clone().add(V(0,1.9,0)),'#ffb627');sfx('pop');await wait(520)}confetti(SPOTS.farm.clone().add(V(0,1.6,.6)));chicken('idle');setActions([['More eggs ›',startRound,'next']])},
     ()=>feedback(`Try counting by ${each}s: ${Array.from({length:nests},(_,i)=>(i+1)*each).join(', ')}…`));
@@ -230,7 +232,7 @@ function roundDivide(){
     if(busy||!pile.length||round!==run)return;
     if(given[i]>Math.min(...given)){const b=bunnies[i].bunny,yaw=b.userData.yaw;sfx('wrong');feedback('Give the other bunnies one first!');await tween({duration:500,update:(q,p)=>{b.rotation.y=yaw+Math.sin(p*Math.PI*6)*.35*(1-p);b.userData.yaw=b.rotation.y}});b.userData.yaw=yaw;return}
     busy=true;const carrot=pile.pop(),slot=given[i]++,plate=bunnies[i].plate.position,target=plate.clone().add(V(-.18+(slot%3)*.18,.1+Math.floor(slot/3)*.12,(slot%2)*.08));sfx('pop');
-    await arcTo(carrot,target,{duration:auto?380:480,height:1.1});carrot.rotation.set(0,(slot-1)*.3,Math.PI/2);
+    await arcTo(carrot,target,{duration:auto?380:480,height:1.1});carrot.rotation.set(0,(slot-1)*.3,Math.PI/2);snd('plate',{volume:.7,rate:.95+Math.random()*.1});
     const b=bunnies[i].bunny;tween({duration:300,update:(q,p)=>b.position.y=Math.sin(Math.PI*p)*.3});busy=false;
     if(!pile.length)finished()};
   const finished=async()=>{
@@ -266,12 +268,12 @@ function animate(now=0){
 
 function selectStation(next){station=next;document.querySelectorAll('.station-btn').forEach(x=>{const on=x.dataset.station===station;x.classList.toggle('active',on);x.setAttribute('aria-pressed',String(on))})}
 function wireUI(){
-  addEventListener('pointerdown',()=>interacted=true,{once:true,capture:true});addEventListener('keydown',()=>interacted=true,{once:true,capture:true});
+  addEventListener('pointerdown',()=>{if(!interacted)setTimeout(()=>play('rooster',{volume:.35}),300);interacted=true},{once:true,capture:true});addEventListener('keydown',()=>interacted=true,{once:true,capture:true});
   $('#stars').textContent=stars;
   document.querySelectorAll('.station-btn').forEach(b=>b.onclick=()=>{selectStation(b.dataset.station);history.replaceState(null,'',`#${station}`);sfx('tap');startRound()});
 }
 async function boot(){
-  hydrateIcons();installAudio({musicButton:$('#music-toggle'),theme:'math'});wireUI();wirePicking();
+  hydrateIcons();installAudio({musicButton:$('#music-toggle'),theme:'math',preload:['hen-cluck','hen-egg-song','grass-step','wood-tap','wood-drop','plate','jingle-win','jingle-small','crowd-cheer','rooster']});wireUI();wirePicking();
   const fromHash=location.hash.slice(1);if(STATIONS[fromHash])selectStation(fromHash);
   await Promise.race([document.fonts.load('900 64px Nunito'),new Promise(r=>setTimeout(r,2000))]).catch(()=>{});
   await loadAnimals().catch(error=>console.error('Animal models failed to load',error));

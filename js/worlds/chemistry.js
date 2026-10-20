@@ -4,7 +4,19 @@ import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
 import {RoundedBoxGeometry} from 'three/addons/geometries/RoundedBoxGeometry.js';
 import {mergeVertices} from 'three/addons/utils/BufferGeometryUtils.js';
 import {hydrateIcons} from '../core/icons.js';
-import {installAudio,playSfx} from '../core/audio.js';
+import {installAudio,playSfx,neonHum,geiger,whoosh,countTick} from '../core/audio.js';
+// Element sounds: a material "clink" when a specimen appears, a neon hum for glowing gases, and Geiger clicks for radioactive elements.
+let loops=[];
+function stopElementSounds(){loops.forEach(l=>l.stop());loops=[]}
+function elementSounds(el,showingAtom){
+  stopElementSounds();
+  if(el.radioactive)loops.push(geiger(el.number>=100?22:el.number>=89?12:6));
+  if(showingAtom){whoosh(true,.6);[0,1,2,3].forEach(i=>setTimeout(()=>countTick(10+i*4),i*70));return}
+  const kind=specimenSpec(el).kind,spec=specimenSpec(el);
+  if(kind==='gas'&&spec.glow)loops.push(neonHum(spec.faint?.025:.05));
+  const clink={metal:'metal-clink',chunk:'crystal-clink',crystals:'crystal-clink',diamond:'crystal-clink',bismuth:'metal-clink',gas:'glass-clink',liquid:'glass-clink',mercury:'glass-clink',oil:'glass-clink',ampoule:'glass-clink',powder:'soft-thud'}[kind];
+  if(clink)playSfx(clink,{volume:.7,delay:.35});
+}
 import {ELEMENTS,FAMILIES,BODY_ELEMENTS} from './elements-data.js';
 
 const $=selector=>document.querySelector(selector);
@@ -358,7 +370,7 @@ function showSpecimen(el){
 }
 function applyView(){if(!current)return;const atom=view==='atom';specimenHolder.visible=!atom;atomHolder.visible=atom;
   [['#view-real',!atom],['#view-atom',atom]].forEach(([id,on])=>{$(id).classList.toggle('active',on);$(id).setAttribute('aria-pressed',String(on))})}
-function setView(next){if(current?.el.neverSeen&&next==='real')return;view=next;applyView();if(mode==='element')flyTo(elementView(),700);playSfx('tap')}
+function setView(next){if(current?.el.neverSeen&&next==='real')return;view=next;applyView();if(mode==='element')flyTo(elementView(),700);if(current)elementSounds(current.el,view==='atom')}
 function fillCard(el){
   const card=$('#element-card'),color=familyColor(el);card.style.setProperty('--tile',color);
   $('#card-number').textContent=el.number;$('#card-symbol').textContent=el.symbol;$('#card-mass').textContent=el.mass;$('#card-family').textContent=FAMILIES[el.family].name.toUpperCase();$('#card-name').textContent=el.name;
@@ -374,12 +386,12 @@ function selectElement(el,{silent=false}={}){
   const entering=mode!=='element';mode='element';selected=el;hovered=null;$('#hover-chip').hidden=true;host.classList.remove('pointing');
   app.classList.add('element-mode');$('#element-card').hidden=false;$('.element-controls').hidden=false;$('.finder-panel').classList.remove('open');
   if(el.neverSeen)view='atom';else if(entering)view='real';
-  fillCard(el);showSpecimen(el);stage.visible=true;
-  flyTo(elementView(),entering?1300:700);if(!silent)playSfx(entering?'correct':'pop');
+  fillCard(el);showSpecimen(el);stage.visible=true;elementSounds(el,view==='atom');
+  flyTo(elementView(),entering?1300:700);if(!silent){playSfx(entering?'select':'pop');if(entering)whoosh(true,.9)}
   document.querySelectorAll('.element-row').forEach(r=>r.classList.toggle('active',Number(r.dataset.number)===el.number));
   history.replaceState(null,'',`#${el.symbol}`);
 }
-function backToTable(){
+function backToTable(){if(mode==='element'){stopElementSounds();whoosh(false,.8)}
   if(mode!=='element')return;mode='table';selected=null;app.classList.remove('element-mode');$('#element-card').hidden=true;$('.element-controls').hidden=true;
   stage.visible=false;flyTo(tableView(),1200);playSfx('tap');history.replaceState(null,'',location.pathname+location.search);
 }

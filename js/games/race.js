@@ -1,6 +1,8 @@
 // Star Road: steer a toy car between three lanes to collect stars. Cones only slow you down.
 import {THREE,RoundedBoxGeometry,V,surface,tween,wait,ease,makeSky,starGeometry,goldMaterial,labelSprite,shadowed,rng} from './kit.js';
 import {makeTree} from '../worlds/math-scenery.js';
+import {engine,whoosh} from '../core/audio.js';
+let motor=null;
 
 const LANES=[-2.3,0,2.3],GOALS=[8,12,16],SPEEDS=[9,11.5,14],CONE_CHANCE=[.25,.45,.6];
 const ROAD_LEN=220,SPAWN_Z=-90,SPACING=9;
@@ -58,15 +60,15 @@ function layout(){const portrait=innerHeight>innerWidth;ctx.camera.position.set(
 export default{
   id:'race',name:'Star Road',kicker:'RACE',icon:'race',
   keys:[['← →','Change lane'],['↑','Zoom!']],
-  enter(c){ctx=c;root=c.root;items=[];scenery=[];buildWorld();car=makeCar();root.add(car);ctx.lights('outdoor');
+  enter(c){ctx=c;root=c.root;items=[];scenery=[];buildWorld();car=makeCar();root.add(car);motor?.stop(.1);motor=engine();ctx.lights('outdoor');
     ctx.setPad([{label:'◀',code:'ArrowLeft',cls:'big'},{label:'▶',code:'ArrowRight',cls:'big'}],'split');start(ctx.level)},
-  exit(){items=[];scenery=[];finish=null;car=null},
+  exit(){items=[];scenery=[];finish=null;car=null;motor?.stop(.3);motor=null},
   restart(){start(ctx.level)},
   layout,
   update(dt,t){
     if(!car)return;
     const now=performance.now(),target=finished?0:SPEEDS[level-1]*(now<slowUntil?.45:1)*(1+boost);speed=THREE.MathUtils.damp(speed,target,finished?1.2:2.2,dt);boost=Math.max(0,boost-dt*.6);
-    const move=speed*dt;
+    const move=speed*dt;motor?.set(850+speed*330*(1+boost*.6),Math.min(1,speed/14+boost),.2);
     car.position.x=THREE.MathUtils.damp(car.position.x,LANES[lane],7,dt);car.rotation.y=THREE.MathUtils.damp(car.rotation.y,(car.position.x-LANES[lane])*.18,8,dt);car.rotation.z=now<slowUntil?Math.sin(t*30)*.04:0;
     wheels.forEach(w=>w.rotation.x-=move/.4);
     roadMats.forEach(([tex,rep])=>tex.offset.y+=move*rep/ROAD_LEN);
@@ -77,15 +79,15 @@ export default{
       if(item.flying){o.position.y+=dt*6;o.rotation.x+=dt*8;if(o.position.y>6)removeItem(item);continue}
       if(Math.abs(o.position.z)<1.4&&Math.abs(o.position.x-car.position.x)<(item.kind==='star'?1.5:1.05)&&!item.hit){
         item.hit=true;
-        if(item.kind==='star'){stars++;ctx.sfx('correct');ctx.progress(stars,goal);removeItem(item);if(stars===goal){finish=makeFinish();finish.position.z=-40;root.add(finish);ctx.feedback('All the stars! Drive to the finish!');items.forEach(i=>i.flying=true)}else if(stars%4===0)ctx.feedback(`${stars} stars! Keep going!`)}
-        else{slowUntil=now+1300;item.flying=true;ctx.sfx('wrong');ctx.feedback('Bump! Steer around the cones.')}
+        if(item.kind==='star'){stars++;ctx.sfx('coin',{volume:.8,rate:1+Math.min(stars,16)*.03});ctx.sfx('pluck',{volume:.5});ctx.progress(stars,goal);removeItem(item);if(stars===goal){finish=makeFinish();finish.position.z=-40;root.add(finish);ctx.feedback('All the stars! Drive to the finish!');items.forEach(i=>i.flying=true)}else if(stars%4===0)ctx.feedback(`${stars} stars! Keep going!`)}
+        else{slowUntil=now+1300;item.flying=true;ctx.sfx('cone-bump',{volume:.9});ctx.feedback('Bump! Steer around the cones.')}
         continue;
       }
       if(o.position.z>12)removeItem(item);
     }
     if(finish){finish.position.z+=move;if(finish.position.z>-.5&&!finished){finished=true;ctx.celebrate(V(0,3,-2));ctx.win({title:'You finished!',text:`You collected all ${goal} stars.`})}}
   },
-  key(code,down){if(!down)return;if(code==='ArrowLeft'||code==='KeyA')steer(-1);else if(code==='ArrowRight'||code==='KeyD')steer(1);else if(code==='ArrowUp'||code==='KeyW'){boost=.5;ctx.sfx('pop')}},
+  key(code,down){if(!down)return;if(code==='ArrowLeft'||code==='KeyA')steer(-1);else if(code==='ArrowRight'||code==='KeyD')steer(1);else if(code==='ArrowUp'||code==='KeyW'){boost=.5;whoosh(true,.5)}},
   tap(e){const r=ctx.renderer.domElement.getBoundingClientRect();steer(e.clientX<r.left+r.width/2?-1:1)},
   hover(){return true}
 };

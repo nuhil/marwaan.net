@@ -26,7 +26,7 @@ A `.githooks/pre-push` hook runs `npm run check` (enabled by `npm install`).
 | `chemistry.html` | `js/worlds/chemistry.js`, data in `js/worlds/elements-data.js` | `css/core/explorer.css` + `css/worlds/chemistry.css` | 3D periodic table, specimen stage, atom model, `#Au` deep links |
 | `math.html` | `js/worlds/math.js`, `math-models.js` (Number Pals, props), `math-scenery.js` (island) | `css/worlds/math.css` | Number Pals Meadow: five stations, `#add` etc. deep links |
 
-Shared modules: `js/core/icons.js` (inline SVG icons via `data-icon`), `js/core/audio.js` (Web Audio music + `playSfx('tap'|'pop'|'correct'|'wrong'|'chomp')`, starts only after a user gesture). `css/core/world.css` holds the toast (`.feedback`) and WebGL fallback styles used by every 3D page.
+Shared modules: `js/core/icons.js` (inline SVG icons via `data-icon`), `js/core/audio.js` (sound engine: `play(name,{volume,rate,loop,bus})` for `assets/audio/*.mp3`, `playSfx(kind)`, generative music + ambience per theme, synth effects `engine()`, `heartbeat()`, `breathing()`, `geiger()`, `neonHum()`, `quindar()`; starts after a user gesture; set `window.__audioLog=[]` to trace sounds in tests). `css/core/world.css` holds the toast (`.feedback`) and WebGL fallback styles used by every 3D page.
 
 ## Conventions
 

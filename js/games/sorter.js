@@ -43,7 +43,7 @@ function deal(level){
     const mesh=new THREE.Mesh(geo,paintedWood(SHAPES[k].color).clone());mesh.material.emissive=new THREE.Color('#000');mesh.castShadow=true;mesh.receiveShadow=true;
     const home=V((i-(total-1)/2)*1.55,.06,2.5+(i%2)*.25);mesh.position.copy(home).add(V(0,5,0));mesh.rotation.y=(Math.random()-.5)*.9;root.add(mesh);
     const block={kind:k,mesh,home,yaw:mesh.rotation.y,done:false};mesh.userData.block=block;blocks.push(block);
-    tween({delay:i*90,duration:520,ease:ease.out,update:q=>mesh.position.y=THREE.MathUtils.lerp(5,.06,q)}).then(()=>ctx.sfx('tap'));
+    tween({delay:i*90,duration:520,ease:ease.out,update:q=>mesh.position.y=THREE.MathUtils.lerp(5,.06,q)}).then(()=>ctx.sfx('wood-drop',{volume:.75,rate:.9+Math.random()*.2}));
   });
   ctx.hud('Feed the box!','Pick a block, then drop it in the hole with the same shape.');ctx.progress(0,total);ctx.fit(Math.max(W,total*1.55)+1.4,6.6,V(0,.6,.7),{elevation:.9});highlight();
 }
@@ -56,19 +56,19 @@ function highlight(){
 function select(block){
   if(busy||!block||block.done)return;
   if(selected&&selected!==block)tween({duration:200,update:k=>selected&&(selected.mesh.position.y=THREE.MathUtils.lerp(.7,.06,k))});
-  selected=block;mode='hole';cursor=0;ctx.sfx('tap');ctx.feedback(`The ${SHAPES[block.kind].name}! Now pick its hole.`);
+  selected=block;mode='hole';cursor=0;ctx.sfx('wood-tap',{volume:.8});ctx.feedback(`The ${SHAPES[block.kind].name}! Now pick its hole.`);
   const m=block.mesh,y=m.position.y;tween({duration:220,update:k=>m.position.y=THREE.MathUtils.lerp(y,.7,k)});highlight();
 }
 async function drop(hole){
   if(busy||!selected||!hole)return;busy=true;const b=selected,m=b.mesh,above=hole.pos.clone().add(V(0,1.1,0)),yaw=m.rotation.y;ctx.sfx('tap');
   await Promise.all([arcTo(m,above,{duration:560,height:1}),tween({duration:560,update:k=>m.rotation.y=THREE.MathUtils.lerp(yaw,0,k)})]);
   if(hole.kind===b.kind){
-    await tween({duration:420,ease:t=>t*t,update:k=>m.position.y=THREE.MathUtils.lerp(above.y,hole.pos.y-1.2,k)});m.visible=false;b.done=true;done++;ctx.sfx('correct');ctx.progress(done,total);ctx.feedback(`Plop! The ${SHAPES[b.kind].name} fits!`);
+    await tween({duration:420,ease:t=>t*t,update:k=>m.position.y=THREE.MathUtils.lerp(above.y,hole.pos.y-1.2,k)});m.visible=false;b.done=true;done++;ctx.sfx('soft-thud',{volume:.9,rate:.8});ctx.sfx('correct');ctx.progress(done,total);ctx.feedback(`Plop! The ${SHAPES[b.kind].name} fits!`);
     tween({duration:260,update:(k,p)=>box.scale.set(1+Math.sin(Math.PI*p)*.03,1-Math.sin(Math.PI*p)*.04,1+Math.sin(Math.PI*p)*.03)});
     selected=null;mode='block';cursor=0;
     if(done===total){await wait(300);ctx.celebrate(hole.pos.clone().add(V(0,1,0)));ctx.win({title:'Every shape fits!',text:`You sorted ${total} shapes.`})}
   }else{
-    mistakes[b.kind]=(mistakes[b.kind]||0)+1;ctx.sfx('wrong');
+    mistakes[b.kind]=(mistakes[b.kind]||0)+1;ctx.sfx('wood-bonk',{volume:.9});ctx.sfx('wrong',{volume:.5});
     await tween({duration:380,update:(k,p)=>{m.position.x=above.x+Math.sin(p*Math.PI*6)*.15*(1-p);m.position.y=above.y-Math.sin(Math.PI*p)*.25}});
     ctx.feedback(`Bonk! A ${SHAPES[b.kind].name} needs the ${SHAPES[b.kind].name} hole. Look for the glow!`);
     await Promise.all([arcTo(m,b.home.clone().setY(.7),{duration:520,height:1}),tween({duration:520,update:k=>m.rotation.y=THREE.MathUtils.lerp(0,b.yaw,k)})]);

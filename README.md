@@ -29,7 +29,7 @@ GitHub Pages publishes the `main` branch root to https://marwaan.net (see `CNAME
 
 ## Sound
 
-Each page has an optional Music control. Music and feedback cues are synthesized in the browser with Web Audio and begin only after a visitor interacts with the page. The site does not use text-to-speech.
+Every page has a Music button for gentle generative background music and an ambience (space hum, meadow birds, lab bubbles, workshop). Event sounds follow the action: real NASA launch roar and Apollo radio chatter with Quindar beeps on the Moon and Mars missions ("The Eagle has landed" at touchdown), a live car engine that revs with the accelerator, a heartbeat and breathing in the body explorer, neon hum and Geiger clicks for elements, hen and farm sounds in the meadow, and card, wood and crate sounds in the Game Room. Samples are public domain or CC0 (credits in `assets/audio/ATTRIBUTION.md`); music and many effects are synthesised with Web Audio. Nothing plays until a visitor interacts, and sound pauses when the tab is hidden.
 
 ## Anatomy model credits
 

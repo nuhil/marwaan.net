@@ -1,6 +1,15 @@
 // Space page simulations: a realistic solar eclipse and staged Moon / Mars missions seen at system scale.
 import * as THREE from 'three';
 import {CSS2DObject} from 'three/addons/renderers/CSS2DRenderer.js';
+import {play,quindar,preload,whoosh} from './core/audio.js';
+
+// Sounds belonging to the current mission step; they stop when the step changes or the simulation ends.
+const stepSounds=new Set();
+function stepSound(name,options){const h=play(name,options);stepSounds.add(h);return h}
+function stopStepSounds(fade=.6){stepSounds.forEach(h=>h.stop(fade));stepSounds.clear()}
+// A radio call: Quindar beep, the recording, and the closing beep.
+function radio(name,{volume=.6,delay=0,offset=0}={}){quindar('start',delay);return stepSound(name,{bus:'voice',volume,delay:delay+.3,offset})}
+preload(['launch-roar','houston-launch','houston-orbit','descent-chatter','eagle-landed','small-step','stage-separation','thruster','crowd-cheer']);
 
 const V=(x=0,y=0,z=0)=>new THREE.Vector3(x,y,z);
 const UP=V(0,1,0);
@@ -66,7 +75,7 @@ export function createSims(api){
     const sunTag=label('SUN','#ffb43d');sunTag.position.set(0,3.8,0);sun.add(sunTag);const earthTag=label('EARTH','#57c8ff');earthTag.position.set(0,R+.7,0);earth.add(earthTag);const moonTag=label('MOON','#dddddd');moonTag.position.set(0,.85,0);moon.add(moonTag);
     const view=$('#eclipse-view'),canvas=view.querySelector('canvas'),g=canvas.getContext('2d');view.hidden=false;
     const wide={target:()=>camera.aspect<1?V(-2.4,.3,0):V(-5.5,.3,0),dir:V(-.1,.42,1),dist:15,speed:1.2},close={target:V(-.9,0,0),dir:V(-.8,.38,.55),dist:6.2,speed:1.2};
-    let theta=0,phase='',hadTotality=false;
+    let theta=0,phase='',hadTotality=false,cheered=false;
     sim={kind:'eclipse',cam:wide,update(dt,t){
       const fromNew=Math.atan2(Math.sin(theta-Math.PI),Math.cos(theta-Math.PI)),slow=.18+.82*smooth(clamp01((Math.abs(fromNew)-.08)/.8));theta+=dt*.62*slow;
       const m=polar(E,orbit,theta);moon.position.copy(m);moon.userData.tilt.rotation.y=theta+Math.PI/2;uniforms.uMoonE.value.copy(m);
@@ -78,7 +87,7 @@ export function createSims(api){
       if(next!==phase){phase=next;
         if(phase==='orbit'){hadTotality=false;setInfo('MOON ORBIT','The Moon circles Earth','It goes around Earth about once a month. Watch it pass between the Sun and Earth.')}
         if(phase==='partial')setInfo('PARTIAL ECLIPSE','The Moon covers part of the Sun','The soft outer shadow, the penumbra, dims part of Earth. Look at the small window!');
-        if(phase==='total'){hadTotality=true;sfx('correct');setInfo('TOTAL ECLIPSE','Day turns dark!','Inside the Moon’s dark shadow, the umbra, the Sun’s glowing corona appears.')}
+        if(phase==='total'){if(!cheered){cheered=true;play('crowd-cheer',{volume:.42})}hadTotality=true;sfx('correct');setInfo('TOTAL ECLIPSE','Day turns dark!','Inside the Moon’s dark shadow, the umbra, the Sun’s glowing corona appears.')}
         if(phase==='after')setInfo('AFTER THE ECLIPSE','The Moon moves on','Eclipses are rare because the Moon’s path is tilted a little, so its shadow usually misses Earth.')}
     },stop(){view.hidden=true}};
   }
@@ -158,6 +167,19 @@ export function createSims(api){
   }
 
   function mission(kind){
+    let thrusterOn=null;
+    // Mission soundtrack: real NASA launch roar and radio loops per step; thrusters follow every engine burn.
+    const moonTrip=kind==='moon';
+    function stepAudio(i){
+      if(i===0){radio('houston-launch',{volume:.5});stepSound('launch-roar',{volume:.95,delay:.6})}
+      else if(i===1)radio('houston-orbit',{volume:.42});
+      else if(i===2)radio('houston-orbit',{volume:.38,offset:12});
+      else if(i===3)radio('houston-orbit',{volume:moonTrip?.38:.22,offset:4});
+      else if(i===4)radio('houston-orbit',{volume:.34,offset:18});
+      else if(i===5){if(moonTrip)quindar('start');else stepSound('launch-roar',{volume:.55,rate:.55,fadeIn:.6})}
+      else if(i===6&&moonTrip)radio('descent-chatter',{volume:.6});
+    }
+    const onLanded=()=>{quindar('start');if(moonTrip){stepSound('eagle-landed',{bus:'voice',volume:.85,delay:.3});quindar('end',5.7);stepSound('crowd-cheer',{volume:.32,delay:6});radio('small-step',{volume:.6,delay:9.5})}else{stepSound('crowd-cheer',{volume:.45,delay:.4});quindar('end',3)}};
     const plan=kind==='moon'?moonPlan():marsPlan(),scale=plan.scale;
     // Planned route (dashed), numbered markers and a trail that draws as the craft flies.
     plan.steps.forEach((s,i)=>{if(i>0)group.add(orbitLine(Array.from({length:161},(_,k)=>s.path(k/160)),plan.lineColor,.45));const el=document.createElement('div');el.className='mission-marker';el.textContent=i+1;const m=new CSS2DObject(el);m.position.copy(s.path(0));group.add(m);s.marker=el});
@@ -166,10 +188,11 @@ export function createSims(api){
     const crafts={rocket:null,probe:makeProbe(),lander:makeLander(),capsule:makeCapsule()};Object.values(crafts).forEach(c=>{if(c){c.scale.setScalar(scale);c.visible=false;group.add(c)}});
     const debris=[];let rocket=null,stage=0,dustTick=null;
     const freshRocket=()=>{if(rocket)group.remove(rocket);rocket=makeRocket();rocket.scale.setScalar(scale*1.6);group.add(rocket);crafts.rocket=rocket;stage=0};
-    const detach=(part)=>{if(!part)return;const p=part.getWorldPosition(V()),q=part.getWorldQuaternion(new THREE.Quaternion()),s=part.getWorldScale(V());group.attach(part);part.position.copy(p);part.quaternion.copy(q);part.scale.copy(s);debris.push({o:part,v:sim.craftPos.clone().normalize().multiplyScalar(-.25).add(V((Math.random()-.5)*.2,-.15,(Math.random()-.5)*.2)),spin:(Math.random()-.5)*2});sfx('pop')};
+    const detach=(part)=>{if(!part)return;play('stage-separation',{volume:.8});const p=part.getWorldPosition(V()),q=part.getWorldQuaternion(new THREE.Quaternion()),s=part.getWorldScale(V());group.attach(part);part.position.copy(p);part.quaternion.copy(q);part.scale.copy(s);debris.push({o:part,v:sim.craftPos.clone().normalize().multiplyScalar(-.25).add(V((Math.random()-.5)*.2,-.15,(Math.random()-.5)*.2)),spin:(Math.random()-.5)*2});/* separation sound plays in detach() */};
     const timeline=$('#mission-timeline');timeline.innerHTML=plan.steps.map((s,i)=>`<button type="button" class="ms-step" data-i="${i}"><b>${i+1}</b><span>${s.name}</span></button>`).join('');timeline.hidden=false;
     timeline.querySelectorAll('.ms-step').forEach(b=>b.onclick=()=>{enter(Number(b.dataset.i));sfx('tap')});
     function enter(i){
+      stopStepSounds();thrusterOn=null;stepAudio(i);
       sim.step=i;sim.t=0;sim.done=false;const s=plan.steps[i];
       if(s.craft==='rocket')freshRocket();else if(rocket){group.remove(rocket);rocket=null}
       Object.entries(crafts).forEach(([k,c])=>{if(c)c.visible=k===s.craft});if(crafts.lander)crafts.lander.userData.deploy(s.land?0:0);
@@ -186,20 +209,20 @@ export function createSims(api){
       const craft=crafts[s.craft];if(!craft)return;craft.position.copy(p);
       const fwd=plan.along(s.path,t),qFly=new THREE.Quaternion().setFromUnitVectors(UP,fwd);
       if(s.land){const qUp=new THREE.Quaternion().setFromUnitVectors(UP,s.land.normal),k=smooth(clamp01((t-.15)/.6));craft.quaternion.copy(qFly).slerp(qUp,s.craft==='capsule'?1:k)}else craft.quaternion.copy(qFly);
-      const burning=s.burn?s.burn(t):false;if(craft.userData.plume){craft.userData.plume.visible=burning;craft.userData.plume.scale.y=.85+Math.sin(time*40)*.15}
+      const burning=s.burn?s.burn(t):false;if(burning&&!thrusterOn)thrusterOn=stepSound('thruster',{loop:true,volume:s.land?.55:.4,fadeIn:.15,rate:s.craft==='rocket'?.8:1});else if(!burning&&thrusterOn){thrusterOn.stop(.4);stepSounds.delete(thrusterOn);thrusterOn=null}if(craft.userData.plume){craft.userData.plume.visible=burning;craft.userData.plume.scale.y=.85+Math.sin(time*40)*.15}
       if(s.craft==='rocket'){const f=rocket.userData;[f.flame1,f.flame2].forEach(fl=>fl&&(fl.scale.y=.8+Math.sin(time*35)*.18));if(t>.4&&stage===0){detach(f.stage1);f.stage1=null;f.flame2.visible=true;stage=1}if(t>.78&&stage===1){detach(f.stage2);f.stage2=null;stage=2}}
       if(s.craft==='lander'&&s.land)craft.userData.deploy(smooth(clamp01((t-.2)/.4)));
-      if(s.craft==='capsule'){const u=craft.userData;u.heat.material.opacity=Math.sin(Math.PI*clamp01(t/.5))*.95;u.chute.visible=t>.55;if(u.chute.visible)u.chute.scale.setScalar(Math.min(1,(t-.55)/.08))}
+      if(s.craft==='capsule'){const u=craft.userData;u.heat.material.opacity=Math.sin(Math.PI*clamp01(t/.5))*.95;if(t>.55&&!u.chute.visible){play('soft-thud',{volume:.8});whoosh(false,.5);stepSounds.forEach(h=>h.volume(.12,.8))}u.chute.visible=t>.55;if(u.chute.visible)u.chute.scale.setScalar(Math.min(1,(t-.55)/.08))}
       const pct=(sim.step+t)/plan.steps.length;setProgress(`STEP ${sim.step+1} · ${s.name.toUpperCase()}`,pct);
       if(t>=1){
-        if(s.land&&!s.landed){s.landed=true;dustTick=dust(s.land.at,s.land.normal,s.land.color)}
+        if(s.land&&!s.landed){s.landed=true;dustTick=dust(s.land.at,s.land.normal,s.land.color);if(s.craft!=='capsule')play('soft-thud',{volume:.9})}
         if(sim.step<plan.steps.length-1){
           // Swap the capsule for the lander at the end of the Mars entry step.
           if(s.craft==='capsule'){const l=crafts.lander;l.position.copy(p);l.quaternion.copy(craft.quaternion)}
           enter(sim.step+1);
-        }else{sim.done=true;crafts.lander.userData.deploy(1);if(crafts.lander.userData.plume)crafts.lander.userData.plume.visible=false;setProgress('MISSION COMPLETE',1);const [k,ti,c]=plan.done;setInfo(k,ti,c);sfx('correct');timeline.querySelectorAll('.ms-step').forEach(b=>b.classList.add('done'))}
+        }else{sim.done=true;crafts.lander.userData.deploy(1);onLanded();if(crafts.lander.userData.plume)crafts.lander.userData.plume.visible=false;setProgress('MISSION COMPLETE',1);const [k,ti,c]=plan.done;setInfo(k,ti,c);sfx('correct');timeline.querySelectorAll('.ms-step').forEach(b=>b.classList.add('done'))}
       }
-    },stop(){timeline.hidden=true;timeline.innerHTML=''}};
+    },stop(){timeline.hidden=true;timeline.innerHTML='';stopStepSounds(.4)}};
     enter(0);
   }
 

@@ -2,7 +2,7 @@
 import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
 import {THREE,V,newRound,updateTweens,updateBursts,confetti,disposeTree,sunLight} from './kit.js';
 import {hydrateIcons} from '../core/icons.js';
-import {installAudio,playSfx} from '../core/audio.js';
+import {installAudio,playSfx,play} from '../core/audio.js';
 import memory from './memory.js';
 import sorter from './sorter.js';
 import race from './race.js';
@@ -20,13 +20,14 @@ let stars=Number(store.get('wonder-stars',0))||0;const levels=store.get('wonder-
 const ctx={
   get root(){return root},get camera(){return camera},get renderer(){return renderer},get scene(){return scene},
   get level(){return levels[game?.id]||1},usingKeys:false,
-  sfx(kind){if(interacted)playSfx(kind)},
+  sfx(kind,options){if(interacted)return playSfx(kind,options)},
   hud(title,text){$('#hud-title').textContent=title;$('#hud-text').textContent=text;$('#hud-note').textContent=''},
   hudNote(text){$('#hud-note').textContent=text},
   progress(done,total){$('#hud-bar').style.width=`${total?done/total*100:0}%`;$('#hud-count').textContent=`${done} / ${total}`},
   feedback(message){const el=$('#feedback');el.textContent=message;el.classList.add('show');clearTimeout(ctx.feedback.timer);ctx.feedback.timer=setTimeout(()=>el.classList.remove('show'),Math.max(1700,message.length*55))},
   celebrate(at){confetti(scene,at);ctx.sfx('correct')},
   win({title,text}){
+    if(interacted){play('jingle-big',{volume:.7});play('crowd-cheer',{volume:.4,delay:.6})}
     stars++;store.set('wonder-stars',stars);$('#stars').textContent=stars;$('.score-pill').classList.remove('pop');void $('.score-pill').offsetWidth;$('.score-pill').classList.add('pop');
     const lv=ctx.level,last=lv>=MAX_LEVEL;$('#win-title').textContent=title;$('#win-text').textContent=last?`${text} You beat every level!`:text;
     $('#win-next').textContent=last?'Start from level 1':`Level ${lv+1} ›`;$('#win-layer').hidden=false;setTimeout(()=>$('#win-next').focus(),50);

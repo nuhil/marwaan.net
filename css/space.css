@@ -54,3 +54,21 @@
 .planet-label.planet-tag:hover,.planet-label.planet-tag.hover,.planet-label.planet-tag:focus-visible{background:#163256f0;border-color:#8be3ffaa!important;color:#fff;outline:none;box-shadow:0 0 0 3px #62d9ff33,0 6px 18px #0008}
 .planet-label.hidden{pointer-events:none}
 .simulation-mode .planet-label.planet-tag{pointer-events:none}
+
+/* Clearer solar system view: planet picker is a drawer, the info card only shows when there is something to say,
+   the adventure bar is slimmer, and the gesture hints fade after the first touch. */
+.info-panel:not(.open){opacity:0;transform:translateY(16px);pointer-events:none}
+.panel-close{display:grid;place-items:center;cursor:pointer}
+.control-hint{transition:opacity .6s}
+.touched .control-hint{opacity:0;pointer-events:none}
+@media(min-width:761px){
+  .open-finder{display:flex;align-items:center;gap:7px;top:18px;right:18px;height:52px;padding:0 16px;border:0;border-radius:17px;color:#fff;cursor:pointer;font:800 13px Nunito,system-ui,sans-serif}
+  .open-finder svg{width:18px}
+  .planet-finder{z-index:12;transition:transform .28s,opacity .28s}
+  .planet-finder:not(.open){transform:translateX(calc(100% + 40px));opacity:0;pointer-events:none}
+  .mode-ribbon{grid-template-columns:1fr;width:min(640px,calc(100% - 36px));height:76px;padding:8px}
+  .mode-ribbon .ribbon-title{display:none}
+  .mode-button{height:58px}
+  .info-panel{bottom:110px}
+  .control-hint{bottom:102px}
+}
