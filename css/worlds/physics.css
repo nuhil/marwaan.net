@@ -11,3 +11,43 @@
 
 /* Keep the fact panel above the energy panel on phones. */
 @media(max-width:760px){.fact-panel{bottom:214px}}
+
+/* Decluttered layout: parts drawer, slim drive bar, fact card only when it has something to say. */
+.machine-panel{transition:transform .28s,opacity .28s}
+.machine-panel:not(.open){transform:translateX(calc(100% + 40px));opacity:0;pointer-events:none}
+.panel-heading{display:flex;align-items:center;justify-content:space-between}
+.panel-x{border:0;background:#ffffff0d;color:#fff;width:32px;height:32px;border-radius:10px;display:grid;place-items:center;cursor:pointer}
+.panel-x svg{width:15px}
+.fact-panel{bottom:200px}
+.fact-panel:not(.is-open){opacity:0;transform:translateY(16px);pointer-events:none}
+.fact-close{display:grid!important;place-items:center;cursor:pointer}
+.drive-bar{left:50%;bottom:116px;transform:translateX(-50%);width:min(700px,calc(100% - 36px));height:66px;padding:8px 10px;display:flex;align-items:center;gap:12px;border-radius:20px}
+.drive-bar .run-button{height:48px;padding:0 16px;font-size:14px;flex:none}
+.drive-bar .power-control{flex:1;min-width:120px;margin:0}
+.drive-bar .power-control>span{display:flex;justify-content:space-between;align-items:baseline}
+.drive-bar .power-control small{font:700 8px Space Mono;letter-spacing:.1em;color:#72889d}
+.drive-bar .power-control input{margin-top:6px}
+.drive-gauges{display:flex;gap:6px;flex:none}
+.drive-gauges>div{width:96px;padding:6px 9px;border:1px solid #ffffff0d;background:#060c13aa;border-radius:11px}
+.drive-gauges small{display:block;font:700 8px Space Mono;color:#72889d;letter-spacing:.1em}
+.drive-gauges b{font-size:13px;color:#fff}
+.drive-gauges i{display:block;height:3px;background:#ffffff0c;border-radius:5px;margin-top:4px;overflow:hidden}
+.drive-gauges i span{display:block;width:0;height:100%;background:linear-gradient(90deg,#58e7ff,#ffb34f);transition:width .2s}
+.slow-btn{flex:none;height:48px;padding:0 12px;border:1px solid #ffffff12;background:#ffffff08;color:#c8d6e4;border-radius:13px;display:flex;align-items:center;gap:6px;font:800 12px Nunito;cursor:pointer}
+.slow-btn svg{width:16px}
+.slow-btn[aria-pressed="true"]{border-color:#ffbd5666;background:#ffbd5618;color:#fff}
+@media(max-width:900px){.drive-gauges>div{width:84px}.slow-btn b{display:none}}
+@media(max-width:760px){
+  .machine-panel{top:70px;right:10px;left:auto;width:min(260px,calc(100% - 20px))}
+  .drive-bar{left:10px;right:10px;bottom:88px;transform:none;width:auto;height:58px;gap:8px;padding:6px 8px;border-radius:17px}
+  .drive-bar .run-button{height:44px;padding:0 12px}
+  .drive-gauges>div:first-child{display:none}
+  .drive-gauges>div{width:76px;padding:5px 7px}
+  .slow-btn{height:44px;padding:0 10px}
+  .fact-panel{bottom:156px}
+}
+@media(min-width:761px) and (max-width:1100px){.physics-brand .brand-copy{display:none}.physics-brand{padding:9px}}
+.physics-prompt b,.physics-prompt small{transition:color .3s}
+.physics-prompt.touring>i{background:#ffbd5626;border-color:#ffbd5666;color:#ffd27a}
+.physics-prompt.touring small{color:#c9d6e2;max-width:320px}
+@media(max-width:760px){.physics-prompt.touring{display:flex;left:10px;right:10px;top:122px;padding:8px 12px;border-radius:14px;background:#0b141fe6;border:1px solid #ffffff18}}
