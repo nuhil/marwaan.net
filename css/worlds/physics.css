@@ -51,3 +51,6 @@
 .physics-prompt.touring>i{background:#ffbd5626;border-color:#ffbd5666;color:#ffd27a}
 .physics-prompt.touring small{color:#c9d6e2;max-width:320px}
 @media(max-width:760px){.physics-prompt.touring{display:flex;left:10px;right:10px;top:122px;padding:8px 12px;border-radius:14px;background:#0b141fe6;border:1px solid #ffffff18}}
+/* Hood joins the systems bar as a seventh switch (lit when the hood is open). */
+.system-grid{grid-template-columns:repeat(7,1fr)}
+.system-toggle.hood-toggle i{background:#ffd27a;color:#ffd27a}
