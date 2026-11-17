@@ -18,7 +18,8 @@ body{overflow-x:hidden}
 main{overflow-x:clip}
 @media(min-width:681px) and (max-width:1000px){
   .nav-wrap{display:flex;padding-top:0;gap:10px;min-height:68px}
-  .site-nav{flex:1;justify-content:center;gap:2px;overflow-x:auto;padding:0;scrollbar-width:none}
+  .site-nav{flex:1;justify-content:safe center;gap:2px;overflow-x:auto;padding:0;scrollbar-width:none}
+  .site-nav a>.ui-icon{display:none}
   .site-nav::-webkit-scrollbar{display:none}
   .site-nav a{padding:9px 8px;font-size:.8rem}
   .hub-music{margin-left:0;flex:none}
